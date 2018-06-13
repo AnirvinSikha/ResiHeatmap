@@ -1,6 +1,8 @@
 import requests
 import json, sys, datetime
 
+#git addition
+
 key = "iKiCqfldxiivLAGQHjQ2y4pXdM5HKk2UNDxnyxiM"
 
 url = "https://developer.nrel.gov/api/alt-fuel-stations/v1.json?fuel_type=E85,ELEC&state=CA&limit=2&api_key=iKiCqfldxiivLAGQHjQ2y4pXdM5HKk2UNDxnyxiM&format=JSON"
