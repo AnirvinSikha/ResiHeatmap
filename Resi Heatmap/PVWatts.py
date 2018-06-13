@@ -36,5 +36,9 @@ parameters = {
     "lon": str(lon),
 }
 response = requests.get(url_prime, parameters)
-print response.json()
-
+#print response.json()
+#j = json.loads(response.json())
+outputs = response.json()["outputs"]
+months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+for i in range(12):
+    print months[i] + ": " + str(outputs["solrad_monthly"][i])
