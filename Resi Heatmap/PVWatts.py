@@ -1,6 +1,7 @@
 import requests
 from uszipcode import ZipcodeSearchEngine
-
+import matplotlib.pyplot as plot
+import numpy
 import json, sys, datetime
 
 key = "iKiCqfldxiivLAGQHjQ2y4pXdM5HKk2UNDxnyxiM"
@@ -22,6 +23,13 @@ conversion = ZipcodeSearchEngine().by_zipcode(zipcode)
 lat = conversion["Latitude"]
 lon = conversion["Longitude"]
 
+def visualize(output):
+
+    index = numpy.array(len(output))
+    plot.bar(index, output)
+    plot.show()
+
+
 parameters = {
     "format": "JSON",
     "api_key": "iKiCqfldxiivLAGQHjQ2y4pXdM5HKk2UNDxnyxiM",
@@ -31,14 +39,16 @@ parameters = {
     "array_type": '0', # Legend: 0	Fixed - Open Rack, 1 Fixed - Roof Mounted, 2	1-Axis, 3 1-Axis Backtracking, 4 2-Axis
     "tilt": '10',
     "azimuth": '180',
-    "dataset": "tmy3",
+    "dataset": "tmy3", #subject to change
     "lat": str(lat),
     "lon": str(lon),
+    "timeframe": "hourly"
 }
 response = requests.get(url_prime, parameters)
 #print response.json()
 #j = json.loads(response.json())
 outputs = response.json()["outputs"]
-months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-for i in range(12):
-    print months[i] + ": " + str(outputs["solrad_monthly"][i])
+#for i in range(len(outputs["ac"])):
+#    outputs["ac"][i] = outputs["ac"][i]/1000
+print outputs["ac"]
+#visualize(outputs)
