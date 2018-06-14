@@ -35,8 +35,8 @@ parameters = {
     "api_key": "iKiCqfldxiivLAGQHjQ2y4pXdM5HKk2UNDxnyxiM",
     "system_capacity": '6',
     "module_type": '0',  # Legend: 0 Standard, 1 Premium, 2 Thin Film
-    "losses": '10',  # Legend : -5 to 99
-    "array_type": '0', # Legend: 0	Fixed - Open Rack, 1 Fixed - Roof Mounted, 2	1-Axis, 3 1-Axis Backtracking, 4 2-Axis
+    "losses": '2',  # Legend : -5 to 99
+    "array_type": '1', # Legend: 0	Fixed - Open Rack, 1 Fixed - Roof Mounted, 2	1-Axis, 3 1-Axis Backtracking, 4 2-Axis
     "tilt": '10',
     "azimuth": '180',
     "dataset": "tmy3", #subject to change
