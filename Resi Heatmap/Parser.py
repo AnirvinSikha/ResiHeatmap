@@ -26,6 +26,22 @@ class Parser:
     def getElectricity(self):
         return self.columns["Electricity:Facility [kW](Hourly)"]
 
+    def convertHour(self, str): #takes in "01/01 01:00:00" and returns int of 1 (hour)
+        return int(str.split(" ")[1].split(":")[0])
+
+    def convertMonth(self, str): #takes in "01/01 01:00:00" and returns int of 01 (month)
+        return int(str.split("/")[0])
+
+    def getWeek(self):
+        return self.columns["week/weekend"]
+
+    def getMonth(self):
+        return self.columns["month"]
+
+    def getHour(self, h):
+        h = int(h)
+        return self.columns[str(h)]
+
 def fileParse(filename):
     f = open(filename)
     parsedCSV = Parser(f, filename)
