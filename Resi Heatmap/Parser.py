@@ -16,23 +16,22 @@ class Parser:
         self.state = split[1]
         self.city = split[2]
 
-    def showHeaders(self):
-        print(self.headers)
+        self.columns = {}
+        for h in self.headers:
+            self.columns[h] = []
+        for row in self.reader:
+            for h, v in zip(self.headers, row):
+                self.columns[h].append(v)
 
+    def getElectricity(self):
+        return self.columns["Electricity:Facility [kW](Hourly)"]
 
-
-
+def fileParse(filename):
+    f = open(filename)
+    parsedCSV = Parser(f, filename)
+    return parsedCSV
 
 def main():
     filename = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
-    f = open(filename)
-    run = Parser(f, filename)
-    print run.showHeaders()
-    print run.country
-    print run.state
-    print run.city
-
-
-
-if __name__ == "__main__":
-    main()
+    run = fileParse(filename)
+    print run.getElectricity()
