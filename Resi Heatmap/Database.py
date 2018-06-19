@@ -4,4 +4,5 @@ import glob
 import os
 
 def csvcompile():
+    return None
 
