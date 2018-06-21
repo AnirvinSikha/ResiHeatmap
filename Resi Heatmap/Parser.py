@@ -2,19 +2,15 @@ import csv
 import sqlite3
 import glob
 import os
+import pandas
 
 class Parser:
 
     def __init__(self, f, filename):
-        self.f = f
+        self.f = pandas.read_csv(f)
         self.filename = filename
         self.reader = csv.reader(f)
         self.headers = self.reader.next()
-
-        split = filename.split("_")
-        self.country = split[0]
-        self.state = split[1]
-        self.city = split[2]
 
         self.columns = {}
         for h in self.headers:
@@ -23,24 +19,41 @@ class Parser:
             for h, v in zip(self.headers, row):
                 self.columns[h].append(v)
 
+    def getCountry(self):
+        split = self.filename.split("_")
+        return split[0]
+
+    def getState(self):
+        split = self.filename.split("_")
+        return split[1]
+
+    def getCity(self):
+        split = self.filename.split("_")
+        return split[2]
+
     def getElectricity(self):
-        return self.columns["Electricity:Facility [kW](Hourly)"]
+        return self.f["Electricity:Facility [kW](Hourly)"]
+
+    def getTotalHour(self):
+        return self.f["Date/Time"]
 
     def convertHour(self, str): #takes in "01/01 01:00:00" and returns int of 1 (hour)
-        return int(str.split(" ")[1].split(":")[0])
+        store = str.split()[1]
+        return store.split(":")[0]
+
 
     def convertMonth(self, str): #takes in "01/01 01:00:00" and returns int of 01 (month)
         return int(str.split("/")[0])
 
     def getWeek(self):
-        return self.columns["week/weekend"]
+        return self.f["week/weekend"]
 
     def getMonth(self):
-        return self.columns["month"]
+        return self.f["month"]
 
-    def getHour(self, h):
+    def getHour(self, h): 
         h = int(h)
-        return self.columns[str(h)]
+        return self.f[str(h)]
 
 def fileParse(filename):
     f = open(filename)
@@ -50,4 +63,7 @@ def fileParse(filename):
 def main():
     filename = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
     run = fileParse(filename)
-    print run.getElectricity()
+    print run.getTotalHour()[0]
+    print run.convertHour(run.getTotalHour()[180])
+
+main()
