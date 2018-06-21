@@ -9,15 +9,15 @@ class Parser:
     def __init__(self, f, filename):
         self.f = pandas.read_csv(f)
         self.filename = filename
-        self.reader = csv.reader(f)
-        self.headers = self.reader.next()
+        #self.reader = csv.reader(f)
+        #self.headers = self.reader.next()
 
         self.columns = {}
-        for h in self.headers:
-            self.columns[h] = []
-        for row in self.reader:
-            for h, v in zip(self.headers, row):
-                self.columns[h].append(v)
+        #for h in self.headers:
+        #    self.columns[h] = []
+        #for row in self.reader:
+        #    for h, v in zip(self.headers, row):
+        #        self.columns[h].append(v)
 
     def getCountry(self):
         split = self.filename.split("_")
@@ -39,8 +39,11 @@ class Parser:
 
     def convertHour(self, str): #takes in "01/01 01:00:00" and returns int of 1 (hour)
         store = str.split()[1]
-        return store.split(":")[0]
+        return int(store.split(":")[0])
 
+    def convertDay(self, str):
+        store = str.split()[0]
+        return int(store.split("/")[1])
 
     def convertMonth(self, str): #takes in "01/01 01:00:00" and returns int of 01 (month)
         return int(str.split("/")[0])
@@ -51,7 +54,7 @@ class Parser:
     def getMonth(self):
         return self.f["month"]
 
-    def getHour(self, h): 
+    def getHour(self, h):
         h = int(h)
         return self.f[str(h)]
 
@@ -63,7 +66,7 @@ def fileParse(filename):
 def main():
     filename = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
     run = fileParse(filename)
-    print run.getTotalHour()[0]
-    print run.convertHour(run.getTotalHour()[180])
-
-main()
+    print run.getTotalHour()[2]
+    print run.convertHour(run.getTotalHour()[2])
+    print run.convertDay(run.getTotalHour()[2])
+    print run.convertMonth(run.getTotalHour()[2])
