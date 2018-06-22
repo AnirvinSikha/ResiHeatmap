@@ -1,0 +1,34 @@
+import PVWatts
+import LoadProfile
+import Parser
+import csv
+
+LA = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
+ratesEWeek = "RateEweek.csv"
+
+LosAngeles = Parser.fileParse(LA)
+rates = Parser.fileParse(ratesEWeek)
+
+output = LoadProfile.run(LosAngeles, rates)
+dates = output[0]
+consumption = output[1]
+before_solar = output[2]
+solar = PVWatts.run("90001")
+net_load = []
+for i in range(len(consumption)):
+    net_load += [consumption[i] - solar[i]]
+
+import_rates = output[3]
+export_rates = []
+for i in range(len(import_rates)):
+    export_rates += [import_rates[i] - .03]
+
+after_solar = []
+for i in range(len(net_load)):
+    if net_load[i] >= 0:
+        after_solar += [net_load[i] * import_rates[i]]
+    else:
+        after_solar += [net_load[i] * export_rates[i]]
+
+for i in range(len(after_solar)):
+

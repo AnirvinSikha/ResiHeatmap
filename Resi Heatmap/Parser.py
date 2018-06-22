@@ -1,7 +1,3 @@
-import csv
-import sqlite3
-import glob
-import os
 import pandas
 
 class Parser:
