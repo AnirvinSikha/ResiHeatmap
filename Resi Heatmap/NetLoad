@@ -30,5 +30,3 @@ for i in range(len(net_load)):
     else:
         after_solar += [net_load[i] * export_rates[i]]
 
-for i in range(len(after_solar)):
-
