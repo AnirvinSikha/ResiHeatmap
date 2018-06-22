@@ -16,14 +16,8 @@ rates = Parser.fileParse(ratesEWeek)
 
 def run():
     output = []
-    week = True
-    weekend = False
-    weekCount = 0 #0 - Mon, 1 - Tues, 2 - Wed, 3 - Thurs, 4 - Fri. weekCount < 5
-    weekendCount = 0 #0 - Sat, 1 - Sun weekendCount < 2
     totalHour = 0 #total hour goes from 0 - 8759 inclusive
-    dailyHour = 0 #daily hour goes from 0 - 23 inclusive, resets everyday
-    month = 1
-    while totalHour <= 8760:
+    while totalHour < 8760:
         month_date = LosAngeles.convertMonth(LosAngeles.getTotalHour()[totalHour])
         day_date = LosAngeles.convertDay(LosAngeles.getTotalHour()[totalHour])
         date =  datetime.date(2013, month_date, day_date) #the date in 2013
@@ -33,12 +27,22 @@ def run():
 
         r_Week = rates.getWeek() == is_week
         r_Month = rates.getMonth() == month_date
-        #r_Hour = rates.getHour(totalHour//24) == (totalHour // 24)
-        rate_value = rates.getHour(totalHour//24)[r_Week & r_Month]
+        hour = totalHour % 24
+        #r_Hour = rates.getHour(totalHour//24) == (totalHour // 24
+        #if totalHour == 576:
+        #    rate_value = rates.getHour(0)[r_Week & r_Month]
+        #else:
+        if totalHour == 575:
+            print "hello, right over here!"
+        rate_value = rates.getHour(hour)[r_Week & r_Month]
 
-        print rate_value
-        print LosAngeles.getElectricity()[totalHour]
+        print "rate val:" + str(rate_value)
+        print "LA Load prof:" + str(LosAngeles.getElectricity()[totalHour])
         print rate_value * LosAngeles.getElectricity()[totalHour]
+        print "date: " + str(date)
+        print "totalHour:" + str(totalHour)
+        print " "
+
         totalHour += 1
 
 run()
