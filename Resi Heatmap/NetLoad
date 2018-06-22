@@ -30,3 +30,12 @@ for i in range(len(net_load)):
     else:
         after_solar += [net_load[i] * export_rates[i]]
 
+with open("table.csv", 'w') as file:
+    headers = ["Date/Time", "Consumption", "Before Solar", "Solar", "Net Load", "After Solar", "Import", "Export"]
+    writer = csv.DictWriter(file, headers)
+
+    writer.writeheader()
+    for i in range(len(dates)):
+        writer.writerow({"Date/Time": dates[i], "Consumption": consumption[i], "Before Solar": before_solar[i],
+                        "Solar": solar[i], "Net Load": net_load[i], "After Solar": after_solar[i],
+                         "Import": import_rates[i], "Export": export_rates[i]})
