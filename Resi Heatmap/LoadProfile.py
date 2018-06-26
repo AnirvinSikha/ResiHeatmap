@@ -34,7 +34,7 @@ def run(load, rates):
         hour = totalHour % 24
 
         rate_value = rates.getHour(hour)[r_Week & r_Month]
-        import_rates += [rate_value]
+        import_rates += [float(rate_value)]
         #print "rate val:" + str(rate_value)
         #print "LA Load prof:" + str(load.getElectricity()[totalHour])
         #print rate_value * load.getElectricity()[totalHour]
@@ -42,7 +42,7 @@ def run(load, rates):
         #print "totalHour:" + str(totalHour)
         #print " "
 
-        before_solar += [rate_value * load.getElectricity()[totalHour]]
+        before_solar += [float(rate_value * load.getElectricity()[totalHour])]
         totalHour += 1
     return (date_time, consumption, before_solar, import_rates)
 
