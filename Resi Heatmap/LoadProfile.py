@@ -1,22 +1,10 @@
-import Parser
 import datetime
-
-
-
-LA = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
-ratesEWeek = "RateEweek.csv"
-
-LosAngeles = Parser.fileParse(LA)
-rates = Parser.fileParse(ratesEWeek)
-
-
 
 def run(load, rates):
     date_time = load.getTotalHour()
     consumption = []
     before_solar = []
     import_rates = []
-
 
     totalHour = 0 #total hour goes from 0 - 8759 inclusive
     while totalHour < 8760:
@@ -35,19 +23,7 @@ def run(load, rates):
 
         rate_value = rates.getHour(hour)[r_Week & r_Month]
         import_rates += [float(rate_value)]
-        #print "rate val:" + str(rate_value)
-        #print "LA Load prof:" + str(load.getElectricity()[totalHour])
-        #print rate_value * load.getElectricity()[totalHour]
-        #print "date: " + str(date)
-        #print "totalHour:" + str(totalHour)
-        #print " "
 
         before_solar += [float(rate_value * load.getElectricity()[totalHour])]
         totalHour += 1
     return (date_time, consumption, before_solar, import_rates)
-
-
-
-
-
-

@@ -2,6 +2,8 @@ import PVWatts
 import LoadProfile
 import Parser
 import csv
+import Dispatch
+import pandas as pd
 
 LA = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
 ratesEWeek = "RateEweek.csv"
@@ -30,12 +32,18 @@ for i in range(len(net_load)):
     else:
         after_solar += [net_load[i] * export_rates[i]]
 
-with open("table.csv", 'w') as file:
+with open("table.csv", 'w') as output_file:
     headers = ["Date/Time", "Load", "Bill Before Solar", "Solar", "Net Load", "Bill Solar Only", "Import Rate", "Export Rate"]
-    writer = csv.DictWriter(file, headers)
+    writer = csv.DictWriter(output_file, headers)
 
     writer.writeheader()
     for i in range(len(dates)):
         writer.writerow({"Date/Time": dates[i], "Load": consumption[i], "Bill Before Solar": before_solar[i],
                         "Solar": solar[i], "Net Load": net_load[i], "Bill Solar Only": after_solar[i],
                          "Import Rate": import_rates[i], "Export Rate": export_rates[i]})
+
+print "I'm here!"
+d = pd.read_csv("table.csv")
+d = Dispatch.full_basic_dispatch(d, 1)
+d.to_csv("table.csv")
+

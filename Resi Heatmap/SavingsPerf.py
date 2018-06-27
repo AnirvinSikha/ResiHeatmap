@@ -11,7 +11,7 @@ def open_profiles(name):
     # delete empty columns
     d.dropna(how = 'all', axis='columns', inplace=True)
     # delete empty lines
-    d.dropna(inplace=True)
+    d.dropna(inplace = True)
     # Create a full date column (day and hour)
     d['date'] = pd.to_datetime(d['Date'] + ' ' + d['Time'], format='%m/%d/%Y %H:%M')
     d.drop(['Date','Time',' ', 'net load'], axis=1, inplace=True)
