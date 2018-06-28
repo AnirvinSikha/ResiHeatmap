@@ -4,14 +4,20 @@ import Parser
 import csv
 import Dispatch
 import pandas as pd
+import os
+
+userhome = os.path.expanduser('~')
+csvfile = userhome #+ r'/Desktop/USA_CA_San.Jose.Intl.AP.724945_TMY3_HIGH' + '.csv'
+load_file = Parser.fileParse(open(csvfile, "r"))
 
 LA = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
 ratesEWeek = "RateEweek.csv"
 
-LosAngeles = Parser.fileParse(LA)
+Los_Angeles = Parser.fileParse(LA)
+
 rates = Parser.fileParse(ratesEWeek)
 
-output = LoadProfile.run(LosAngeles, rates)
+output = LoadProfile.run(csvfile, rates)
 dates = output[0]
 consumption = output[1]
 before_solar = output[2]
@@ -32,8 +38,10 @@ for i in range(len(net_load)):
     else:
         after_solar += [net_load[i] * export_rates[i]]
 
-with open("table.csv", 'w') as output_file:
-    headers = ["Date/Time", "Load", "Bill Before Solar", "Solar", "Net Load", "Bill Solar Only", "Import Rate", "Export Rate"]
+name = "table.csv"
+with open(name, 'w') as output_file:
+    headers = ["Date/Time", "Load", "Bill Before Solar", "Solar", "Net Load",
+               "Bill Solar Only", "Import Rate", "Export Rate"]
     writer = csv.DictWriter(output_file, headers)
 
     writer.writeheader()
@@ -42,8 +50,8 @@ with open("table.csv", 'w') as output_file:
                         "Solar": solar[i], "Net Load": net_load[i], "Bill Solar Only": after_solar[i],
                          "Import Rate": import_rates[i], "Export Rate": export_rates[i]})
 
-print "I'm here!"
-d = pd.read_csv("table.csv")
+
+d = pd.read_csv(name)
 d = Dispatch.full_basic_dispatch(d, 1)
-d.to_csv("table.csv")
+d.to_csv(name)
 
