@@ -6,9 +6,11 @@ import Dispatch
 import pandas as pd
 import os
 
-userhome = os.path.expanduser('~')
-csvfile = userhome #+ r'/Desktop/USA_CA_San.Jose.Intl.AP.724945_TMY3_HIGH' + '.csv'
-load_file = Parser.fileParse(open(csvfile, "r"))
+
+#userhome = os.path.expanduser('~')
+#csvfile = r'/Desktop/USA_CA_San.Jose.Intl.AP.724945_TMY3_HIGH' + '.csv'
+#os.makedirs(userhome)
+#load_file = Parser.fileParse(open(csvfile, "r"))
 
 LA = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
 ratesEWeek = "RateEweek.csv"
@@ -17,7 +19,7 @@ Los_Angeles = Parser.fileParse(LA)
 
 rates = Parser.fileParse(ratesEWeek)
 
-output = LoadProfile.run(csvfile, rates)
+output = LoadProfile.run(Los_Angeles, rates)
 dates = output[0]
 consumption = output[1]
 before_solar = output[2]
