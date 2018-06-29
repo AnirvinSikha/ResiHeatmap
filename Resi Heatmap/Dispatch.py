@@ -52,7 +52,7 @@ def full_basic_dispatch(d,I):
         # Create the dispatch column for each line
         d.loc[i, 'basic storage'] = basic_dispatch(d.loc[i, 'Load'], d.loc[i, 'Solar'], soc)
         # update the soc
-        e = 1
+        e = 0.88
         soc = soc - (d.loc[i, 'basic storage'] * I * e ** 0.5) / capacity  # e^0.5 is one way efficiency
         d.loc[i, 'soc'] = soc
     return d
