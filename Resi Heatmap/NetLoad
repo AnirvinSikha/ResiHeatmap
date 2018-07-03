@@ -13,6 +13,8 @@ import os
 #load_file = Parser.fileParse(open(csvfile, "r"))
 
 LA = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
+SD = "USA_CA_San.Diego-Montgomery.Field.722903_TMY3_HIGH.csv"
+SJ = "USA_CA_San.Jose.Intl.AP.724945_TMY3_HIGH.csv"
 ratesEWeek = "RateEweek.csv"
 
 Los_Angeles = Parser.fileParse(LA)
@@ -40,7 +42,7 @@ for i in range(len(net_load)):
     else:
         after_solar += [net_load[i] * export_rates[i]]
 
-name = "table.csv"
+name = "LA.csv"
 with open(name, 'w') as output_file:
     headers = ["Date/Time", "Load", "Bill Before Solar", "Solar", "Net Load",
                "Bill Solar Only", "Import Rate", "Export Rate"]
@@ -55,5 +57,8 @@ with open(name, 'w') as output_file:
 
 d = pd.read_csv(name)
 d = Dispatch.full_basic_dispatch(d, 1)
+d['savings'] = d['basic storage'] + d['Bill Before Solar']
+d['yearly total savings'] = d['savings'].sum()
 d.to_csv(name)
+
 

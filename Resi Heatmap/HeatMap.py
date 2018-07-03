@@ -1,15 +1,20 @@
-import plotly.plotly as py
-import pandas as pd
-import plotly.figure_factory as ff
+import matplotlib.pyplot as plt
+import numpy as np
 
-#py.tools.set_credentials_file(username='ASikha', api_key='e9SmIFsps2jBwfKF0olK')
-fips = ['06021', '06023', '06027',
-        '06029', '06033', '06059',
-        '06047', '06049', '06051',
-        '06055', '06061']
-values = range(len(fips))
+column_labels = list('ABCD')
+row_labels = list('WXYZ')
+data = np.random.rand(4,4)
+fig, ax = plt.subplots()
+heatmap = ax.pcolor(data, cmap=plt.cm.Blues)
 
-fig = ff.create_choropleth(fips=fips, values=values)
-py.iplot(fig, filename='choropleth of some cali counties - full usa scope')
-fig = dict( data=data, layout=layout )
-py.iplot( fig, validate=False, filename='d3-world-map' )
+# put the major ticks at the middle of each cell
+ax.set_xticks(np.arange(data.shape[0])+0.5, minor=False)
+ax.set_yticks(np.arange(data.shape[1])+0.5, minor=False)
+
+# want a more natural, table-like display
+ax.invert_yaxis()
+ax.xaxis.tick_top()
+
+ax.set_xticklabels(row_labels, minor=False)
+ax.set_yticklabels(column_labels, minor=False)
+plt.show()
