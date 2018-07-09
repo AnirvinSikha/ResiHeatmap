@@ -44,3 +44,4 @@ def run(zipcode = None):
     return outputs["ac"]
     #visualize(outputs)
 
+run()
