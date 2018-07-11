@@ -4,7 +4,7 @@ import Parser
 import csv
 import Dispatch
 import pandas as pd
-import os
+import numpy as np
 
 
 #userhome = os.path.expanduser('~')
@@ -14,18 +14,20 @@ import os
 
 LA = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
 SD = "USA_CA_San.Diego-Montgomery.Field.722903_TMY3_HIGH.csv"
-SJ = "USA_CA_San.Jose.Intl.AP.724945_TMY3_HIGH.csv"
+SJ = "USA_CA_San.Jose.Intl.AP.724945_TMY3_HIGH .csv"
 ratesEWeek = "RateEweek.csv"
 
 Los_Angeles = Parser.fileParse(LA)
-
+San_Diego = Parser.fileParse(SD)
+San_Jose = Parser.fileParse(SJ)
+file = San_Diego
 rates = Parser.fileParse(ratesEWeek)
 
-output = LoadProfile.run(Los_Angeles, rates)
+output = LoadProfile.run(file, rates)
 dates = output[0]
 consumption = output[1]
 before_solar = output[2]
-solar = PVWatts.run("90001")
+solar = PVWatts.run("92101")
 net_load = []
 for i in range(len(consumption)):
     net_load += [consumption[i] - solar[i]]
@@ -42,23 +44,26 @@ for i in range(len(net_load)):
     else:
         after_solar += [net_load[i] * export_rates[i]]
 
-name = "LA.csv"
+name = "SD.csv"
 with open(name, 'w') as output_file:
-    headers = ["Date/Time", "Load", "Bill Before Solar", "Solar", "Net Load",
+    headers = ["Date/Time", "Load", "Bill Before Solar", "Solar", "Net Load Solar Only",
                "Bill Solar Only", "Import Rate", "Export Rate"]
     writer = csv.DictWriter(output_file, headers)
 
     writer.writeheader()
     for i in range(len(dates)):
         writer.writerow({"Date/Time": dates[i], "Load": consumption[i], "Bill Before Solar": before_solar[i],
-                        "Solar": solar[i], "Net Load": net_load[i], "Bill Solar Only": after_solar[i],
+                        "Solar": solar[i], "Net Load Solar Only": net_load[i], "Bill Solar Only": after_solar[i],
                          "Import Rate": import_rates[i], "Export Rate": export_rates[i]})
 
 
 d = pd.read_csv(name)
 d = Dispatch.full_basic_dispatch(d, 1)
-d['savings'] = d['basic storage'] + d['Bill Before Solar']
-d['yearly total savings'] = d['savings'].sum()
+d['Net Load (Solar and Storage)'] = d["Load"] - d["basic storage"] - d["Solar"]
+d["Bill PV + ESS"] = np.where(d["basic storage"] >= 0, d['Net Load (Solar and Storage)'] * d['Import Rate'],
+                              d['Net Load (Solar and Storage)'] * d['Export Rate'])
+d["ESS Savings"] = d["Bill Before Solar"] - d["Bill PV + ESS"]
+d["yearly total savings"] = d["ESS Savings"].sum()
 d.to_csv(name)
 
 

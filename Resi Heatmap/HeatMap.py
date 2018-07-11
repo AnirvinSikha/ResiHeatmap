@@ -9,7 +9,7 @@ from netCDF4 import Dataset
 
 lat = [34, 32, 37]
 lon = [-118, -117, -121]
-values = [1431, 1500, 1000]
+values = [1255.444345, 1245.702862, 1141.722539]
 #area = [1431, 1500, 1000]
 
 # data = pd.read_csv("table.csv")
@@ -24,16 +24,15 @@ m = Basemap(projection='lcc', resolution='h',
             width=1E6, height=1.2E6)
 m.drawcoastlines(color='black')
 m.drawstates(color='black')
-m.drawrivers(color='blue')
 m.drawcounties(color='black')
 plt.title('Hello Cali')
 
 x, y = m(lon, lat)
 
-m.scatter(x, y, marker='o', c=values, s=values, cmap="Reds")
+m.scatter(x, y, marker='o', c=values, s=values, cmap="YlOrRd")
 
 plt.colorbar(label=r'Annual Savings')
-plt.clim(500, 1500)
+plt.clim(900, 1300)
 
 # for a in [1000, 1500, 2000]:
 #     plt.scatter([], [], c='k', alpha=0.5, s=a,
