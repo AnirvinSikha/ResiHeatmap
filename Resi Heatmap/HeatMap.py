@@ -9,8 +9,8 @@ from netCDF4 import Dataset
 
 lat = [34, 32, 37]
 lon = [-118, -117, -121]
-#values = [1431, 1500, 1000]
-area = [1431, 50, 100]
+values = [1431, 1500, 1000]
+#area = [1431, 1500, 1000]
 
 # data = pd.read_csv("table.csv")
 # lat = data["lat"].values
@@ -18,7 +18,7 @@ area = [1431, 50, 100]
 # values = data['values'].values
 # area = data['area'].values
 
-fig = plt.figure(figsize=(10, 8))
+fig = plt.figure(figsize=(8, 8))
 m = Basemap(projection='lcc', resolution='h',
             lat_0=37.5, lon_0=-119,
             width=1E6, height=1.2E6)
@@ -30,12 +30,15 @@ plt.title('Hello Cali')
 
 x, y = m(lon, lat)
 
-m.scatter(x, y, marker='o', color='r', s=area, cmap="Reds")
+m.scatter(x, y, marker='o', c=values, s=values, cmap="Reds")
 
-for a in [100, 300, 500]:
-    plt.scatter([], [], c='k', alpha=0.5, s=a,
-                label=str(a) + ' km$^2$')
-plt.legend(scatterpoints=1, frameon=False,
-           labelspacing=1, loc='lower left');
+plt.colorbar(label=r'Annual Savings')
+plt.clim(500, 1500)
+
+# for a in [1000, 1500, 2000]:
+#     plt.scatter([], [], c='k', alpha=0.5, s=a,
+#                 label=str(a) + 'Annual Savings')
+# plt.legend(scatterpoints=1, frameon=False,
+#            labelspacing=3, loc='lower left');
 plt.show()
 m.drawcounties()
