@@ -20,50 +20,53 @@ ratesEWeek = "RateEweek.csv"
 Los_Angeles = Parser.fileParse(LA)
 San_Diego = Parser.fileParse(SD)
 San_Jose = Parser.fileParse(SJ)
-file = San_Diego
+file = Los_Angeles
 rates = Parser.fileParse(ratesEWeek)
 
-output = LoadProfile.run(file, rates)
-dates = output[0]
-consumption = output[1]
-before_solar = output[2]
-solar = PVWatts.run("92101")
-net_load = []
-for i in range(len(consumption)):
-    net_load += [consumption[i] - solar[i]]
+def run(file):
+    I = 1 #hour
+    output = LoadProfile.run(file, rates)
+    dates = output[0]
+    consumption = output[1]
+    before_solar = output[2]
+    solar = PVWatts.run("90001")
+    net_load = []
+    for i in range(len(consumption)):
+        net_load += [consumption[i] - solar[i]]
 
-import_rates = output[3]
-export_rates = []
-for i in range(len(import_rates)):
-    export_rates += [import_rates[i] - .03]
+    import_rates = output[3]
+    export_rates = []
+    for i in range(len(import_rates)):
+        export_rates += [import_rates[i] - .03]
 
-after_solar = []
-for i in range(len(net_load)):
-    if net_load[i] >= 0:
-        after_solar += [net_load[i] * import_rates[i]]
-    else:
-        after_solar += [net_load[i] * export_rates[i]]
+    after_solar = []
+    for i in range(len(net_load)):
+        if net_load[i] >= 0:
+            after_solar += [net_load[i] * import_rates[i] * I]
+        else:
+            after_solar += [net_load[i] * export_rates[i] * I]
 
-name = "SD.csv"
-with open(name, 'w') as output_file:
-    headers = ["Date/Time", "Load", "Bill Before Solar", "Solar", "Net Load Solar Only",
-               "Bill Solar Only", "Import Rate", "Export Rate"]
-    writer = csv.DictWriter(output_file, headers)
+    name = "LA.csv"
+    with open(name, 'w') as output_file:
+        headers = ["Date/Time", "Load", "Bill Before Solar", "Solar", "Net Load Solar Only",
+                   "Bill Solar Only", "Import Rate", "Export Rate"]
+        writer = csv.DictWriter(output_file, headers)
 
-    writer.writeheader()
-    for i in range(len(dates)):
-        writer.writerow({"Date/Time": dates[i], "Load": consumption[i], "Bill Before Solar": before_solar[i],
-                        "Solar": solar[i], "Net Load Solar Only": net_load[i], "Bill Solar Only": after_solar[i],
-                         "Import Rate": import_rates[i], "Export Rate": export_rates[i]})
+        writer.writeheader()
+        for i in range(len(dates)):
+            writer.writerow({"Date/Time": dates[i], "Load": consumption[i], "Bill Before Solar": before_solar[i],
+                            "Solar": solar[i], "Net Load Solar Only": net_load[i], "Bill Solar Only": after_solar[i],
+                             "Import Rate": import_rates[i], "Export Rate": export_rates[i]})
 
 
-d = pd.read_csv(name)
-d = Dispatch.full_basic_dispatch(d, 1)
-d['Net Load (Solar and Storage)'] = d["Load"] - d["basic storage"] - d["Solar"]
-d["Bill PV + ESS"] = np.where(d["basic storage"] >= 0, d['Net Load (Solar and Storage)'] * d['Import Rate'],
-                              d['Net Load (Solar and Storage)'] * d['Export Rate'])
-d["ESS Savings"] = d["Bill Before Solar"] - d["Bill PV + ESS"]
-d["yearly total savings"] = d["ESS Savings"].sum()
-d.to_csv(name)
+    d = pd.read_csv(name)
+    d = Dispatch.full_basic_dispatch(d, I)
+    d['Net Load (Solar and Storage)'] = d["Load"] - d["basic storage"] - d["Solar"]
+    d["Bill PV + ESS"] = np.where(d["Net Load (Solar and Storage)"] >= 0, d['Net Load (Solar and Storage)'] * d['Import Rate'] * I,
+                                  d['Net Load (Solar and Storage)'] * d['Export Rate'] * I)
+    d["ESS Savings"] = d["Bill Solar Only"] - d["Bill PV + ESS"]
+    d["yearly ESS savings"] = d["ESS Savings"].sum()
+    d.to_csv(name)
 
+run(file)
 

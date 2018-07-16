@@ -1,4 +1,5 @@
 import pandas
+import Zipcode
 
 class Parser:
 
@@ -25,7 +26,27 @@ class Parser:
 
     def getCity(self):
         split = self.filename.split("_")
-        return split[2]
+        split = split[2].split(".7")
+        ret = ""
+        for i in split[0]:
+            if i == ".":
+                ret += " "
+            else:
+                ret += i
+        return ret
+
+    def getZipcode(self):
+        city = self.getCity()
+        state = self.getState()
+        return Zipcode.find_zipcode(city)
+
+    def getLat(self):
+        zip = self.getZipcode()
+        return Zipcode.find_lat(zip)
+
+    def getLon(self):
+        zip = self.getZipcode()
+        return Zipcode.find_lon(zip)
 
     def getElectricity(self):
         return self.f["Electricity:Facility [kW](Hourly)"]
@@ -62,7 +83,6 @@ def fileParse(filename):
 def main():
     filename = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
     run = fileParse(filename)
-    print run.getTotalHour()[2]
-    print run.convertHour(run.getTotalHour()[2])
-    print run.convertDay(run.getTotalHour()[2])
-    print run.convertMonth(run.getTotalHour()[2])
+    print "here"
+    print run.getLon()
+

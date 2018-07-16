@@ -3,7 +3,6 @@ import pandas as pd
 
 # Battery spec
 power_rate = 5 # kW
-capacity = 9.3 # kWh
 
 
 
@@ -42,7 +41,7 @@ def basic_dispatch(load,solar,soc):
 
 
 
-def full_basic_dispatch(d,I):
+def full_basic_dispatch(d,I,capacity = 9.3):
     """return d with the dispatch for the entire dataset, the column is called basic storage
         d is the dataframe with load, pv profiles
         I is the data time interval. For an hourly profile I = 1, for a 15 minute data profile I=0.25
@@ -53,6 +52,6 @@ def full_basic_dispatch(d,I):
         d.loc[i, 'basic storage'] = basic_dispatch(d.loc[i, 'Load'], d.loc[i, 'Solar'], soc)
         # update the soc
         e = 0.88
-        soc = soc - (d.loc[i, 'basic storage'] * I * e ** 0.5) / capacity  # e^0.5 is one way efficiency
+        soc = soc - ((d.loc[i, 'basic storage'] * I * e ** 0.5) / capacity) # e^0.5 is one way efficiency
         d.loc[i, 'soc'] = soc
     return d
