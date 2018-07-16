@@ -20,7 +20,7 @@ ratesEWeek = "RateEweek.csv"
 Los_Angeles = Parser.fileParse(LA)
 San_Diego = Parser.fileParse(SD)
 San_Jose = Parser.fileParse(SJ)
-file = Los_Angeles
+
 rates = Parser.fileParse(ratesEWeek)
 
 def run(file):
@@ -66,7 +66,6 @@ def run(file):
                                   d['Net Load (Solar and Storage)'] * d['Export Rate'] * I)
     d["ESS Savings"] = d["Bill Solar Only"] - d["Bill PV + ESS"]
     d["yearly ESS savings"] = d["ESS Savings"].sum()
-    d.to_csv(name)
+    return d.to_csv(name)
 
-run(file)
 

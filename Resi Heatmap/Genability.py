@@ -41,9 +41,6 @@ class TariffEngine():
         if self.verbose:
             print(r)
 
-
-
-
     def set_tariff(self, masterTariffId):
         self.masterTariffId = masterTariffId
         tariff_json = {"keyName": "masterTariffId",
