@@ -14,12 +14,16 @@ url4 = "https://developer.nrel.gov/api/pvwatts/v6.json?api_key=iKiCqfldxiivLAGQH
 
 url_prime = "https://developer.nrel.gov/api/pvwatts/v6.json?"
 
-def run(zipcode = None):
-    if zipcode == None:
-        zipcode = raw_input("What zipcode would you like to check?")
-    conversion = ZipcodeSearchEngine().by_zipcode(zipcode)
-    lat = conversion["Latitude"]
-    lon = conversion["Longitude"]
+def run(lat=None, lon=None):
+    # if zipcode == None:
+    #     zipcode = raw_input("What zipcode would you like to check?")
+    # conversion = ZipcodeSearchEngine().by_zipcode(zipcode)
+    # lat = conversion["Latitude"]
+    # lon = conversion["Longitude"]
+    # if lat == None and lon == None:
+    #     lat = raw_input("what latitude?")
+    #     lon = raw_input("what longitude?")
+
 
     parameters = {
         "format": "JSON",
@@ -31,8 +35,8 @@ def run(zipcode = None):
         "tilt": '10',
         "azimuth": '180',
         "dataset": "tmy3", #subject to change
-        "lat": str(lat),
-        "lon": str(lon),
+        "lat": str(int(lat)),
+        "lon": str(int(lon)),
         "timeframe": "hourly"
     }
     response = requests.get(url_prime, parameters)
@@ -43,5 +47,4 @@ def run(zipcode = None):
         outputs["ac"][i] = outputs["ac"][i]/1000
     return outputs["ac"]
     #visualize(outputs)
-
 

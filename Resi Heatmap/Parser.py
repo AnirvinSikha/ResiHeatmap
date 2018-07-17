@@ -38,7 +38,7 @@ class Parser:
     def getZipcode(self):
         city = self.getCity()
         state = self.getState()
-        return Zipcode.find_zipcode(city)
+        return Zipcode.find_zipcode(city, state)
 
     def getLat(self):
         zip = self.getZipcode()
@@ -80,9 +80,9 @@ def fileParse(filename):
     parsedCSV = Parser(f, filename)
     return parsedCSV
 
-def main():
-    filename = "USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
-    run = fileParse(filename)
-    print "here"
-    print run.getLon()
+# def main():
+#     filename = "LoadProfiles/USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
+#     run = fileParse(filename)
+#     print "here"
+#     print run.getLon()
 
