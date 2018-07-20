@@ -73,29 +73,108 @@ class TariffEngine():
     def set_tarrif(self):
         url_get = 'https://api.genability.com/rest/v1/accounts/pid/'+ self.providerAccountId + '/tariffs?serviceTypes=ELECTRICITY'
         g = requests.get(url_get, auth=(external_loadengine_app_id, external_loadengine_app_key))
-        return g.json() #3250148 is TOU-A
-        # properties = {
-        #     "keyName": "masterTariffID",
-        #     "dataValue": "3250148",
-        # }
-        # url_put = 'https://api.genability.com/rest/v1/accounts/pid/'+ self.providerAccountId + '/properties'
-        # p = requests.put(url_put, auth=(external_loadengine_app_id, external_loadengine_app_key), json=properties)
-        # return p.json()
+        # return g.json() #3250148 is TOU-A
+        properties = {
+            "keyName": "masterTariffID",
+            "dataValue": "3250148",
+        }
+        url_put = 'https://api.genability.com/rest/v1/accounts/pid/'+ self.providerAccountId + '/properties'
+        p = requests.put(url_put, auth=(external_loadengine_app_id, external_loadengine_app_key), json=properties)
+        return p.json()
 
     def electricity_profile(self):
-        properties = {
-            "providerAccountId": self.providerAccountId,
-            "providerProfileId": self.providerAccountId + "Profile",
-            "profileName": "Electricity Consumption",
-            "serviceTypes": "ELECTRICITY",
-            "reading Data": [
-                {"fromDateTime" : "2017-01-01",
-                "toDateTime" : "2017-12-31",
+        account_json = {
+          "providerAccountId" : self.providerAccountId,
+          "providerProfileId" : "LA bills",
+          "profileName" : "Electricity Bills",
+          "description" : "Electricity consumption",
+          "isDefault" : True,
+          "serviceTypes" : "ELECTRICITY",
+          "sourceId" : "ReadingEntry",
+          "readingData" : [
+              { "fromDateTime" : "2015-01-01",
+                "toDateTime" : "2015-12-31",
                 "quantityUnit" : "kWh",
-                "quantityValue" : "11740.38109"}]
+                "quantityValue" : "11740.38109"
+              },
+            ]
         }
         url = 'https://api.genability.com/rest/v1/profiles'
-        p = requests.put(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=properties)
+        p = requests.put(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
+        return p.json()
+
+    def pvWatts(self):
+        account_json = {
+          "providerAccountId" : self.providerAccountId,
+          "providerProfileId" : "LA bills",
+          "groupBy" : "YEAR",
+          "serviceTypes" : "SOLAR_PV",
+          "source": {
+            "sourceId":"PVWatts",
+            "sourceVersion":"5"
+          },
+          "properties" : {
+            "systemSize" : {
+              "keyName" : "systemSize",
+              "dataValue" : "6"
+            },
+            "azimuth" : {
+              "keyName" : "azimuth",
+              "dataValue" : "180"
+            },
+            "losses" : {
+              "keyName" : "losses",
+              "dataValue" : "2"
+            },
+            "inverterEfficiency" : {
+              "keyName" : "inverterEfficiency",
+              "dataValue" : "96"
+            },
+            "tilt" : {
+              "keyName" : "tilt",
+              "dataValue" : "10"
+            }
+          }
+        }
+        url = 'https://api.genability.com/rest/v1/profiles'
+        p = requests.put(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
+        return p.json()
+
+    def calc_no_solar_or_storage(self):
+        account_json = {
+            "fromDateTime": "2015-01-01T00:00:00",
+            "toDateTime": "2015-12-31T00:00:00",
+            "useIntelligentBaselining": "true",
+            "includeDefaultProfile": "true",
+            "autoBaseline": "true",
+            "minimums": "false",
+            "detailLevel": "CHARGE_TYPE",
+            "groupBy": "HOURLY",
+            "fields": "EXT"
+            }
+        url = 'https://api.genability.com/rest/v1/accounts/pid/' + self.providerAccountId + 'calculate/'
+        p = requests.post(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
+        return p.json()
+
+    def retrieve_rates(self):
+        account_json = {
+            "fromDateTime": "2015-01-01T00:00:00",
+            "toDateTime": "2015-12-31T00:00:00",
+            "useIntelligentBaselining": "true",
+            "includeDefaultProfile": "true",
+            "autoBaseline": "true",
+            "minimums": "false",
+            "detailLevel": "CHARGE_TYPE_AND_TOU",
+            "groupBy": "HOUR",
+            "fields": "EXT",
+            "tariffInputs": [{
+                "keyName": "profileId",
+                "dataValue": "5b522155fca3ef2db58cb4ea", #LA solar profile - 5b522155fca3ef2db58cb4ea
+                "operator": "-"
+            }]
+        }
+        url = "https://api.genability.com/rest/v1/accounts/pid/"+ self.providerAccountId + "/calculate/"
+        p = requests.post(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
     def run_calculation(self):
@@ -121,8 +200,22 @@ class TariffEngine():
         return r.json()
 
 
+store = ""
+
 def main():
     test = TariffEngine("LA", "1717", "90001")
-    print(test.set_tarrif())
+    test.calc_no_solar_or_storage()
+    store = test.retrieve_rates()
+    #print(store)
+    rates = []
+    output = store["results"][0]["items"]
+    for i in range(len(output)):
+        if output[i]["rateAmount"] > 0:
+            rates += [output[i]["rateAmount"]]
+    print(rates)
 
-main()
+def main2():
+    test = TariffEngine("LA", "1717", "90001")
+    print(test.run_calculation())
+
+main2()
