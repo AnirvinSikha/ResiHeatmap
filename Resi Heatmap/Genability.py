@@ -12,13 +12,16 @@ external_loadengine_app_key = "658f2f17-04f0-4ed0-855f-e1de3baa3449"
 
 class TariffEngine():
 
-    def __init__(self, Shortname, providerAccountId, zip):
+    def __init__(self, Shortname, providerAccountId, zip, start_time, end_time):
         self.Shortname = str(Shortname)
         self.providerAccountId = str(providerAccountId)
         self.masterTariffId = ''
+        self.tarrifID = ''
         self.loads = []
         self.verbose = False
         self.zip = zip
+        self.start_time = str(start_time)
+        self.end_time = str(end_time)
 
 
     def __str__(self):
@@ -61,41 +64,35 @@ class TariffEngine():
         p = requests.put(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
-    # def get_tarrif(self): #in the case that you do not have a utility set up
-    #     z = str(self.zip)
-    #     url = "https://api.genability.com/rest/public/tariffs/?zipCode=" + z + "&customerClasses=RESIDENTIAL" \
-    #           "&tariffTypes=DEFAULT,ALTERNATIVE&effectiveOn=2018-07-15&sortOn=customerLikelihood,tariffType&" \
-    #           "sortOrder=DESC,ACS&fields=ext"
-    #     r = requests.get(url, auth=(external_loadengine_app_id, external_loadengine_app_key))
-    #     return r.json()
-    #     # will contain master tariff id
-
-    def set_tarrif(self):
+    def get_tarrif(self): #retrieves a list of tariffs from the set utility
         url_get = 'https://api.genability.com/rest/v1/accounts/pid/'+ self.providerAccountId + '/tariffs?serviceTypes=ELECTRICITY'
         g = requests.get(url_get, auth=(external_loadengine_app_id, external_loadengine_app_key))
-        # return g.json() #3250148 is TOU-A
+        return g.json() #3250148 is TOU-A
+
+    def set_tarrif(self): #set one tarrif as the rate to use for the set utility
+        self.masterTariffId = str(3250148)
         properties = {
             "keyName": "masterTariffID",
-            "dataValue": "3250148",
+            "dataValue": self.masterTariffId,
         }
-        url_put = 'https://api.genability.com/rest/v1/accounts/pid/'+ self.providerAccountId + '/properties'
+        url_put = 'https://api.genability.com/rest/v1/accounts/pid/' + self.providerAccountId + '/properties'
         p = requests.put(url_put, auth=(external_loadengine_app_id, external_loadengine_app_key), json=properties)
         return p.json()
 
-    def electricity_profile(self):
+    def electricity_profile(self): #create a load profile for the customer from start time to end time.
         account_json = {
           "providerAccountId" : self.providerAccountId,
-          "providerProfileId" : "LA bills",
-          "profileName" : "Electricity Bills",
+          "providerProfileId" : "LA bills 2",
+          "profileName" : "Electricity Bills 2",
           "description" : "Electricity consumption",
           "isDefault" : True,
           "serviceTypes" : "ELECTRICITY",
           "sourceId" : "ReadingEntry",
           "readingData" : [
-              { "fromDateTime" : "2015-01-01",
-                "toDateTime" : "2015-12-31",
+              { "fromDateTime" : self.start_time,
+                "toDateTime" : self.end_time,
                 "quantityUnit" : "kWh",
-                "quantityValue" : "11740.38109"
+                "quantityValue" : "1"
               },
             ]
         }
@@ -103,7 +100,7 @@ class TariffEngine():
         p = requests.put(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
-    def pvWatts(self):
+    def pvWatts(self): # does PV watts calc for given zipcode. Equivalent to PVWatts.py
         account_json = {
           "providerAccountId" : self.providerAccountId,
           "providerProfileId" : "LA bills",
@@ -140,10 +137,10 @@ class TariffEngine():
         p = requests.put(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
-    def calc_no_solar_or_storage(self):
+    def calc_no_solar_or_storage(self): #returns a cost value for start-end time given no solar/storage. based on the load profile given above
         account_json = {
-            "fromDateTime": "2015-01-01T00:00:00",
-            "toDateTime": "2015-12-31T00:00:00",
+            "fromDateTime": self.start_time,
+            "toDateTime": self.end_time,
             "useIntelligentBaselining": "true",
             "includeDefaultProfile": "true",
             "autoBaseline": "true",
@@ -156,10 +153,10 @@ class TariffEngine():
         p = requests.post(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
-    def retrieve_rates(self):
+    def retrieve_rates(self): #given the cost and load profile, returns a net hourly profile of rates.
         account_json = {
-            "fromDateTime": "2015-01-01T00:00:00",
-            "toDateTime": "2015-12-31T00:00:00",
+            "fromDateTime": self.start_time,
+            "toDateTime": self.end_time,
             "useIntelligentBaselining": "true",
             "includeDefaultProfile": "true",
             "autoBaseline": "true",
@@ -177,21 +174,22 @@ class TariffEngine():
         p = requests.post(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
-    def run_calculation(self):
+    def run_calculation(self): #not used, test code, crashes server 
         url = "https://api.genability.com/rest/v1/ondemand/calculate"
         account_json = {
-        "fromDateTime": "2018-07-01",
-          "toDateTime": "2019-07-01",
-          "masterTariffId": 3250148,
-          "groupBy": "HOUR",
-          "detailLevel": "CHARGE_TYPE",
-          "minimums": "true",
-          "propertyInputs": [
-          {
+        "fromDateTime": self.start_time,
+        "toDateTime": self.end_time,
+        "masterTariffId": self.masterTariffId,
+        "groupBy": "HOUR",
+        "detailLevel": "CHARGE_TYPE",
+        "minimums": "true",
+        "propertyInputs": [
+        {
             "keyName": "consumption",
-            "dataValue": "8760",
+            "dataValue": "1",
             #below is the load profile
-            "dataSeries": [1.58, 1.58, 1.58, 1.58, 1.59, 1.60, 1.61, 1.62, 1.63, 1.63, 1.64, 1.64, 1.66, 1.68, 1.70, 1.73, 1.75, 1.76, 1.78, 1.80, 1.80, 1.81, 1.81, 1.81, 1.84, 1.88, 1.91, 1.95, 1.97, 1.98, 2.00, 2.01, 2.02, 2.03, 2.04, 2.05, 2.06, 2.07, 2.08, 2.09, 2.09, 2.11, 2.12, 2.13, 2.13, 2.11, 2.09, 2.08, 2.07, 2.05, 2.03, 2.02, 2.01, 2.01, 2.01, 2.01, 2.02, 2.02, 2.03, 2.04, 2.02, 1.99, 1.96, 1.92, 1.90, 1.89, 1.88, 1.86, 1.85, 1.83, 1.82, 1.79, 1.77, 1.74, 1.71, 1.67, 1.65, 1.63, 1.61, 1.60, 1.58, 1.55, 1.53, 1.51, 1.51, 1.51, 1.52, 1.52, 1.54, 1.56, 1.58, 1.60, 1.60, 1.59, 1.58, 1.58, 1.58, 1.59, 1.59, 1.60, 1.61, 1.63, 1.65, 1.67, 1.67, 1.67, 1.67, 1.67, 1.69, 1.72, 1.74, 1.77, 1.78, 1.79, 1.79, 1.80, 1.80, 1.79, 1.79, 1.78, 1.81, 1.85, 1.89, 1.94, 1.96, 1.97, 1.98, 2.00, 2.01, 2.02, 2.04, 2.05, 2.06, 2.06, 2.07, 2.07, 2.08, 2.09, 2.11, 2.12, 2.12, 2.12, 2.12, 2.12, 2.12, 2.11, 2.09, 2.08, 2.08, 2.08, 2.08, 2.08, 2.07, 2.07, 2.06, 2.05, 2.03, 2.00, 1.97, 1.94, 1.91, 1.90, 1.88, 1.86, 1.84, 1.83, 1.82, 1.81, 1.78, 1.74, 1.70, 1.66, 1.65, 1.64, 1.64, 1.63, 1.61, 1.57, 1.54, 1.51, 1.51, 1.51, 1.52, 1.52, 1.54, 1.56, 1.58, 1.60, 1.60, 1.59, 1.58, 1.57, 1.54, 1.54, 1.54, 1.54, 1.55, 1.56, 1.56, 1.57, 1.58, 1.57, 1.57, 1.57, 1.58, 1.61, 1.63, 1.65, 1.68, 1.71, 1.73, 1.76, 1.78, 1.79, 1.80, 1.81, 1.83, 1.85, 1.88, 1.90, 1.91, 1.92, 1.92, 1.93, 1.93, 1.93, 1.92, 1.91, 1.92, 1.93, 1.93, 1.94, 1.95, 1.97, 1.99, 2.01, 2.01, 2.00, 1.99, 1.98, 1.97, 1.97, 1.96, 1.96, 1.96, 1.95, 1.95, 1.94, 1.95, 1.96, 1.97, 1.98, 1.97, 1.96, 1.94, 1.92, 1.90, 1.89, 1.87, 1.86, 1.84, 1.81, 1.79, 1.76, 1.74, 1.72, 1.71, 1.69, 1.66, 1.64, 1.61, 1.58, 1.56, 1.54, 1.52, 1.49, 1.48, 1.49, 1.49, 1.50, 1.52, 1.53, 1.55, 1.57, 1.57, 1.56, 1.55, 1.53, 1.51, 1.51, 1.52, 1.52, 1.53, 1.53, 1.54, 1.55, 1.55, 1.55, 1.55, 1.55, 1.56, 1.58, 1.61, 1.62, 1.65, 1.67, 1.70, 1.73, 1.74, 1.74, 1.75, 1.76, 1.77, 1.80, 1.82, 1.85, 1.86, 1.86, 1.86, 1.86, 1.86, 1.86, 1.85, 1.85, 1.85, 1.86, 1.86, 1.87, 1.88, 1.90, 1.91, 1.93, 1.93, 1.92, 1.91, 1.90, 1.90, 1.89, 1.89, 1.88, 1.88, 1.88, 1.88, 1.87, 1.88, 1.90, 1.91, 1.93, 1.92, 1.90, 1.88, 1.86, 1.85, 1.84, 1.83, 1.82, 1.80, 1.78, 1.76, 1.73, 1.71, 1.69, 1.68, 1.66, 1.64, 1.61, 1.58, 1.55, 1.52, 1.50, 1.48, 1.46, 1.46, 1.46, 1.47, 1.47, 1.49, 1.51, 1.53, 1.55, 1.54, 1.53, 1.52, 1.50, 1.48, 1.48, 1.49, 1.50, 1.51, 1.51, 1.52, 1.52, 1.52, 1.52, 1.52, 1.52, 1.54, 1.56, 1.58, 1.60, 1.62, 1.64, 1.66, 1.69, 1.70, 1.70, 1.70, 1.70, 1.72, 1.74, 1.77, 1.79, 1.80, 1.80, 1.80, 1.80, 1.80, 1.79, 1.79, 1.78, 1.78, 1.79, 1.79, 1.80, 1.81, 1.82, 1.83, 1.85, 1.85, 1.84, 1.83, 1.83, 1.82, 1.82, 1.81, 1.80, 1.80, 1.80, 1.80, 1.80, 1.82, 1.83, 1.85, 1.87, 1.86, 1.85, 1.83, 1.81, 1.80, 1.79, 1.79, 1.78, 1.76, 1.74, 1.73, 1.71, 1.69, 1.67, 1.65, 1.63, 1.61, 1.57, 1.54, 1.51, 1.49, 1.47, 1.45, 1.43, 1.43, 1.44, 1.44, 1.45, 1.46, 1.48, 1.50, 1.52, 1.52, 1.51, 1.49, 1.49, 1.52, 1.53, 1.53, 1.54, 1.55, 1.55, 1.56, 1.56, 1.57, 1.57, 1.57, 1.57, 1.58, 1.60, 1.62, 1.64, 1.66, 1.68, 1.70, 1.73, 1.73, 1.73, 1.74, 1.74, 1.76, 1.78, 1.80, 1.83, 1.84, 1.84, 1.84, 1.85, 1.84, 1.84, 1.83, 1.83, 1.83, 1.83, 1.84, 1.85, 1.86, 1.86, 1.88, 1.89, 1.89, 1.88, 1.87, 1.86, 1.86, 1.85, 1.85, 1.84, 1.84, 1.84, 1.84, 1.84, 1.85, 1.87, 1.88, 1.90, 1.89, 1.88, 1.86, 1.84, 1.83, 1.82, 1.82, 1.81, 1.79, 1.77, 1.75, 1.73, 1.71, 1.69, 1.68, 1.66, 1.63, 1.60, 1.57, 1.55, 1.52, 1.50, 1.48, 1.46, 1.46, 1.47, 1.48, 1.48, 1.50, 1.52, 1.54, 1.55, 1.56, 1.54, 1.53, 1.54, 1.57, 1.57, 1.58, 1.58, 1.59, 1.59, 1.60, 1.60, 1.61, 1.61, 1.61, 1.61, 1.62, 1.64, 1.66, 1.68, 1.70, 1.72, 1.74, 1.76, 1.76, 1.77, 1.77, 1.78, 1.79, 1.82, 1.84, 1.86, 1.88, 1.88, 1.88, 1.89, 1.89, 1.88, 1.88, 1.88, 1.88, 1.88, 1.88, 1.89, 1.90, 1.91, 1.92, 1.93, 1.93, 1.91, 1.91, 1.90, 1.89, 1.89, 1.89, 1.88, 1.88, 1.88, 1.88, 1.88, 1.89, 1.90, 1.92, 1.93, 1.92, 1.91, 1.89, 1.87, 1.86, 1.85, 1.85, 1.84, 1.82, 1.80, 1.78, 1.76, 1.74, 1.72, 1.70, 1.68, 1.66, 1.63, 1.61, 1.58, 1.56, 1.54, 1.52, 1.49, 1.49, 1.50, 1.51, 1.52, 1.53, 1.55, 1.57, 1.59, 1.59, 1.58, 1.58, 1.57, 1.58, 1.58, 1.58, 1.58, 1.59, 1.60, 1.62, 1.63, 1.64, 1.64, 1.63, 1.63, 1.64, 1.67, 1.70, 1.73, 1.74, 1.76, 1.77, 1.78, 1.79, 1.79, 1.78, 1.78, 1.80, 1.83, 1.86, 1.90, 1.91, 1.92, 1.92, 1.93, 1.93, 1.94, 1.94, 1.95, 1.96, 1.97, 1.98, 1.99, 1.99, 2.01, 2.01, 2.02, 2.02, 2.01, 2.01, 2.00, 2.00],
+            #"dataSeries": [1.58, 1.58, 1.58, 1.58, 1.59, 1.60, 1.61, 1.62, 1.63, 1.63, 1.64, 1.64, 1.66, 1.68, 1.70, 1.73, 1.75, 1.76, 1.78, 1.80, 1.80, 1.81, 1.81, 1.81, 1.84, 1.88, 1.91, 1.95, 1.97, 1.98, 2.00, 2.01, 2.02, 2.03, 2.04, 2.05, 2.06, 2.07, 2.08, 2.09, 2.09, 2.11, 2.12, 2.13, 2.13, 2.11, 2.09, 2.08, 2.07, 2.05, 2.03, 2.02, 2.01, 2.01, 2.01, 2.01, 2.02, 2.02, 2.03, 2.04, 2.02, 1.99, 1.96, 1.92, 1.90, 1.89, 1.88, 1.86, 1.85, 1.83, 1.82, 1.79, 1.77, 1.74, 1.71, 1.67, 1.65, 1.63, 1.61, 1.60, 1.58, 1.55, 1.53, 1.51, 1.51, 1.51, 1.52, 1.52, 1.54, 1.56, 1.58, 1.60, 1.60, 1.59, 1.58, 1.58, 1.58, 1.59, 1.59, 1.60, 1.61, 1.63, 1.65, 1.67, 1.67, 1.67, 1.67, 1.67, 1.69, 1.72, 1.74, 1.77, 1.78, 1.79, 1.79, 1.80, 1.80, 1.79, 1.79, 1.78, 1.81, 1.85, 1.89, 1.94, 1.96, 1.97, 1.98, 2.00, 2.01, 2.02, 2.04, 2.05, 2.06, 2.06, 2.07, 2.07, 2.08, 2.09, 2.11, 2.12, 2.12, 2.12, 2.12, 2.12, 2.12, 2.11, 2.09, 2.08, 2.08, 2.08, 2.08, 2.08, 2.07, 2.07, 2.06, 2.05, 2.03, 2.00, 1.97, 1.94, 1.91, 1.90, 1.88, 1.86, 1.84, 1.83, 1.82, 1.81, 1.78, 1.74, 1.70, 1.66, 1.65, 1.64, 1.64, 1.63, 1.61, 1.57, 1.54, 1.51, 1.51, 1.51, 1.52, 1.52, 1.54, 1.56, 1.58, 1.60, 1.60, 1.59, 1.58, 1.57, 1.54, 1.54, 1.54, 1.54, 1.55, 1.56, 1.56, 1.57, 1.58, 1.57, 1.57, 1.57, 1.58, 1.61, 1.63, 1.65, 1.68, 1.71, 1.73, 1.76, 1.78, 1.79, 1.80, 1.81, 1.83, 1.85, 1.88, 1.90, 1.91, 1.92, 1.92, 1.93, 1.93, 1.93, 1.92, 1.91, 1.92, 1.93, 1.93, 1.94, 1.95, 1.97, 1.99, 2.01, 2.01, 2.00, 1.99, 1.98, 1.97, 1.97, 1.96, 1.96, 1.96, 1.95, 1.95, 1.94, 1.95, 1.96, 1.97, 1.98, 1.97, 1.96, 1.94, 1.92, 1.90, 1.89, 1.87, 1.86, 1.84, 1.81, 1.79, 1.76, 1.74, 1.72, 1.71, 1.69, 1.66, 1.64, 1.61, 1.58, 1.56, 1.54, 1.52, 1.49, 1.48, 1.49, 1.49, 1.50, 1.52, 1.53, 1.55, 1.57, 1.57, 1.56, 1.55, 1.53, 1.51, 1.51, 1.52, 1.52, 1.53, 1.53, 1.54, 1.55, 1.55, 1.55, 1.55, 1.55, 1.56, 1.58, 1.61, 1.62, 1.65, 1.67, 1.70, 1.73, 1.74, 1.74, 1.75, 1.76, 1.77, 1.80, 1.82, 1.85, 1.86, 1.86, 1.86, 1.86, 1.86, 1.86, 1.85, 1.85, 1.85, 1.86, 1.86, 1.87, 1.88, 1.90, 1.91, 1.93, 1.93, 1.92, 1.91, 1.90, 1.90, 1.89, 1.89, 1.88, 1.88, 1.88, 1.88, 1.87, 1.88, 1.90, 1.91, 1.93, 1.92, 1.90, 1.88, 1.86, 1.85, 1.84, 1.83, 1.82, 1.80, 1.78, 1.76, 1.73, 1.71, 1.69, 1.68, 1.66, 1.64, 1.61, 1.58, 1.55, 1.52, 1.50, 1.48, 1.46, 1.46, 1.46, 1.47, 1.47, 1.49, 1.51, 1.53, 1.55, 1.54, 1.53, 1.52, 1.50, 1.48, 1.48, 1.49, 1.50, 1.51, 1.51, 1.52, 1.52, 1.52, 1.52, 1.52, 1.52, 1.54, 1.56, 1.58, 1.60, 1.62, 1.64, 1.66, 1.69, 1.70, 1.70, 1.70, 1.70, 1.72, 1.74, 1.77, 1.79, 1.80, 1.80, 1.80, 1.80, 1.80, 1.79, 1.79, 1.78, 1.78, 1.79, 1.79, 1.80, 1.81, 1.82, 1.83, 1.85, 1.85, 1.84, 1.83, 1.83, 1.82, 1.82, 1.81, 1.80, 1.80, 1.80, 1.80, 1.80, 1.82, 1.83, 1.85, 1.87, 1.86, 1.85, 1.83, 1.81, 1.80, 1.79, 1.79, 1.78, 1.76, 1.74, 1.73, 1.71, 1.69, 1.67, 1.65, 1.63, 1.61, 1.57, 1.54, 1.51, 1.49, 1.47, 1.45, 1.43, 1.43, 1.44, 1.44, 1.45, 1.46, 1.48, 1.50, 1.52, 1.52, 1.51, 1.49, 1.49, 1.52, 1.53, 1.53, 1.54, 1.55, 1.55, 1.56, 1.56, 1.57, 1.57, 1.57, 1.57, 1.58, 1.60, 1.62, 1.64, 1.66, 1.68, 1.70, 1.73, 1.73, 1.73, 1.74, 1.74, 1.76, 1.78, 1.80, 1.83, 1.84, 1.84, 1.84, 1.85, 1.84, 1.84, 1.83, 1.83, 1.83, 1.83, 1.84, 1.85, 1.86, 1.86, 1.88, 1.89, 1.89, 1.88, 1.87, 1.86, 1.86, 1.85, 1.85, 1.84, 1.84, 1.84, 1.84, 1.84, 1.85, 1.87, 1.88, 1.90, 1.89, 1.88, 1.86, 1.84, 1.83, 1.82, 1.82, 1.81, 1.79, 1.77, 1.75, 1.73, 1.71, 1.69, 1.68, 1.66, 1.63, 1.60, 1.57, 1.55, 1.52, 1.50, 1.48, 1.46, 1.46, 1.47, 1.48, 1.48, 1.50, 1.52, 1.54, 1.55, 1.56, 1.54, 1.53, 1.54, 1.57, 1.57, 1.58, 1.58, 1.59, 1.59, 1.60, 1.60, 1.61, 1.61, 1.61, 1.61, 1.62, 1.64, 1.66, 1.68, 1.70, 1.72, 1.74, 1.76, 1.76, 1.77, 1.77, 1.78, 1.79, 1.82, 1.84, 1.86, 1.88, 1.88, 1.88, 1.89, 1.89, 1.88, 1.88, 1.88, 1.88, 1.88, 1.88, 1.89, 1.90, 1.91, 1.92, 1.93, 1.93, 1.91, 1.91, 1.90, 1.89, 1.89, 1.89, 1.88, 1.88, 1.88, 1.88, 1.88, 1.89, 1.90, 1.92, 1.93, 1.92, 1.91, 1.89, 1.87, 1.86, 1.85, 1.85, 1.84, 1.82, 1.80, 1.78, 1.76, 1.74, 1.72, 1.70, 1.68, 1.66, 1.63, 1.61, 1.58, 1.56, 1.54, 1.52, 1.49, 1.49, 1.50, 1.51, 1.52, 1.53, 1.55, 1.57, 1.59, 1.59, 1.58, 1.58, 1.57, 1.58, 1.58, 1.58, 1.58, 1.59, 1.60, 1.62, 1.63, 1.64, 1.64, 1.63, 1.63, 1.64, 1.67, 1.70, 1.73, 1.74, 1.76, 1.77, 1.78, 1.79, 1.79, 1.78, 1.78, 1.80, 1.83, 1.86, 1.90, 1.91, 1.92, 1.92, 1.93, 1.93, 1.94, 1.94, 1.95, 1.96, 1.97, 1.98, 1.99, 1.99, 2.01, 2.01, 2.02, 2.02, 2.01, 2.01, 2.00, 2.00],
+            "dataSeries": [1],
             "unit":"kWh"
           }]
         }
@@ -206,16 +204,37 @@ def main():
     test = TariffEngine("LA", "1717", "90001")
     test.calc_no_solar_or_storage()
     store = test.retrieve_rates()
-    #print(store)
+    print(store)
     rates = []
     output = store["results"][0]["items"]
     for i in range(len(output)):
-        if output[i]["rateAmount"] > 0:
+        if output[i]["chargeType"] == "CONSUMPTION_BASED":
             rates += [output[i]["rateAmount"]]
     print(rates)
+    print(len(rates))
 
 def main2():
     test = TariffEngine("LA", "1717", "90001")
     print(test.run_calculation())
 
-main2()
+def main3():
+    test = TariffEngine("LosAngeles", "2", "90001", "2015-01-01T9:00:00", "2015-01-01T10:00:00")
+    test.create_account()
+    print(test.get_utility())
+    print(test.set_utility())
+    print(test.get_tarrif())
+    print(test.set_tarrif())
+    test.electricity_profile()
+    test.pvWatts()
+    test.calc_no_solar_or_storage()
+    store = test.retrieve_rates()
+    print(store)
+    rates = []
+    output = store["results"][0]["items"]
+    for i in range(len(output)):
+        if output[i]["chargeType"] == "CONSUMPTION_BASED":
+            rates += [output[i]["rateAmount"]]
+    print(rates)
+    print(len(rates))
+
+main3()
