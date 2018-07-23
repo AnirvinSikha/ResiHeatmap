@@ -81,19 +81,19 @@ class TariffEngine():
 
     def electricity_profile(self): #create a load profile for the customer from start time to end time.
         account_json = {
-          "providerAccountId" : self.providerAccountId,
-          "providerProfileId" : "LA bills 2",
-          "profileName" : "Electricity Bills 2",
-          "description" : "Electricity consumption",
-          "isDefault" : True,
-          "serviceTypes" : "ELECTRICITY",
-          "sourceId" : "ReadingEntry",
-          "readingData" : [
-              { "fromDateTime" : self.start_time,
-                "toDateTime" : self.end_time,
-                "quantityUnit" : "kWh",
-                "quantityValue" : "1"
-              },
+          "providerAccountId": self.providerAccountId,
+          "providerProfileId": "LA bills 2",
+          "profileName": "Electricity Bills 2",
+          "description": "Electricity consumption",
+          "isDefault": True,
+          "serviceTypes": "ELECTRICITY",
+          "sourceId": "ReadingEntry",
+          "readingData": [
+              {"fromDateTime": self.start_time,
+               "toDateTime": self.end_time,
+               "quantityUnit": "kWh",
+               "quantityValue": "1"
+               },
             ]
         }
         url = 'https://api.genability.com/rest/v1/profiles'
@@ -174,7 +174,7 @@ class TariffEngine():
         p = requests.post(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
-    def run_calculation(self): #not used, test code, crashes server 
+    def run_calculation(self): #not used, test code, crashes server
         url = "https://api.genability.com/rest/v1/ondemand/calculate"
         account_json = {
         "fromDateTime": self.start_time,
@@ -214,7 +214,7 @@ def main():
     print(len(rates))
 
 def main2():
-    test = TariffEngine("LA", "1717", "90001")
+    test = TariffEngine("LA", "1717", "90001","2015-01-01T9:00:00", "2015-01-01T10:00:00")
     print(test.run_calculation())
 
 def main3():
@@ -224,8 +224,8 @@ def main3():
     print(test.set_utility())
     print(test.get_tarrif())
     print(test.set_tarrif())
-    test.electricity_profile()
-    test.pvWatts()
+    print(test.electricity_profile())
+    print(test.pvWatts())
     test.calc_no_solar_or_storage()
     store = test.retrieve_rates()
     print(store)
