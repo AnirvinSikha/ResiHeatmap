@@ -7,6 +7,9 @@ def run(load, rates):
     import_rates = []
 
     totalHour = 0 #total hour goes from 0 - 8759 inclusive
+
+    # Parses load file into 4 outputs: date values, electricity consumption values,
+    # bill before solar, and the rates used to calculate
     while totalHour < 8760:
         consumption += [load.getElectricity()[totalHour]]
 

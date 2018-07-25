@@ -49,12 +49,12 @@ class TariffEngine():
         g = requests.get(Url_get,  auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return g.json()
 
-    def get_utility(self): #based on customer and zipcode, selects utility
-        url = 'https://api.genability.com/rest/public/lses?postCode=' + str(self.zip) + \
-              '&country=US&residentialServiceTypes=ELECTRICITY&sortOn=totalCustomers&sortOrder=DESC'
-        g = requests.get(url, auth=(external_loadengine_app_id, external_loadengine_app_key))
-        return g.json()
 
+    def get_utility(self): #based on customer and zipcode, selects utility
+            url = 'https://api.genability.com/rest/public/lses?postCode=' + str(self.zip) + \
+                  '&country=US&residentialServiceTypes=ELECTRICITY&sortOn=totalCustomers&sortOrder=DESC'
+            g = requests.get(url, auth=(external_loadengine_app_id, external_loadengine_app_key))
+            return g.json()
     def set_utility(self): #based on available utilities, pick and set the best one
         url = 'https://api.genability.com/rest/v1/accounts/pid/' + self.providerAccountId + '/properties'
         account_json = {
@@ -64,22 +64,22 @@ class TariffEngine():
         p = requests.put(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
-    def get_tarrif(self): #retrieves a list of tariffs from the set utility
+    def get_tarrif(self):  # retrieves a list of tariffs from the set utility
         url_get = 'https://api.genability.com/rest/v1/accounts/pid/'+ self.providerAccountId + '/tariffs?serviceTypes=ELECTRICITY'
         g = requests.get(url_get, auth=(external_loadengine_app_id, external_loadengine_app_key))
-        return g.json() #3250148 is TOU-A
+        return g.json()  # 3250148 is TOU-A
 
-    def set_tarrif(self): #set one tarrif as the rate to use for the set utility
-        self.masterTariffId = str(3250148)
+    def set_tarrif(self):  # set one tarrif as the rate to use for the set utility
+        self.masterTariffId = str(3250149)
         properties = {
-            "keyName": "masterTariffID",
+            "keyName": "masterTariffId",
             "dataValue": self.masterTariffId,
         }
         url_put = 'https://api.genability.com/rest/v1/accounts/pid/' + self.providerAccountId + '/properties'
         p = requests.put(url_put, auth=(external_loadengine_app_id, external_loadengine_app_key), json=properties)
         return p.json()
 
-    def electricity_profile(self): #create a load profile for the customer from start time to end time.
+    def electricity_profile(self):  # create a load profile for the customer from start time to end time.
         account_json = {
           "providerAccountId": self.providerAccountId,
           "providerProfileId": "LA bills 2",
@@ -92,7 +92,7 @@ class TariffEngine():
               {"fromDateTime": self.start_time,
                "toDateTime": self.end_time,
                "quantityUnit": "kWh",
-               "quantityValue": "1"
+               "quantityValue": "-1"
                },
             ]
         }
@@ -128,8 +128,8 @@ class TariffEngine():
               "dataValue" : "96"
             },
             "tilt" : {
-              "keyName" : "tilt",
-              "dataValue" : "10"
+              "keyName": "tilt",
+              "dataValue": "10"
             }
           }
         }
@@ -146,10 +146,10 @@ class TariffEngine():
             "autoBaseline": "true",
             "minimums": "false",
             "detailLevel": "CHARGE_TYPE",
-            "groupBy": "HOURLY",
+            "groupBy": "HOUR",
             "fields": "EXT"
             }
-        url = 'https://api.genability.com/rest/v1/accounts/pid/' + self.providerAccountId + 'calculate/'
+        url = 'https://api.genability.com/rest/v1/accounts/pid/' + self.providerAccountId + '/calculate/'
         p = requests.post(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
@@ -164,6 +164,7 @@ class TariffEngine():
             "detailLevel": "CHARGE_TYPE_AND_TOU",
             "groupBy": "HOUR",
             "fields": "EXT",
+            "sortOn": "fromDateTime",
             "tariffInputs": [{
                 "keyName": "profileId",
                 "dataValue": "5b522155fca3ef2db58cb4ea", #LA solar profile - 5b522155fca3ef2db58cb4ea
@@ -183,6 +184,7 @@ class TariffEngine():
         "groupBy": "HOUR",
         "detailLevel": "CHARGE_TYPE",
         "minimums": "true",
+
         "propertyInputs": [
         {
             "keyName": "consumption",
@@ -218,7 +220,7 @@ def main2():
     print(test.run_calculation())
 
 def main3():
-    test = TariffEngine("LosAngeles", "2", "90001", "2015-01-01T9:00:00", "2015-01-01T10:00:00")
+    test = TariffEngine("LosAngeles", "206683", "90001", "2018-01-01T00:00:00", "2018-02-01T00:00:00")
     test.create_account()
     print(test.get_utility())
     print(test.set_utility())
@@ -226,15 +228,20 @@ def main3():
     print(test.set_tarrif())
     print(test.electricity_profile())
     print(test.pvWatts())
-    test.calc_no_solar_or_storage()
+    print(test.calc_no_solar_or_storage())
     store = test.retrieve_rates()
     print(store)
+
+
     rates = []
     output = store["results"][0]["items"]
+    prev_time = ""
     for i in range(len(output)):
-        if output[i]["chargeType"] == "CONSUMPTION_BASED":
+        curr_time = output[i]["fromDateTime"]
+        if output[i]["chargeType"] == "CONSUMPTION_BASED" and curr_time != prev_time:
             rates += [output[i]["rateAmount"]]
+            prev_time = curr_time
     print(rates)
-    print(len(rates))
+    #print(len(rates))
 
 main3()

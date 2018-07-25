@@ -7,19 +7,21 @@ import Zipcode
 import pandas as pd
 import numpy as np
 
-# userhome = os.path.expanduser('~')
-# csvfile = r'/Desktop/USA_CA_San.Jose.Intl.AP.724945_TMY3_HIGH' + '.csv'
-# os.makedirs(userhome)
-# load_file = Parser.fileParse(open(csvfile, "r"))
-
-ratesEWeek = "RateEweek.csv"
-
-rates = Parser.fileParse(ratesEWeek)
+ratesEWeek = "RateEweek.csv"  # rates file
+rates = Parser.fileParse(ratesEWeek) # parsed rates file
 
 
-def run(file, lat, lon, n):
-    I = 1  # hour
+def run(file, lat, lon, n):  # inputs: a load profile, lat/lon coordinates, name of location
+    I = 1  # Incrementation. 1 = hour .25= quarter hourly
+     # create 5 lists to keep track of data.
+    # 1) the date, aka 8760 values "YYYY-MM-DD hour:min:sec"
+    # 2) consumption vals, aka the load profile. How much electricity used per hour
+    # 3) bill before solar (electricity only) per hour
+    # 4) solar - Output of PVWatts.py. Solar generation for 8760
+    # 5) net load = load - solar
     output = LoadProfile.run(file, rates)
+
+
     dates = output[0]
     consumption = output[1]
     before_solar = output[2]
@@ -40,6 +42,8 @@ def run(file, lat, lon, n):
         else:
             after_solar += [net_load[i] * export_rates[i] * I]
 
+
+    # writes all calculations to a csv file
     name = "Outputs/" + n + ".csv"
     with open(name, 'w') as output_file:
         headers = ["Date/Time", "Load", "Bill Before Solar", "Solar", "Net Load Solar Only",
@@ -52,6 +56,10 @@ def run(file, lat, lon, n):
                              "Solar": solar[i], "Net Load Solar Only": net_load[i], "Bill Solar Only": after_solar[i],
                              "Import Rate": import_rates[i], "Export Rate": export_rates[i]})
 
+
+    # perform dispatch analysis through Dispatch.py. Gets basic storage and soc.
+    # calculate bill of solar and storage
+    # calculates the difference between bill pre-solar and bill solar/storage to get ESS savings
     d = pd.read_csv(name)
     d = Dispatch.full_basic_dispatch(d, I)
     d['Net Load (Solar and Storage)'] = d["Load"] - d["basic storage"] - d["Solar"]
