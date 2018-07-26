@@ -1,3 +1,11 @@
+'''
+The entire Genability interface. Performs API calls in 3 steps
+1. Get the utilities for a given zip
+2. Get the rates for a given utility
+3. Get the list of import/export values for 8760 hrs for set rate
+
+'''
+
 from __future__ import print_function
 import requests, json
 import Parser
@@ -79,7 +87,7 @@ class TariffEngine():
         p = requests.put(url_put, auth=(external_loadengine_app_id, external_loadengine_app_key), json=properties)
         return p.json()
 
-    def electricity_profile(self):  # create a load profile for the customer from start time to end time.
+    def electricity_profile(self):  # bad code. create a load profile for the customer from start time to end time.
         account_json = {
           "providerAccountId": self.providerAccountId,
           "providerProfileId": "LA bills 2",
@@ -100,7 +108,7 @@ class TariffEngine():
         p = requests.put(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
-    def pvWatts(self): # does PV watts calc for given zipcode. Equivalent to PVWatts.py
+    def pvWatts(self): # bad code. does PV watts calc for given zipcode. Equivalent to PVWatts.py
         account_json = {
           "providerAccountId" : self.providerAccountId,
           "providerProfileId" : "LA bills",
@@ -137,7 +145,7 @@ class TariffEngine():
         p = requests.put(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
-    def calc_no_solar_or_storage(self): #returns a cost value for start-end time given no solar/storage. based on the load profile given above
+    def calc_no_solar_or_storage(self): #bad code. returns a cost value for start-end time given no solar/storage. based on the load profile given above
         account_json = {
             "fromDateTime": self.start_time,
             "toDateTime": self.end_time,
@@ -153,7 +161,7 @@ class TariffEngine():
         p = requests.post(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
-    def retrieve_rates(self): #given the cost and load profile, returns a net hourly profile of rates.
+    def retrieve_rates(self): #bad code. given the cost and load profile, returns a net hourly profile of rates.
         account_json = {
             "fromDateTime": self.start_time,
             "toDateTime": self.end_time,
@@ -175,7 +183,7 @@ class TariffEngine():
         p = requests.post(url, auth=(external_loadengine_app_id, external_loadengine_app_key), json=account_json)
         return p.json()
 
-    def import_rates(self):
+    def import_rates(self): #retrieves import rates for a given tariff
         url = "https://api.genability.com/rest/v1/ondemand/calculate"
         account_json = {
           "fromDateTime": self.start_time,
@@ -183,12 +191,32 @@ class TariffEngine():
           "masterTariffId": self.masterTariffId,
           "groupBy": "HOUR",
           "detailLevel": "CHARGE_TYPE",
-          "minimums": "true",
-          "sortOn": "chargeType",
+          "minimums": "false",
+          "sortOn": "fromDateTime",
           "propertyInputs": [
           {
             "keyName": "consumption",
-            "dataValue": "8760"
+            "dataValue": "10000000"
+          }]
+        }
+        r = requests.post(url, auth=(external_loadengine_app_id, external_loadengine_app_key),
+                          json=account_json)
+        return r.json()
+
+    def export_rates(self): # retrieves export rates for a given tarrif
+        url = "https://api.genability.com/rest/v1/ondemand/calculate"
+        account_json = {
+          "fromDateTime": self.start_time,
+          "toDateTime": self.end_time,
+          "masterTariffId": self.masterTariffId,
+          "groupBy": "HOUR",
+          "detailLevel": "CHARGE_TYPE",
+          "minimums": "false",
+          "sortOn": "fromDateTime",
+          "propertyInputs": [
+          {
+            "keyName": "consumption",
+            "dataValue": "-1000000"
           }]
         }
         r = requests.post(url, auth=(external_loadengine_app_id, external_loadengine_app_key),
@@ -196,25 +224,16 @@ class TariffEngine():
         return r.json()
 
 
-
-
-def main():
-    test = TariffEngine("LA", "1717", "90001")
-    test.calc_no_solar_or_storage()
-    store = test.retrieve_rates()
-    print(store)
-    rates = []
-    output = store["results"][0]["items"]
-    for i in range(len(output)):
-        if output[i]["chargeType"] == "CONSUMPTION_BASED":
-            rates += [output[i]["rateAmount"]]
-    print(rates)
-    print(len(rates))
-
 def get_rates():
+    '''
+    create a
+    :return:
+    '''
+    test = TariffEngine("LA", "1717", "90001", "2018-01-01T00:00:00", "2019-01-01T00:00:00", 3250148)
+
     import_rates = []
-    test = TariffEngine("LA", "1717", "90001", "2018-01-01T01:00:00", "2018-02-01T01:00:00", 3250148)
     store = test.import_rates()
+
     output = store["results"][0]["items"]
     prev_time = ""
     for i in range(len(output)):
@@ -224,35 +243,23 @@ def get_rates():
             prev_time = curr_time
     print("import rates:")
     print(import_rates)
-    print("length")
+    print("length:")
     print(len(import_rates))
 
     export_rates = []
+    store = test.export_rates()
 
-
-def main3():
-    test = TariffEngine("LosAngeles", "206683", "90001", "2018-01-01T00:00:00", "2018-02-01T00:00:00")
-    test.create_account()
-    print(test.get_utility())
-    print(test.set_utility())
-    print(test.get_tarrif())
-    print(test.set_tarrif())
-    print(test.electricity_profile())
-    print(test.pvWatts())
-    print(test.calc_no_solar_or_storage())
-    store = test.retrieve_rates()
-    print(store)
-
-
-    rates = []
     output = store["results"][0]["items"]
     prev_time = ""
     for i in range(len(output)):
         curr_time = output[i]["fromDateTime"]
         if output[i]["chargeType"] == "CONSUMPTION_BASED" and curr_time != prev_time:
-            rates += [output[i]["rateAmount"]]
+            export_rates += [output[i]["rateAmount"]]
             prev_time = curr_time
-    print(rates)
-    #print(len(rates))
+    print("export rates:")
+    print(export_rates)
+    print("length:")
+    print(len(export_rates))
+
 
 get_rates()

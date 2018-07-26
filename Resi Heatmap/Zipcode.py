@@ -1,3 +1,6 @@
+'''
+parses ZipcodeDatabase.csv. Allows for conversion between zipcode, city name, lat/lon
+'''
 import urllib
 import string
 import pandas as pd

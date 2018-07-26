@@ -1,3 +1,8 @@
+'''
+Where all the calculations/consolidations occur. Results in a table that has,
+Load/Consumption, Bill befor solar, import/export rates, solar production, basic
+storage, Bill Solar/Storage, and ESS savings
+'''
 import PVWatts
 import LoadProfile
 import Parser

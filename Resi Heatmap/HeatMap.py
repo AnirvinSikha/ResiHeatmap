@@ -1,3 +1,9 @@
+'''
+Goes through all files in Load Profiles.
+Runs NedLoad.py calc on all load profile files.
+For all outputs, plots the value on a generated heat map
+'''
+
 import os
 import time
 

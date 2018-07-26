@@ -1,3 +1,8 @@
+'''
+Parses LoadProfiles folder.
+Performs calculation to determine bill befor solar.
+May be deleted after Genability.py is functional
+'''
 import datetime
 
 def run(load, rates):

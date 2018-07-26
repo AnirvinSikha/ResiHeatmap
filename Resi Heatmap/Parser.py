@@ -1,3 +1,6 @@
+'''
+Parses LoadProfile files and rate files
+'''
 import pandas
 import Zipcode
 

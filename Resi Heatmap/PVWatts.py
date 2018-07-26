@@ -1,3 +1,6 @@
+'''
+makes single API call to get solar load at a given zipcode
+'''
 import requests
 from uszipcode import ZipcodeSearchEngine
 
