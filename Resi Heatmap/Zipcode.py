@@ -18,6 +18,8 @@ def find_zipcode(city, state):
     maximum = max(locations.keys())
     return locations.get(maximum)
 
+def get_all_zips(city, state):
+    zips = []
 
 def find_lat(zip):
     row = df.loc[df["Zipcode"] == zip]

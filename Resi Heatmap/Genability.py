@@ -153,63 +153,76 @@ class TariffEngine():
                 export_rates += [output[i]["rateAmount"]]
         return export_rates
 
+
+def find_key(dict, value):  # used to find utility/tariff given a list of utilities and tariffs
+    for key, val in dict.items():
+        if str(val) == value:
+            return key
+
+
 def update_rates():
     all_rates = pd.read_csv("Rates/all_rates.csv")
     count = 1
     for filename in os.listdir("LoadProfiles"):
         try:
             file = Parser.fileParse("LoadProfiles/" + filename)
-            name = file.getCity()
+            city = file.getCity()
             z = file.getZipcode()
             print(z)
 
-            #location  = name in all_rates["City"]
-            # if utility and tariff id have already been found in a previous run
-            # if location:
-            #     row = all_rates.loc[all_rates['City'] == name]
-            #     tariff_id = all_rates.iloc[row, "Tariff"]
-            #     tariff = TariffEngine(str(name), str(count), str(z), "2018-01-01T00:00:00", "2019-01-01T00:00:00",
-            #                           tariff_id)
-            # else:
-            # set up a tariff engine and get a list of utilities
-            tariff = TariffEngine(str(name), str(count), str(z), "2018-01-01T00:00:00", "2019-01-01T00:00:00")
-            tariff.create_account()
-            utilities = tariff.get_utility()
-            print(utilities)
-
-            # input the \id for one of the utilities, setting that as the given utility for rates
-            utility_id = raw_input("What Utility ID do you want to use?")
-            while int(utility_id) not in utilities.values():
-                print()
+            location = city in all_rates["City"].values
+            #if utility and tariff id have already been found in a previous run
+            if location:
+                row = all_rates.loc[all_rates['Zip'] == z]
+                tariff_id = int(row["Tariff Id"])
+                tariff = TariffEngine(str(city), str(count), str(z), "2018-01-01T00:00:00", "2019-01-01T00:00:00",
+                                      tariff_id)
+                utility_id = int(row["Utility Id"])
+            else:
+                # set up a tariff engine and get a list of utilities
+                tariff = TariffEngine(str(city), str(count), str(z), "2018-01-01T00:00:00", "2019-01-01T00:00:00")
+                tariff.create_account()
+                utilities = tariff.get_utility()
                 print(utilities)
-                utility_id = raw_input("Not valid! What utility ID do you want to use?")
-            print()
-            print("Setting Utility...")
-            print(tariff.set_utility(utility_id))
 
-            # get a list of tariffs under set utility
-            print()
-            print("List of available tariffs:")
-            tariff_list = tariff.get_tarrif()
-            print(tariff_list)
-
-            # input the masterTariffId for the preferred utility
-            tariff_id = raw_input("What masterTariff ID do you want to use?")
-            while int(tariff_id) not in tariff_list.values():
+                # input the \id for one of the utilities, setting that as the given utility for rates
+                utility_id = raw_input("What Utility ID do you want to use?")
+                while int(utility_id) not in utilities.values():
+                    print()
+                    print(utilities)
+                    utility_id = raw_input("Not valid! What utility ID do you want to use?")
                 print()
-                print(tariff_list)
-                tariff_id = raw_input('Invalid! What masterTariff ID do you want to use?')
-            print()
-            print("Setting Tariff...")
-            print(tariff.set_tarrif(tariff_id))
+                print("Setting Utility...")
+                print(tariff.set_utility(utility_id))
+                utility_name = find_key(utilities, utility_id)
 
-            #retrieve rates, and write rates file.
+                # get a list of tariffs under set utility
+                print()
+                print("List of available tariffs:")
+                tariff_list = tariff.get_tarrif()
+                print(tariff_list)
+
+                # input the masterTariffId for the preferred utility
+                tariff_id = raw_input("What masterTariff ID do you want to use?")
+                while int(tariff_id) not in tariff_list.values():
+                    print()
+                    print(tariff_list)
+                    tariff_id = raw_input('Invalid! What masterTariff ID do you want to use?')
+                print()
+                print("Setting Tariff...")
+                print(tariff.set_tarrif(tariff_id))
+                tariff_name = find_key(tariff_list, tariff_id)
+
+            # retrieve rates, and write rates file.
             import_rates = tariff.import_rates()
             export_rates = tariff.export_rates()
             print(import_rates)
             print(export_rates)
 
-            directory = "Rates/" + name + ".csv"
+            directory = "Rates/" + city + ":" + utility_name + ":" + tariff_name + ".csv"
+            if location == True: #if there is already a file of this name when updating rates
+                os.remove(directory)
+
             with open(directory, 'w') as output_file:
                 headers = ["Import Rates", "Export Rates"]
                 writer = csv.DictWriter(output_file, headers)
@@ -218,9 +231,18 @@ def update_rates():
                     writer.writerow({"Import Rates": import_rates[i],
                                      "Export Rates": export_rates[i]})
 
-            print(str(count) + ".finished " + name + "!")
-            count += 1
+            with open("Rates/all_rates.csv", 'w') as all_rates_file:
+                headers = ["City", "Zip", "Utility", "Utility Id", "Tariff", "Tariff Id"]
+                writer = csv.DictWriter(all_rates_file, headers)
+                writer.writeheader()
+                writer.writerow({"City": city, "Zip": z, "Utility": utility_name,
+                                 "Utility Id": utility_id, "Tariff": tariff_name,
+                                 "Tariff Id": tariff_id})
 
+
+
+            print(str(count) + ".finished " + city + "!")
+            count += 1
         except(KeyError, NameError, RuntimeError, IndexError, ValueError):
             print("exception")
             pass
