@@ -8,12 +8,13 @@ import LoadProfile
 import Parser
 import csv
 import Dispatch
-import Zipcode
+import os
 import pandas as pd
 import numpy as np
+import time
 
 
-
+start_time = time.time()
 def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coordinates, name of location
     I = 1  # Incrementation. 1 = hour .25= quarter hourly
      # create 5 lists to keep track of data.
@@ -25,7 +26,7 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
     output = LoadProfile.run(file, rates)
 
 
-    dates = output[0]
+    #dates = output[0]
     consumption = output[1]
     before_solar = output[2]
     solar = PVWatts.run(lat, lon)
@@ -34,9 +35,7 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
         net_load += [consumption[i] - solar[i]]
 
     import_rates = output[3]
-    export_rates = []
-    for i in range(len(import_rates)):
-        export_rates += [import_rates[i] - .03]
+    export_rates = output[4]
 
     after_solar = []
     for i in range(len(net_load)):
@@ -54,8 +53,8 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
         writer = csv.DictWriter(output_file, headers)
 
         writer.writeheader()
-        for i in range(len(dates)):
-            writer.writerow({"Date/Time": dates[i], "Load": consumption[i], "Bill Before Solar": before_solar[i],
+        for i in range(len(consumption)):
+            writer.writerow({"Date/Time": i, "Load": consumption[i], "Bill Before Solar": before_solar[i],
                              "Solar": solar[i], "Net Load Solar Only": net_load[i], "Bill Solar Only": after_solar[i],
                              "Import Rate": import_rates[i], "Export Rate": export_rates[i]})
 
@@ -76,5 +75,25 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
     return val
 
 
-def max_ESS_val(file, lat, lon, n):
-    print("helloworld")
+def max_ESS_val(file, lat, lon, n, rates):
+    city = file.getCity()
+    ESS_savings = {}
+    for i in rates:
+        directory = "Rates/" + city + "/" + i
+        rate_file = pd.read_csv(directory)
+        val = ESS_calc(file, lat, lon, n, rate_file)
+        ESS_savings[i] = val
+        print("finished ESS savings for " + i)
+        print("--- %s seconds ---" % (time.time() - start_time))
+    print ESS_savings
+    maximum = max(ESS_savings, key=ESS_savings.get)
+    print (maximum, ESS_savings[maximum])
+
+
+for filename in os.listdir("LoadProfiles"):
+    file = Parser.fileParse("LoadProfiles/" + filename)
+    city = file.getCity()
+    rates = os.listdir("Rates/" + city)
+    max_ESS_val(file, 34, -118, "LA", rates)
+
+

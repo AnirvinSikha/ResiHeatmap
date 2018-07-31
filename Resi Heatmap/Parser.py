@@ -78,6 +78,10 @@ class Parser:
         h = int(h)
         return self.f[str(h)]
 
+    def getID(self):
+        split = self.filename.split(":")
+        return split[2]
+
 def fileParse(filename):
     f = open(filename)
     parsedCSV = Parser(f, filename)

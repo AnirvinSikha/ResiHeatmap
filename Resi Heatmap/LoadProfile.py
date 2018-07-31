@@ -3,13 +3,13 @@ Parses LoadProfiles folder.
 Performs calculation to determine bill befor solar.
 May be deleted after Genability.py is functional
 '''
-import datetime
-
-def run(load, rates):
+def run(load, rates): #load profile file parsed, rates is a pd data frame of import and export rates
     date_time = load.getTotalHour()
     consumption = []
     before_solar = []
-    import_rates = []
+    export_rates = rates["Export Rates"].tolist()
+    import_rates = rates["Import Rates"].tolist()
+
 
     totalHour = 0 #total hour goes from 0 - 8759 inclusive
 
@@ -17,21 +17,7 @@ def run(load, rates):
     # bill before solar, and the rates used to calculate
     while totalHour < 8760:
         consumption += [load.getElectricity()[totalHour]]
-
-        month_date = load.convertMonth(load.getTotalHour()[totalHour])
-        day_date = load.convertDay(load.getTotalHour()[totalHour])
-        date =  datetime.date(2013, month_date, day_date) #the date in 2013
-        is_week = "week"
-        if date.weekday() >= 5: #5,6 = Saturday, Sunday. 0-4 is Monday-Friday
-            is_week = "weekend"
-
-        r_Week = rates.getWeek() == is_week
-        r_Month = rates.getMonth() == month_date
-        hour = totalHour % 24
-
-        rate_value = rates.getHour(hour)[r_Week & r_Month]
-        import_rates += [float(rate_value)]
-
+        rate_value = import_rates[totalHour]
         before_solar += [float(rate_value * load.getElectricity()[totalHour])]
         totalHour += 1
-    return (date_time, consumption, before_solar, import_rates)
+    return (date_time, consumption, before_solar, import_rates, export_rates)
