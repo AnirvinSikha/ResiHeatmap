@@ -38,7 +38,7 @@ for filename in os.listdir("LoadProfiles"):
             latitude, longitude = Zipcode.find_lat(z), Zipcode.find_lon(z)
             lat += [latitude]
             lon += [longitude]
-            output = NetLoad.run(file, latitude, longitude, file.getCity())
+            output = NetLoad.max_ESS_val(file, latitude, longitude, file.getCity())
             values += [output]
         print str(count) + ".finished " + name + "!"
         count += 1

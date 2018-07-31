@@ -12,11 +12,9 @@ import Zipcode
 import pandas as pd
 import numpy as np
 
-ratesEWeek = "RateEweek.csv"  # rates file
-rates = Parser.fileParse(ratesEWeek) # parsed rates file
 
 
-def run(file, lat, lon, n):  # inputs: a load profile, lat/lon coordinates, name of location
+def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coordinates, name of location
     I = 1  # Incrementation. 1 = hour .25= quarter hourly
      # create 5 lists to keep track of data.
     # 1) the date, aka 8760 values "YYYY-MM-DD hour:min:sec"
@@ -76,3 +74,7 @@ def run(file, lat, lon, n):  # inputs: a load profile, lat/lon coordinates, name
     val = d.at[0, "yearly ESS savings"]
     d = d.to_csv(name)
     return val
+
+
+def max_ESS_val(file, lat, lon, n):
+    print("helloworld")

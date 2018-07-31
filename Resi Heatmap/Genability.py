@@ -160,6 +160,33 @@ def find_key(dict, value):  # used to find utility/tariff given a list of utilit
             return key
 
 
+# used to send import/export vals to rates file
+def write_to_rates_folder(location, city, z, utility_name, utility_id, tariff_name, tariff_id, import_rates, export_rates):
+    all_rates = pd.read_csv("Rates/all_rates.csv")
+    directory = "Rates/" + city + "/" + city + ":" + utility_name + ":" + tariff_name + ".csv"
+    if location == True: #if there is already a file of this name when updating rates
+        os.remove(directory)
+    #os.makedirs(directory)
+    with open(directory, 'w') as output_file:
+        headers = ["Import Rates", "Export Rates"]
+        writer = csv.DictWriter(output_file, headers)
+        writer.writeheader()
+        for i in range(len(import_rates)):
+            writer.writerow({"Import Rates": import_rates[i],
+                             "Export Rates": export_rates[i]})
+
+
+# used to send a city, zip, utility and tariff info to all_rates.csv
+def write_to_all_rates(location, city, z, utility_name, utility_id, tariff_name, tariff_id):
+    with open("Rates/all_rates.csv", 'w') as all_rates_file:
+        headers = ["City", "Zip", "Utility", "Utility Id", "Tariff", "Tariff Id"]
+        writer = csv.DictWriter(all_rates_file, headers)
+        writer.writeheader()
+        writer.writerow({"City": city, "Zip": z, "Utility": utility_name,
+                         "Utility Id": utility_id, "Tariff": tariff_name,
+                         "Tariff Id": tariff_id})
+
+
 def update_rates():
     all_rates = pd.read_csv("Rates/all_rates.csv")
     count = 1
@@ -170,82 +197,66 @@ def update_rates():
             z = file.getZipcode()
             print(z)
 
-            location = city in all_rates["City"].values
-            #if utility and tariff id have already been found in a previous run
-            if location:
-                row = all_rates.loc[all_rates['Zip'] == z]
-                tariff_id = int(row["Tariff Id"])
-                tariff = TariffEngine(str(city), str(count), str(z), "2018-01-01T00:00:00", "2019-01-01T00:00:00",
-                                      tariff_id)
-                utility_id = int(row["Utility Id"])
-            else:
-                # set up a tariff engine and get a list of utilities
-                tariff = TariffEngine(str(city), str(count), str(z), "2018-01-01T00:00:00", "2019-01-01T00:00:00")
-                tariff.create_account()
-                utilities = tariff.get_utility()
+            # set up a tariff engine and get a list of utilities
+            tariff = TariffEngine(str(city), str(count), str(z), "2018-01-01T00:00:00", "2019-01-01T00:00:00")
+            tariff.create_account()
+            utilities = tariff.get_utility()
+            print(utilities)
+
+            # input the \id for one of the utilities, setting that as the given utility for rates
+            utility_id = raw_input("What Utility ID do you want to use?")
+            while int(utility_id) not in utilities.values():
+                print()
                 print(utilities)
+                utility_id = raw_input("Not valid! What utility ID do you want to use?")
+            print()
+            print("Setting Utility...")
+            print(tariff.set_utility(utility_id))
+            utility_name = find_key(utilities, utility_id)
 
-                # input the \id for one of the utilities, setting that as the given utility for rates
-                utility_id = raw_input("What Utility ID do you want to use?")
-                while int(utility_id) not in utilities.values():
-                    print()
-                    print(utilities)
-                    utility_id = raw_input("Not valid! What utility ID do you want to use?")
-                print()
-                print("Setting Utility...")
-                print(tariff.set_utility(utility_id))
-                utility_name = find_key(utilities, utility_id)
+            # get a list of tariffs under set utility
+            print()
+            print("List of available tariffs:")
+            tariff_list = tariff.get_tarrif()
+            print(tariff_list)
 
-                # get a list of tariffs under set utility
-                print()
-                print("List of available tariffs:")
-                tariff_list = tariff.get_tarrif()
-                print(tariff_list)
+            # manual input code for the masterTariffId for the preferred utility
+            # tariff_id = raw_input("What masterTariff ID do you want to use?")
+            # while int(tariff_id) not in tariff_list.values():
+            #     print()
+            #     print(tariff_list)
+            #     tariff_id = raw_input('Invalid! What masterTariff ID do you want to use?')
+            # print()
+            # print("Setting Tariff...")
+            # print(tariff.set_tarrif(tariff_id))
 
-                # input the masterTariffId for the preferred utility
-                tariff_id = raw_input("What masterTariff ID do you want to use?")
-                while int(tariff_id) not in tariff_list.values():
-                    print()
-                    print(tariff_list)
-                    tariff_id = raw_input('Invalid! What masterTariff ID do you want to use?')
-                print()
-                print("Setting Tariff...")
-                print(tariff.set_tarrif(tariff_id))
-                tariff_name = find_key(tariff_list, tariff_id)
+            #automated, test every tariff under a utility.
+            #for each tariff_name:tariff_id pair, input the tariff id into the tariff
+            output_folder = "Rates/" + city + "/"
+            for i in tariff_list.keys():
+                tariff_name = i
+                tariff_id = tariff_list[i]
+                print(tariff_name)
+                tariff.set_tarrif(tariff_list[i])
+                location = tariff_name in all_rates["Tariff"].values
+                # retrieve rates, and write rates file.
+                import_rates = tariff.import_rates()
+                export_rates = tariff.export_rates()
+                print(import_rates)
+                print(export_rates)
+                write_to_rates_folder(location, city, z, utility_name, utility_id, tariff_name,
+                                   tariff_id, import_rates, export_rates)
+                write_to_all_rates(location, city, z, utility_name, utility_id, tariff_name,
+                                   tariff_id)
 
-            # retrieve rates, and write rates file.
-            import_rates = tariff.import_rates()
-            export_rates = tariff.export_rates()
-            print(import_rates)
-            print(export_rates)
-
-            directory = "Rates/" + city + ":" + utility_name + ":" + tariff_name + ".csv"
-            if location == True: #if there is already a file of this name when updating rates
-                os.remove(directory)
-
-            with open(directory, 'w') as output_file:
-                headers = ["Import Rates", "Export Rates"]
-                writer = csv.DictWriter(output_file, headers)
-                writer.writeheader()
-                for i in range(len(import_rates)):
-                    writer.writerow({"Import Rates": import_rates[i],
-                                     "Export Rates": export_rates[i]})
-
-            with open("Rates/all_rates.csv", 'w') as all_rates_file:
-                headers = ["City", "Zip", "Utility", "Utility Id", "Tariff", "Tariff Id"]
-                writer = csv.DictWriter(all_rates_file, headers)
-                writer.writeheader()
-                writer.writerow({"City": city, "Zip": z, "Utility": utility_name,
-                                 "Utility Id": utility_id, "Tariff": tariff_name,
-                                 "Tariff Id": tariff_id})
-
+                print((str(tariff_name)+ " finished!"))
 
 
             print(str(count) + ".finished " + city + "!")
             count += 1
         except(KeyError, NameError, RuntimeError, IndexError, ValueError):
-            print("exception")
             pass
+
 
 
 update_rates()
