@@ -24,18 +24,15 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
     # 4) solar - Output of PVWatts.py. Solar generation for 8760
     # 5) net load = load - solar
     output = LoadProfile.run(file, rates)
-
-
-    #dates = output[0]
     consumption = output[1]
     before_solar = output[2]
+    import_rates = output[3]
+    export_rates = output[4]
     solar = PVWatts.run(lat, lon)
+
     net_load = []
     for i in range(len(consumption)):
         net_load += [consumption[i] - solar[i]]
-
-    import_rates = output[3]
-    export_rates = output[4]
 
     after_solar = []
     for i in range(len(net_load)):
@@ -43,7 +40,6 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
             after_solar += [net_load[i] * import_rates[i] * I]
         else:
             after_solar += [net_load[i] * export_rates[i] * I]
-
 
     # writes all calculations to a csv file
     name = "Outputs/" + n + ".csv"
@@ -57,7 +53,6 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
             writer.writerow({"Date/Time": i, "Load": consumption[i], "Bill Before Solar": before_solar[i],
                              "Solar": solar[i], "Net Load Solar Only": net_load[i], "Bill Solar Only": after_solar[i],
                              "Import Rate": import_rates[i], "Export Rate": export_rates[i]})
-
 
     # perform dispatch analysis through Dispatch.py. Gets basic storage and soc.
     # calculate bill of solar and storage
@@ -74,7 +69,7 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
     d = d.to_csv(name)
     return val
 
-
+# determines, for all the rates in a utility, the rate that gives the max ESS savings
 def max_ESS_val(file, lat, lon, n, rates):
     city = file.getCity()
     ESS_savings = {}

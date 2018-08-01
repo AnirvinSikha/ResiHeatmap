@@ -161,27 +161,25 @@ def find_key(dict, value):  # used to find utility/tariff given a list of utilit
 
 
 # used to send import/export vals to rates file
-def write_to_rates_folder(location, city, z, utility_name, utility_id, tariff_name, tariff_id, import_rates,
+def write_to_rates_folder(city, z, utility_name, utility_id, tariff_name, tariff_id, import_rates,
                           export_rates):
     all_rates = pd.read_csv("Rates/all_rates.csv")
-    newpath = "Rates/" + city
-    directory = "Rates/" + city + "/" + city + ":" + utility_name + ":" + tariff_name + ".csv"
-    if location:  # if there is already a file of this name when updating rates
-        os.remove(directory)
+    newpath = "Rates/" + utility_name
+    directory = "Rates/" + utility_name + "/" + utility_name + ":" + tariff_name + ".csv"
     if not os.path.exists(newpath):
         os.makedirs(newpath)
     with open(directory, 'w') as output_file:
-        headers = ["Import Rates", "Export Rates", "Zip"]
+        headers = ["Import Rates", "Export Rates", "Zip", "Utility Name", "Utility ID", "Tariff Name", "Tariff ID"]
         writer = csv.DictWriter(output_file, headers)
         writer.writeheader()
         for i in range(len(import_rates)):
-            writer.writerow({"Import Rates": import_rates[i],
-                             "Export Rates": export_rates[i],
-                            "Zip": z})
+            writer.writerow({"Import Rates": import_rates[i], "Export Rates": export_rates[i], "Zip": z,
+                             "Utility Name": utility_name, "Utility ID": utility_id,
+                             "Tariff Name": tariff_name, "Tariff ID": tariff_id})
 
 
 # used to send a city, zip, utility and tariff info to all_rates.csv
-def write_to_all_rates(location, city, z, utility_name, utility_id, tariff_name, tariff_id):
+def write_to_all_rates(city, z, utility_name, utility_id, tariff_name, tariff_id):
     with open("Rates/all_rates.csv", 'w') as all_rates_file:
         headers = ["City", "Zip", "Utility", "Utility Id", "Tariff", "Tariff Id"]
         writer = csv.DictWriter(all_rates_file, headers)
@@ -208,11 +206,14 @@ def update_rates():
             print(utilities)
 
             # input the \id for one of the utilities, setting that as the given utility for rates
-            utility_id = raw_input("What Utility ID do you want to use?")
-            while int(utility_id) not in utilities.values():
-                print()
-                print(utilities)
-                utility_id = raw_input("Not valid! What utility ID do you want to use?")
+            if len(utilities) == 1:  # if there's only one utility, pick it
+                utility_id = list(utilities.values())[0]
+            else:
+                utility_id = raw_input("What Utility ID do you want to use?")
+                while int(utility_id) not in utilities.values():
+                    print()
+                    print(utilities)
+                    utility_id = raw_input("Not valid! What utility ID do you want to use?")
             print()
             print("Setting Utility...")
             print(tariff.set_utility(utility_id))
@@ -236,21 +237,19 @@ def update_rates():
 
             # automated, test every tariff under a utility.
             # for each tariff_name:tariff_id pair, input the tariff id into the tariff
-            output_folder = "Rates/" + city + "/"
             for i in tariff_list.keys():
                 tariff_name = i
                 tariff_id = tariff_list[i]
                 print(tariff_name)
                 tariff.set_tarrif(tariff_list[i])
-                location = tariff_name in all_rates["Tariff"].values
                 # retrieve rates, and write rates file.
                 import_rates = tariff.import_rates()
                 export_rates = tariff.export_rates()
                 print(import_rates)
                 print(export_rates)
-                write_to_rates_folder(location, city, z, utility_name, utility_id, tariff_name,
+                write_to_rates_folder(city, z, utility_name, utility_id, tariff_name,
                                       tariff_id, import_rates, export_rates)
-                write_to_all_rates(location, city, z, utility_name, utility_id, tariff_name,
+                write_to_all_rates(city, z, utility_name, utility_id, tariff_name,
                                    tariff_id)
 
                 print((str(tariff_name) + " finished!"))
