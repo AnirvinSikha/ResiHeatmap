@@ -70,11 +70,11 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
     return val
 
 # determines, for all the rates in a utility, the rate that gives the max ESS savings
-def max_ESS_val(file, lat, lon, n, rates):
+def max_ESS_val(file, lat, lon, n, rates, util):
     city = file.getCity()
     ESS_savings = {}
     for i in rates:
-        directory = "Rates/" + city + "/" + i
+        directory = "Rates/" + util + "/" + i
         rate_file = pd.read_csv(directory)
         val = ESS_calc(file, lat, lon, n, rate_file)
         ESS_savings[i] = val
@@ -84,11 +84,16 @@ def max_ESS_val(file, lat, lon, n, rates):
     maximum = max(ESS_savings, key=ESS_savings.get)
     print (maximum, ESS_savings[maximum])
 
+def utility_city(city):
+    util_city = pd.read_csv("Util:City/Util:City Database.csv")
+    utility = np.where(util_city["City"] == city)
+    return utility[0]
 
 for filename in os.listdir("LoadProfiles"):
     file = Parser.fileParse("LoadProfiles/" + filename)
     city = file.getCity()
-    rates = os.listdir("Rates/" + city)
-    max_ESS_val(file, 34, -118, "LA", rates)
+    util = utility_city(city)
+    rates = os.listdir("Rates/" + util)
+    max_ESS_val(file, 34, -118, "LA", rates, util)
 
 

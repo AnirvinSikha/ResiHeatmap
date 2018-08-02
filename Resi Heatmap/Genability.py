@@ -156,7 +156,7 @@ class TariffEngine():
 
 def find_key(dict, value):  # used to find utility/tariff given a list of utilities and tariffs
     for key, val in dict.items():
-        if str(val) == value:
+        if str(val) == value or val == value:
             return key
 
 
@@ -195,6 +195,7 @@ def update_rates():
     for filename in os.listdir("LoadProfiles"):
         try:
             file = Parser.fileParse("LoadProfiles/" + filename)
+            print(filename)
             city = file.getCity()
             z = file.getZipcode()
             print(z)
@@ -254,10 +255,10 @@ def update_rates():
 
                 print((str(tariff_name) + " finished!"))
 
-            print(str(count) + ".finished " + city + "!")
+            print(str(count) + ".finished " + utility_name + "!")
             count += 1
         except(KeyError, NameError, RuntimeError, IndexError, ValueError):
             pass
 
 
-update_rates()
+#update_rates()
