@@ -1,5 +1,7 @@
 '''
 A one time use file, to create the CSV that states what City has what Utility.
+If you want to add a utility, you need to add a load where that city is.
+If you add a utility re-run this file.
 '''
 import Genability
 import Parser

@@ -70,30 +70,51 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
     return val
 
 # determines, for all the rates in a utility, the rate that gives the max ESS savings
-def max_ESS_val(file, lat, lon, n, rates, util):
+def max_ESS_val(file, lat, lon, n, rates, util, d):
     city = file.getCity()
+    z = file.getZipcode()
     ESS_savings = {}
     for i in rates:
         directory = "Rates/" + util + "/" + i
         rate_file = pd.read_csv(directory)
         val = ESS_calc(file, lat, lon, n, rate_file)
         ESS_savings[i] = val
-        print("finished ESS savings for " + i)
+
+        d.append(pd.DataFrame([util, city, z, i, ESS_savings]))
+        print("finished ESS savings for " + util + ": " + i)
         print("--- %s seconds ---" % (time.time() - start_time))
     print ESS_savings
     maximum = max(ESS_savings, key=ESS_savings.get)
     print (maximum, ESS_savings[maximum])
+    return d
 
 def utility_city(city):
     util_city = pd.read_csv("Util:City/Util:City Database.csv")
-    utility = np.where(util_city["City"] == city)
-    return utility[0]
+    utility = util_city.loc[util_city["City"] == city, "Utility"]
+    return utility
+
+def utility_parse(inp):
+    ret = ""
+    inp = inp[1:]
+    while True:
+        if inp[0] == " ":
+            inp = inp[1:]
+        else:
+            break
+    for i in inp:
+        if i == "\n":
+            return ret
+        else:
+            ret += i
 
 for filename in os.listdir("LoadProfiles"):
+    d = pd.DataFrame(columns= ['Utility', "City", 'Zip', 'Tariff', 'ESS Savings'])
     file = Parser.fileParse("LoadProfiles/" + filename)
     city = file.getCity()
-    util = utility_city(city)
+    util = str(utility_city(city))
+    util = utility_parse(util)
     rates = os.listdir("Rates/" + util)
-    max_ESS_val(file, 34, -118, "LA", rates, util)
+    final_output = max_ESS_val(file, 34, -118, "LA", rates, util, d)
+    final_output.to_csv("Output/final output.csv")
 
 
