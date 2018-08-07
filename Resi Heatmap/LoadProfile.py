@@ -22,25 +22,3 @@ def run(load, rates): #load profile file parsed, rates is a pd data frame of imp
         totalHour += 1
     return (date_time, consumption, before_solar, import_rates, export_rates)
 
-def incrementation(val, unique):
-    val += 1
-    if val not in unique:
-        return val
-    else:
-        return incrementation(val, unique)
-
-def getMinimumUniqueSum(arr):
-    unique = []
-    total = 0
-    for i in arr:
-        curr = i
-        if curr in unique:
-            curr = incrementation(curr, unique)
-        unique += [curr]
-        total += curr
-    return total
-
-
-
-arr = [5,5,5]
-print getMinimumUniqueSum(arr)

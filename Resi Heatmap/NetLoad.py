@@ -16,6 +16,9 @@ import time
 
 
 start_time = time.time()
+total_utilities, total_cities, total_zips, total_tariffs, total_savings = [], [], [], [], []
+bill_before_solar, bill_solar, bill_solar_storage = [],[],[]
+
 def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coordinates, name of location
     I = 1  # Incrementation. 1 = hour .25= quarter hourly
      # create 5 lists to keep track of data.
@@ -68,29 +71,42 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
     d["yearly ESS savings"] = d["ESS Savings"].sum()
     val = d.at[0, "yearly ESS savings"]
     bill_pre_solar = d["Bill Before Solar"].sum()
-    bill
+    bill_solar_only = d["Bill Solar Only"].sum()
+    bill_solar_storage = d["Bill PV + ESS"].sum()
     d = d.to_csv(name)
-    return val
+    return (val, bill_pre_solar, bill_solar_only, bill_solar_storage)
 
 
 # determines, for all the rates in a utility, the rate that gives the max ESS savings
-def max_ESS_val(file, lat, lon, n, rates, util, d):
+def max_ESS_val(file, lat, lon, n, rates, util):
+    global total_utilities,total_cities, total_savings, total_tariffs, total_zips,\
+        bill_before_solar, bill_solar, bill_solar_storage
+
     city = file.getCity()
     z = file.getZipcode()
     ESS_savings = {}
     for i in rates:
         directory = "Rates/" + util + "/" + i
+        tariff_name = Parser.getTariffName(i)
         rate_file = pd.read_csv(directory)
-        val = ESS_calc(file, lat, lon, n, rate_file)
-        ESS_savings[i] = val
-
-        d.append(pd.DataFrame([util, city, z, i, ESS_savings[i]]))
+        output = ESS_calc(file, lat, lon, n, rate_file)
+        ESS_savings[i] = output[0]
+        # d.append([{"Utility": util, "City": city, "Zip": z,
+        #            "Tariff": i, "ESS Savings": ESS_savings[i]}], ignore_index=True)
         print("finished ESS savings for " + util + ": " + i)
         print("--- %s seconds ---" % (time.time() - start_time))
+
+        total_utilities += [util]
+        total_cities += [city]
+        total_zips += [z]
+        total_tariffs += [tariff_name]
+        total_savings += [ESS_savings[i]]
+        bill_before_solar += [output[1]]
+        bill_solar += [output[2]]
+        bill_solar_storage += [output[3]]
     print ESS_savings
     maximum = max(ESS_savings, key=ESS_savings.get)
     print (maximum, ESS_savings[maximum])
-    return d
 
 
 def utility_city(city):
@@ -99,11 +115,11 @@ def utility_city(city):
     return utility
 
 
-def utility_parse(inp):
+def utility_parse(inp): #given the file name of the rate, returns only the name of the utility
     ret = ""
     inp = inp[1:]
     while True:
-        if inp[0] == " ":
+        if inp[0] == " " or inp[0].isdigit():
             inp = inp[1:]
         else:
             break
@@ -114,11 +130,12 @@ def utility_parse(inp):
             ret += i
 
 
-d = pd.DataFrame(columns= ['Utility', "City", 'Zip', 'Tariff', 'ESS Savings'])
-for filename in os.listdir("LoadProfiles"):
+
+
+for filename in os.listdir("LoadProfiles/Balt"):
     try:
         print(filename)
-        file = Parser.fileParse("LoadProfiles/" + filename)
+        file = Parser.fileParse("LoadProfiles/Balt/" + filename)
         city = file.getCity()
         z = file.getZipcode()
         lat = Zipcode.find_lat(z)
@@ -126,8 +143,14 @@ for filename in os.listdir("LoadProfiles"):
         util = str(utility_city(city))
         util = utility_parse(util)
         rates = os.listdir("Rates/" + util)
-        d = max_ESS_val(file, lat, lon, city, rates, util, d)
-    except(KeyError, NameError, RuntimeError, IndexError, ValueError, pd.errors.ParserError):
+        max_ESS_val(file, lat, lon, city, rates, util)
+    except(KeyError, NameError, RuntimeError, IndexError, ValueError, OSError, pd.errors.ParserError):
         pass
 
-d.to_csv("Outputs/")
+
+d = pd.DataFrame({"Utility": total_utilities, "City": total_cities, "Zip": total_zips,
+                  "Tariff": total_tariffs, "Bill Before Solar": bill_before_solar,
+                  "Bill Solar Only": bill_solar, "Bill PV+ESS": bill_solar_storage,
+                  "ESS Savings": total_savings},
+    columns= ['Utility', "City", 'Zip', 'Tariff', "Bill Before Solar", "Bill Solar Only", "Bill PV+ESS", 'ESS Savings'])
+d.to_csv("Outputs/finalCalculation.csv")

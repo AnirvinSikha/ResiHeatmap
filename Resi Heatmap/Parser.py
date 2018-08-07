@@ -82,14 +82,13 @@ class Parser:
         split = self.filename.split(":")
         return split[2]
 
+def getTariffName(str):
+        split =  str.split(":")
+        tariff = split[1].split(".")[0]
+        return tariff
+
 def fileParse(filename):
     f = open(filename)
     parsedCSV = Parser(f, filename)
     return parsedCSV
-
-# def main():
-#     filename = "LoadProfiles/USA_CA_Los.Angeles.Intl.AP.722950_TMY3_HIGH.csv"
-#     run = fileParse(filename)
-#     print "here"
-#     print run.getLon()
 
