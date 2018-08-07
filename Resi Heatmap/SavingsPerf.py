@@ -1,12 +1,14 @@
 import pandas as pd
 import time
 from pyomo.environ import *
+import numpy as np
+import os
 
 
 
 def open_profiles(name):
     # Download data site
-    d = pd.read_csv('C:\Users\ctouati\PyCharmProject\Resi/' + str(name) + '.csv', skiprows=48)
+    d = pd.read_csv(str(name) + '.csv', skiprows=48)
     #d = pd.read_csv('/Users/coralietouati/PyCharmProjects/EquinoxStorage-/' + str(name) + '.csv', skiprows=48)
     # delete empty columns
     d.dropna(how = 'all', axis='columns', inplace=True)
@@ -44,100 +46,144 @@ def get_rates(d,ratename):
         else:
             d.loc[i, 'rate'] = rate_weekend.iloc[int(d.loc[i, 'month']) - 1, int(d.loc[i, 'hour'])]
         # add export rates
-        if ratename != 'Hawai':
+        if ratename == 'Hawai':
             d.loc[i, 'rate_export'] = 0
         else:
             d.loc[i, 'rate_export'] = d.loc[i, 'rate'] - 0.02
     return d
 
-
-def basic_dispatch(load,solar,soc):
-    """" Return a basic dispatch: Charge when there is extra solar and discharge when needed"""
-
-    soc_min = 0.1
-
-    # if the load is higher than solar, then the battery discharges only if there is enough electricity if the battery
-    if load > solar:
-        if soc > soc_min:
-            # Battery is discharging to meet the load, but cannot discharge more than the power rate
-            if load - solar <= power_rate:
-                storage = load - solar
-            else:
-                storage = power_rate
+def add_chargesolar(d, rate, e=0.88, I=1):
+    for i in d.index:
+        if d.loc[i, 'rate_export'] <= e * max(d.loc[i:i + 12*I, 'rate']):
+            d.loc[i, str(rate) + 'chargesolar'] = 1
         else:
-            # there is not enough electricity in the battery --> import from the grid to meet the load
-            storage = 0
+            d.loc[i,  str(rate) + 'chargesolar'] = 0
 
-    # if there is an excess of solar, charge the excess as long as the battery is not full
+
+def add_grid(d, rate, e=0.88, I=1):
+    for i in d.index:
+        if d.loc[i, 'rate'] <= e * max(d.loc[i:i + 12* I, 'rate']):
+            d.loc[i, str(rate) + 'grid'] = 1
+        else:
+            d.loc[i, str(rate) + 'grid'] = 0
+
+
+def add_highsolar(d, customer, I=1):
+    for i in d.index:
+        if d.loc[i:i + 24*I, 'solar'].sum() / d.loc[i:i + 24 * I, 'load'].sum() > 1: # looking at the future for testing only. AFTER CHANGE TO -12*I
+            d.loc[i, str(customer) + 'highsolar'] = 1
+        else:
+            d.loc[i,  str(customer) + 'highsolar'] = 0
+
+
+
+
+def update_soc(storage, soc, e=0.88, I=1, capacity=9.3):
+    # update the soc
+    if storage < 0:  # the battery is charging
+        soc = soc - (storage * I * e ** 0.5) / capacity  # e^0.5 is one way efficiency
     else:
-        if soc < 1:
-            # Battery is charging the excess of solar, but cannot charge more than the power rate
-            if load - solar >= - power_rate:
-                storage = load - solar
-            else:
-                storage = - power_rate
-        else:
-            # if the battery is full, the excess of PV is exported
-            storage = 0
+        soc = soc - (storage * I / e ** 0.5) / capacity
+    return soc
 
+
+def get_power(storage, soc ,soc_min, e=0.88, I=1, capacity=9.3, max_power_rate = 5):
+    """check if the battery has enough energy or if it is not full. Also check if the charge/discharge respect the mx power rate"""
+    # First check if the power rate is respected
+    if abs(storage) >= max_power_rate:
+        storage = np.sign(storage) * max_power_rate
+
+    expected_soc = update_soc(storage, soc, e, I, capacity)
+    if storage < 0:
+        # if the battery is charging, we need to check there is enough space in the battery
+        if expected_soc <= 1:
+            return storage
+        else:
+            return -(1-soc)*capacity/(e**0.5) # max energy we can add in the battery
+
+    else:
+        # if it is discharging, we need to check there is enough energy in the battery
+        if expected_soc >= soc_min:
+            return storage
+        else:
+            return (soc-soc_min)*capacity*e**0.5
+
+
+
+
+def basic_dispatch(load, solar, soc, capacity):
+    """" SELF CONSUMPTION - Return a basic dispatch: Charge when there is extra solar and discharge when needed"""
+    soc_min = 0 # need to change getpower if change the value
+    storage = get_power(load-solar, soc, soc_min, capacity=capacity)
     return storage
 
 
-def improved_dispatch(load,solar,chargesolar,soc):
+def improved_dispatch(load,solar,chargesolar,grid,soc, capacity):
     """" Based on the basic dispatch but will only charge if it is worth it: if it is off peak and if
     the TOU difference compensate the energy losses"""
 
-    soc_min = 0.1
+    soc_min = 0
 
-    # if the load is higher than solar, then the battery discharges only if there is enough electricity if the battery
-    if load > solar:
-        if soc > soc_min:
-            # if is on peak and not worth charging, then export all solar and use the battery to meet the load and grid if needed
-            if chargesolar == 0:
-                if load <= power_rate:
-                    storage = load
-                else:
-                    storage = power_rate
-            else:
-                # Otherwise, it is off peak battery is discharging to meet the load, but cannot discharge faster than at the power rate
-                if load - solar <= power_rate:
-                    storage = load - solar
-                else:
-                    storage = power_rate
-        else:
-            # there is not enough electricity in the battery --> import from the grid to meet the load
+    # if it is worth charging solar (ie: high export rate)
+    if chargesolar == 1:
+        if grid == 1: # if it is worth taking from the grid (ie: low import rate)
+           # if there is space in the battery charge solar and use the grid to meet the load
+            storage = get_power(-solar, soc, soc_min, capacity=capacity)
+
+        else: # otherwise take from the battery (ie: high import rate)
+            storage = get_power(load-solar, soc, soc_min, capacity=capacity)
+
+    else: # export solar
+        if grid == 1:
             storage = 0
-
-    # if there is an excess of solar, charge the excess as long as the battery is not full
-    else:
-        if soc < 1:
-            # if it is off peak hour and worth charging, then the excess of solar is charged
-            if chargesolar == 1:
-                # Battery is charging the excess of solar, but cannot charge faster than at the power rate
-                if load - solar >= - power_rate:
-                    storage = load - solar
-                else:
-                    storage = - power_rate
-            # if it is not worth charging as it is on peak, the pv excess is exported and nothing is charged
-            else:
-                storage = 0
-
         else:
-            # if the battery is full, the excess of PV is exported
-            storage = 0
+            storage = get_power(load, soc, soc_min, capacity=capacity)
 
     return storage
 
 
-def optimal_dispatch(d,week):
+
+
+def best_dispatch(load,solar,chargesolar,grid,highsolar,soc,capacity):
+    """" Based on the basic dispatch but will only charge if it is worth it: if it is off peak and if
+    the TOU difference compensate the energy losses"""
+
+    soc_min = 0
+
+    # if it is worth charging solar (ie: high export rate)
+    if chargesolar == 1:
+        if grid == 1 and highsolar == 0: # if it is worth taking from the grid (ie: low import rate)
+           # if there is space in the battery charge solar and use the grid to meet the load
+            storage = get_power(-solar, soc, soc_min, capacity=capacity)
+
+        else: # otherwise take from the battery (ie: high import rate)
+            storage = get_power(load-solar, soc, soc_min, capacity=capacity)
+
+    else: # export solar
+        if grid == 1 and highsolar == 0:
+            storage = 0
+        else:
+            storage = get_power(load, soc, soc_min, capacity=capacity)
+
+    return storage
+
+
+def optimal_dispatch(d,week,customer="", ratename = "", power_rate=5, e =0.88, I=1, capacity=9.3):
 
 
         # Initialisation
-    load = d.load[d.week == week]
-    solar = d.solar[d.week == week]
-    rate = d.rate[d.week == week]
-    rate_exp = d.rate_export[d.week == week]
-    index = load.index
+    if week == 'all':
+        load = d.load
+        solar = d.solar
+        rate = d.rate
+        rate_exp = d.rate_export
+        index = load.index
+    else:
+        load = d.load[d.week == week]
+        solar = d.solar[d.week == week]
+        rate = d.rate[d.week == week]
+        rate_exp = d.rate_export[d.week == week]
+        index = load.index
 
 
         # CREATE MODEL
@@ -188,10 +234,8 @@ def optimal_dispatch(d,week):
 
     # energy in the bat must be positive and lesser than capacity
     def bat_rule(m, i):
-        return m.x[i] == sum(m.charge[t]*e + m.charge_grid[t]*e- m.discharge[t] for t in range(int(index.min()), i+1))*I
-    m.bat = Constraint(RangeSet(int(index.min()), int(index.max())), rule= bat_rule )
-
-
+        return m.x[i] == sum(m.charge[t]*e**0.5 + m.charge_grid[t]*e**0.5 - m.discharge[t]/e**0.5 for t in range(int(index.min()), i+1))*I
+    m.bat = Constraint(RangeSet(int(index.min()), int(index.max())), rule = bat_rule)
 
     # SOLVE
     #solver = SolverFactory('cbc', executable='./COIN-OR-1.7.3-macosx-x86_64-clang500.2.76/bin/cbc')
@@ -202,115 +246,58 @@ def optimal_dispatch(d,week):
 
     # store results
     for i in range(int(index.min()), int(index.max())+1):
-        d.loc[i, 'charge'] = value(m.charge[i])
-        d.loc[i, 'charge_grid'] = value(m.charge_grid[i])
-        d.loc[i, 'discharge'] = value(m.discharge[i])
+        d.loc[i, str(customer) + str(ratename) + 'optimal storage'] = - value(m.charge[i]) - value(m.charge_grid[i]) + value(m.discharge[i])
 
 
-# Calculate cost and Savings
-total = pd.DataFrame([],columns=['rate','capacity','solarfactor','savingsbasic','savingsimproved','savingsoptimal'])
-i=0
+def full_dispatch(d,algo, customer, rate, e,I,capacity=9.3):
+
+    if algo == 'all':
+        full_dispatch(d, 'basic', customer, rate, e, I, capacity)
+        full_dispatch(d, 'improved', customer, rate, e, I, capacity)
+        full_dispatch(d, 'best', customer, rate, e, I, capacity)
+        full_dispatch(d, 'optimal', customer, rate, e, I, capacity)
+
+    elif algo == 'basic':
+        soc = 0
+        for i in d.index:
+            storage = basic_dispatch(d.load[i], d.solar[i], soc , capacity=capacity)
+            d.loc[i, str(customer) + str(rate) + str(algo) + ' storage'] = storage
+            soc = update_soc(storage, soc, e, I, capacity=capacity)
 
 
+    elif algo == 'improved':
+        soc = 0
+        for i in d.index:
+            storage = improved_dispatch(d.load[i], d.solar[i], d.loc[i,str(rate) + 'chargesolar'], d.loc[i,str(rate) + 'grid'], soc, capacity=capacity)
+            d.loc[i, str(customer) + str(rate) + str(algo) + ' storage'] = storage
+            soc = update_soc(storage, soc, e, I, capacity=capacity)
+    elif algo == 'best':
+        soc = 0
+        for i in d.index:
+            storage = best_dispatch(d.load[i], d.solar[i], d.loc[i,str(rate) + 'chargesolar'], d.loc[i,str(rate) + 'grid'], d.loc[i,str(customer) + 'highsolar'], soc, capacity=capacity)
+            d.loc[i, str(customer) + str(rate) + str(algo) + ' storage'] = storage
+            soc = update_soc(storage, soc, e, I, capacity=capacity)
 
-def savings(d,algo):
-    bill = (d['load'] * d['rate']).sum() * 0.25
-    PVbill = ((d['load'] - d['solar']) * d['rate']).sum() * 0.25
-    ESSbill = ((d['load'] - d['solar'] - d[str(algo) + ' storage']) * d['rate']).sum() * 0.25
-    return PVbill - ESSbill
+    elif algo == 'optimal':
+            optimal_dispatch(d, 'all', customer, rate, capacity=capacity)
 
-
-
-
-# Download data profiles
-site = 'Sunpower_Product_Test-Residential_LA-DataFile'
-d = open_profiles(site)
-
-# Download Rate
-ratename_list = ['E', 'Hawai', 'SCE_current']
-capacity_list = [8,9.3,10.5,11.5]
-solarfactor_list = [0.9,1,1,1.25,1.5]
-
-
-
-for ratename in ratename_list:
-    print("rate running:" + str(ratename))
-
-    d = get_rates(d,ratename)
-
-    for sf in solarfactor_list:
-        print('solar factor: ' + str(sf))
-        d['solar'] = d['solar0'] * sf
-
-        for cap in capacity_list:
-            print('capacity: ' + str(cap))
-            # Battery spec
-            power_rate = 5 # kW
-            capacity = cap # kWh
-            I = 0.25
-            soc = 0 # battery is empty on the 1st of january 00.00
-            soc2=0
-            e = 0.88 # battery efficiency round trip
+    else:
+        print('This algorithm does not exist')
 
 
-            #for each line, the dispatch based on the previous soc
-            for i in d.index:
-                # BASIC DISPATCH
+def bill(d,algo,I=1):
+    """ Return the utility bill. to get the bill with solar only put algo = solar"""
+    if algo == 'solar':
+        netload = d['load'] - d['solar']
+    else:
+        netload = d['load'] - d['solar'] - d[str(algo) + ' storage']
 
-                # Create the dispatch column for each line
-                d.loc[i, 'basic storage'] = basic_dispatch(d.loc[i, 'load'], d.loc[i, 'solar'], soc)
-
-                # update the soc
-                soc = soc - (d.loc[i, 'basic storage'] * I*e**0.5) / capacity  # e^0.5 is one way efficiency
-                d.loc[i, 'soc'] = soc
-
-                #IMPROVED DISPATCH
-
-                # Add a column to know whether it is work charging the solar production and use the grid to meet the load
-                if d.loc[i, 'rate'] <= e* max(d.loc[i:i+48/I, 'rate_export']):
-                    d.loc[i,'chargesolar'] = 1
-                else :
-                    d.loc[i, 'chargesolar'] = 0
-
-                # Create the improved dispatch
-                d.loc[i, 'improved storage'] = improved_dispatch(d.loc[i, 'load'], d.loc[i, 'solar'], d.loc[i, 'chargesolar'], soc2)
-
-                # update the soc
-                soc2 = soc2 - (d.loc[i, 'improved storage'] * I*e**0.5) / capacity  # e^0.5 is one way efficiency
-                d.loc[i, 'soc2'] = soc2
+    #imports = (d[(d['net load'] > 0)]['net load']*d[(d['net load']) > 0]['rate']).sum()
+    imports = ((netload>0)* netload * d['rate']).sum()
+    exports = -((netload<0)* netload * d['rate_export']).sum()
+    return (imports - exports)*I
 
 
-            print('basic and improved dispatch is done')
-
-            # OPTIMAL DISPATCH
-
-            # Find the optimal storage for each week
-            for i in range(0,53):
-                #print('working on week' +str(i))
-                optimal_dispatch(d, i)
-            d['optimal storage'] = d['discharge'] - d['charge'] - d['charge_grid']
-
-
-            # export file
-            d.to_csv('Dispatch_LA_' + str(ratename)+ str(capacity) +'kW_'+str(sf)+ '.csv')
-
-
-            total = pd.DataFrame([], columns=['rate', 'capacity', 'solarfactor', 'savingsbasic', 'savingsimproved',
-                                              'savingsoptimal'])
-            total.loc[i,'rate'] = ratename
-            total.loc[i, 'capacity'] = capacity
-            total.loc[i, 'solarfactor'] = sf
-            total.loc[i, 'savingsbasic'] = savings(d, 'basic')
-            total.loc[i, 'savingsimproved'] = savings(d, 'improved')
-            total.loc[i, 'savingsoptimal'] = savings(d, 'optimal')
-            i = i+1 # new line for the next one
-
-
-total['perf basic'] = total['savingsbasic']/total['savingsoptimal']
-total['perf improved'] = total['savingsimproved']/total['savingsoptimal']
-
-total.to_csv('Summary.csv')
-print('done results extracted under Summary')
-
-
-
+def savings(d,algo,I=1):
+    """" Returns the savings comapred to pv only"""
+    return bill(d,'solar',I) - bill(d,algo,I)

@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b66fce76-6f98-4161-b639-2212db606335" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/Capsolaranalysis.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/CustomerSeg.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/LoadProfile.py" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfile.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/NetLoad.py" afterPath="$PROJECT_DIR$/Resi Heatmap/NetLoad.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Outputs/LA.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Outputs/LA.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Utility:City.py" afterPath="$PROJECT_DIR$/Resi Heatmap/Utility:City.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Dispatch.py" afterPath="$PROJECT_DIR$/Resi Heatmap/Dispatch.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/SavingsPerf.py" afterPath="$PROJECT_DIR$/Resi Heatmap/SavingsPerf.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,13 +63,59 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NetLoad.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NetLoad.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Resi Heatmap/NetLoad.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="75" column="85" lean-forward="true" selection-start-line="75" selection-start-column="85" selection-end-line="75" selection-end-column="85" />
+            <state relative-caret-position="-287">
+              <caret line="75" column="45" lean-forward="false" selection-start-line="75" selection-start-column="45" selection-end-line="75" selection-end-column="45" />
               <folding>
                 <element signature="e#212#226#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dispatch.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/Dispatch.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="573">
+              <caret line="121" column="12" lean-forward="false" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SavingsPerf.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/SavingsPerf.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="643">
+              <caret line="303" column="0" lean-forward="true" selection-start-line="303" selection-start-column="0" selection-end-line="303" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Capsolaranalysis.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/Capsolaranalysis.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2415">
+              <caret line="161" column="37" lean-forward="false" selection-start-line="161" selection-start-column="37" selection-end-line="161" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomerSeg.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/CustomerSeg.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -135,11 +181,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Resi Heatmap/Database.py" />
-        <option value="$PROJECT_DIR$/Resi Heatmap/SavingsPerf.py" />
         <option value="$PROJECT_DIR$/Resi Heatmap/tabl.csv" />
         <option value="$USER_HOME$/Downloads/basemap-1.0.7rel/setup.py" />
         <option value="$PROJECT_DIR$/Resi Heatmap/LA.csv" />
-        <option value="$PROJECT_DIR$/Resi Heatmap/Dispatch.py" />
         <option value="$PROJECT_DIR$/Resi Heatmap/NetLoad" />
         <option value="$PROJECT_DIR$/Resi Heatmap/Los Angeles Intl AP" />
         <option value="$PROJECT_DIR$/Resi Heatmap/Outputs/NetLoad.py" />
@@ -157,6 +201,10 @@
         <option value="$PROJECT_DIR$/Resi Heatmap/Utility:City.py" />
         <option value="$PROJECT_DIR$/Resi Heatmap/LoadProfile.py" />
         <option value="$PROJECT_DIR$/Resi Heatmap/NetLoad.py" />
+        <option value="$PROJECT_DIR$/Resi Heatmap/Dispatch.py" />
+        <option value="$PROJECT_DIR$/Resi Heatmap/SavingsPerf.py" />
+        <option value="$PROJECT_DIR$/Resi Heatmap/Capsolaranalysis.py" />
+        <option value="$PROJECT_DIR$/Resi Heatmap/CustomerSeg.py" />
       </list>
     </option>
   </component>
@@ -196,24 +244,6 @@
               <item name="ResiHeatmap" type="b2602c69:ProjectViewProjectNode" />
               <item name="ResiHeatmap" type="462c0819:PsiDirectoryNode" />
               <item name="Resi Heatmap" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ResiHeatmap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ResiHeatmap" type="462c0819:PsiDirectoryNode" />
-              <item name="Resi Heatmap" type="462c0819:PsiDirectoryNode" />
-              <item name="LoadProfiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ResiHeatmap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ResiHeatmap" type="462c0819:PsiDirectoryNode" />
-              <item name="Resi Heatmap" type="462c0819:PsiDirectoryNode" />
-              <item name="Outputs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ResiHeatmap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ResiHeatmap" type="462c0819:PsiDirectoryNode" />
-              <item name="Resi Heatmap" type="462c0819:PsiDirectoryNode" />
-              <item name="Rates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -395,24 +425,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/SavingsPerf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="117" column="34" lean-forward="false" selection-start-line="117" selection-start-column="34" selection-end-line="117" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#19#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/SJ.csv" />
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/pandas/core/internals.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/six.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
@@ -499,14 +511,6 @@
           <folding>
             <element signature="e#0#15#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Dispatch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="32" lean-forward="false" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -772,10 +776,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/NetLoad.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="75" column="85" lean-forward="true" selection-start-line="75" selection-start-column="85" selection-end-line="75" selection-end-column="85" />
+        <state relative-caret-position="-287">
+          <caret line="75" column="45" lean-forward="false" selection-start-line="75" selection-start-column="45" selection-end-line="75" selection-end-column="45" />
           <folding>
             <element signature="e#212#226#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Dispatch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="121" column="12" lean-forward="false" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/SavingsPerf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="303" column="0" lean-forward="true" selection-start-line="303" selection-start-column="0" selection-end-line="303" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Capsolaranalysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2415">
+          <caret line="161" column="37" lean-forward="false" selection-start-line="161" selection-start-column="37" selection-end-line="161" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/CustomerSeg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
