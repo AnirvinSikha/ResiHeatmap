@@ -56,7 +56,7 @@ def run():
                 print count
                 print("--- %s seconds ---" % (time.time() - start_time))
                 print
-            except(KeyError, NameError, RuntimeError, IndexError, ValueError):
+            except(KeyError, NameError, RuntimeError, IndexError, ValueError, pd.errors.ParserError):
                 count += 1
                 pass
     return util_list, util_id_list, zips, city_list

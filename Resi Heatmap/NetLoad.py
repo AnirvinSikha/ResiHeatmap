@@ -6,6 +6,7 @@ storage, Bill Solar/Storage, and ESS savings
 import PVWatts
 import LoadProfile
 import Parser
+import Zipcode
 import csv
 import Dispatch
 import os
@@ -66,8 +67,11 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
     d["ESS Savings"] = d["Bill Solar Only"] - d["Bill PV + ESS"]
     d["yearly ESS savings"] = d["ESS Savings"].sum()
     val = d.at[0, "yearly ESS savings"]
+    bill_pre_solar = d["Bill Before Solar"].sum()
+    bill
     d = d.to_csv(name)
     return val
+
 
 # determines, for all the rates in a utility, the rate that gives the max ESS savings
 def max_ESS_val(file, lat, lon, n, rates, util, d):
@@ -80,7 +84,7 @@ def max_ESS_val(file, lat, lon, n, rates, util, d):
         val = ESS_calc(file, lat, lon, n, rate_file)
         ESS_savings[i] = val
 
-        d.append(pd.DataFrame([util, city, z, i, ESS_savings]))
+        d.append(pd.DataFrame([util, city, z, i, ESS_savings[i]]))
         print("finished ESS savings for " + util + ": " + i)
         print("--- %s seconds ---" % (time.time() - start_time))
     print ESS_savings
@@ -88,10 +92,12 @@ def max_ESS_val(file, lat, lon, n, rates, util, d):
     print (maximum, ESS_savings[maximum])
     return d
 
+
 def utility_city(city):
     util_city = pd.read_csv("Util:City/Util:City Database.csv")
     utility = util_city.loc[util_city["City"] == city, "Utility"]
     return utility
+
 
 def utility_parse(inp):
     ret = ""
@@ -107,14 +113,21 @@ def utility_parse(inp):
         else:
             ret += i
 
+
+d = pd.DataFrame(columns= ['Utility', "City", 'Zip', 'Tariff', 'ESS Savings'])
 for filename in os.listdir("LoadProfiles"):
-    d = pd.DataFrame(columns= ['Utility', "City", 'Zip', 'Tariff', 'ESS Savings'])
-    file = Parser.fileParse("LoadProfiles/" + filename)
-    city = file.getCity()
-    util = str(utility_city(city))
-    util = utility_parse(util)
-    rates = os.listdir("Rates/" + util)
-    final_output = max_ESS_val(file, 34, -118, "LA", rates, util, d)
-    final_output.to_csv("Output/final output.csv")
+    try:
+        print(filename)
+        file = Parser.fileParse("LoadProfiles/" + filename)
+        city = file.getCity()
+        z = file.getZipcode()
+        lat = Zipcode.find_lat(z)
+        lon = Zipcode.find_lon(z)
+        util = str(utility_city(city))
+        util = utility_parse(util)
+        rates = os.listdir("Rates/" + util)
+        d = max_ESS_val(file, lat, lon, city, rates, util, d)
+    except(KeyError, NameError, RuntimeError, IndexError, ValueError, pd.errors.ParserError):
+        pass
 
-
+d.to_csv("Outputs/")
