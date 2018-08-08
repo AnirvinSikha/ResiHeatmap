@@ -14,7 +14,7 @@ import pandas as pd
 import numpy as np
 import time
 
-
+#these lists store all the values for all tariffs to be run, put into a dataframe/csv at the end.
 start_time = time.time()
 total_utilities, total_cities, total_zips, total_tariffs, total_savings = [], [], [], [], []
 bill_before_solar, bill_solar, bill_solar_storage = [],[],[]
@@ -62,7 +62,7 @@ def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coord
     # calculate bill of solar and storage
     # calculates the difference between bill pre-solar and bill solar/storage to get ESS savings
     d = pd.read_csv(name)
-    d = Dispatch.full_basic_dispatch(d, I)
+    d = Dispatch.full_savings_dispatch(d, I)
     d['Net Load (Solar and Storage)'] = d["Load"] - d["basic storage"] - d["Solar"]
     d["Bill PV + ESS"] = np.where(d["Net Load (Solar and Storage)"] >= 0,
                                   d['Net Load (Solar and Storage)'] * d['Import Rate'] * I,
@@ -85,14 +85,12 @@ def max_ESS_val(file, lat, lon, n, rates, util):
     city = file.getCity()
     z = file.getZipcode()
     ESS_savings = {}
-    for i in rates:
+    for i in rates: #for each rate for a given utility, performs ESS savings analysis and adds values to lists.
         directory = "Rates/" + util + "/" + i
         tariff_name = Parser.getTariffName(i)
         rate_file = pd.read_csv(directory)
         output = ESS_calc(file, lat, lon, n, rate_file)
         ESS_savings[i] = output[0]
-        # d.append([{"Utility": util, "City": city, "Zip": z,
-        #            "Tariff": i, "ESS Savings": ESS_savings[i]}], ignore_index=True)
         print("finished ESS savings for " + util + ": " + i)
         print("--- %s seconds ---" % (time.time() - start_time))
 
@@ -109,7 +107,7 @@ def max_ESS_val(file, lat, lon, n, rates, util):
     print (maximum, ESS_savings[maximum])
 
 
-def utility_city(city):
+def utility_city(city): #given a city, returns the utility that corresponds with it
     util_city = pd.read_csv("Util:City/Util:City Database.csv")
     utility = util_city.loc[util_city["City"] == city, "Utility"]
     return utility
@@ -131,26 +129,28 @@ def utility_parse(inp): #given the file name of the rate, returns only the name 
 
 
 
+def main():
+    for filename in os.listdir("LoadProfiles/"): #runs utility calc for all load profiles
+        try:
+            print(filename)
+            file = Parser.fileParse("LoadProfiles/" + filename)
+            city = file.getCity()
+            z = file.getZipcode()
+            lat = Zipcode.find_lat(z)
+            lon = Zipcode.find_lon(z)
+            util = str(utility_city(city))
+            util = utility_parse(util)
+            rates = os.listdir("Rates/" + util)
+            max_ESS_val(file, lat, lon, city, rates, util)
+        except(KeyError, NameError, RuntimeError, IndexError, ValueError, OSError, pd.errors.ParserError):
+            #raise
+            pass
 
-for filename in os.listdir("LoadProfiles/Balt"):
-    try:
-        print(filename)
-        file = Parser.fileParse("LoadProfiles/Balt/" + filename)
-        city = file.getCity()
-        z = file.getZipcode()
-        lat = Zipcode.find_lat(z)
-        lon = Zipcode.find_lon(z)
-        util = str(utility_city(city))
-        util = utility_parse(util)
-        rates = os.listdir("Rates/" + util)
-        max_ESS_val(file, lat, lon, city, rates, util)
-    except(KeyError, NameError, RuntimeError, IndexError, ValueError, OSError, pd.errors.ParserError):
-        pass
-
-
-d = pd.DataFrame({"Utility": total_utilities, "City": total_cities, "Zip": total_zips,
-                  "Tariff": total_tariffs, "Bill Before Solar": bill_before_solar,
-                  "Bill Solar Only": bill_solar, "Bill PV+ESS": bill_solar_storage,
-                  "ESS Savings": total_savings},
-    columns= ['Utility', "City", 'Zip', 'Tariff', "Bill Before Solar", "Bill Solar Only", "Bill PV+ESS", 'ESS Savings'])
-d.to_csv("Outputs/finalCalculation.csv")
+    d = pd.DataFrame({"Utility": total_utilities, "City": total_cities, "Zip": total_zips,
+                      "Tariff": total_tariffs, "Bill Before Solar": bill_before_solar,
+                      "Bill Solar Only": bill_solar, "Bill PV+ESS": bill_solar_storage,
+                      "ESS Savings": total_savings},
+        columns= ['Utility', "City", 'Zip', 'Tariff', "Bill Before Solar", "Bill Solar Only", "Bill PV+ESS", 'ESS Savings'])
+    d.to_csv("Outputs/finalCalculation.csv")
+    
+main()

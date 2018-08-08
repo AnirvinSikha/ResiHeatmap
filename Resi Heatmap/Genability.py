@@ -262,3 +262,5 @@ def update_rates():
 
 
 #update_rates()
+test = TariffEngine("Chicago", 1, str(19803), "2018-01-01T00:00:00", "2019-01-01T00:00:00")
+print(test.get_utility())
