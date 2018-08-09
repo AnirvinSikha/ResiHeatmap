@@ -19,6 +19,8 @@ start_time = time.time()
 total_utilities, total_cities, total_zips, total_tariffs, total_savings = [], [], [], [], []
 bill_before_solar, bill_solar, bill_solar_storage = [],[],[]
 
+
+
 def ESS_calc(file, lat, lon, n, rates):  # inputs: a load profile, lat/lon coordinates, name of location
     I = 1  # Incrementation. 1 = hour .25= quarter hourly
      # create 5 lists to keep track of data.
@@ -114,8 +116,8 @@ def utility_city(city): #given a city, returns the utility that corresponds with
 
 
 def utility_parse(inp): #given the file name of the rate, returns only the name of the utility
+    inp = inp.tolist()[0]
     ret = ""
-    inp = inp[1:]
     while True:
         if inp[0] == " " or inp[0].isdigit():
             inp = inp[1:]
@@ -126,11 +128,70 @@ def utility_parse(inp): #given the file name of the rate, returns only the name 
             return ret
         else:
             ret += i
+    return inp
 
+# determines what loads are to be run, and if all loads are to be run.
+# returns a list of filenames of loads to be run.
+def load_select():
+    loads = []
+    count = 1
+    for filename in os.listdir("LoadProfiles/"):
+        loads += [filename]
+        print(str(count) + " " + filename)
+        count += 1
+    print
+    inp = raw_input("Do you want to run all loads? (y/n)")
+    while True:
+        if inp == 'y':
+            return loads
+        elif inp == 'n':
+            break
+        else:
+            inp = raw_input("Invalid input! Do you want to run all loads? (y/n)")
 
+    for i in range(len(loads)):
+        count = i + 1
+        print (str(count) + ". " + loads[i])
+    print
+    inp = raw_input("What loads do you want to run. (Input as so: 1, 2, 4, 18)")
+    indexes = find_int(inp)
+    loads = [loads[int(x) - 1] for x in indexes]
+    return loads
+
+def find_int(s):
+    ret = []
+    for i in s.split(", "):
+        if i.isdigit():
+            ret += [i]
+    return ret
+
+#determines if all rates for all utilities are to be run
+def all_tariffs():
+    inp = raw_input("Do you want to run all tariffs? (y/n)")
+    while True:
+        if inp == 'y':
+            return True
+        elif inp == 'n':
+            return False
+        else:
+            inp = raw_input("Invalid input! Do you want to run all tariffs? (y/n)")
+
+#returns list of tariffs to be run
+def tariff_select(rates):
+    count = 1
+    for rate in rates:
+        print(str(count) + ". " + rate)
+        count += 1
+    print
+    inp = raw_input("What rates do you want to run. (Input as so: 1, 2, 17, 25)")
+    indexes = find_int(inp)
+    rates = [rates[int(x) - 1] for x in indexes]
+    return rates
 
 def main():
-    for filename in os.listdir("LoadProfiles/"): #runs utility calc for all load profiles
+    loads = load_select()
+    all_tar = all_tariffs()
+    for filename in loads: #runs utility calc for all load profiles
         try:
             print(filename)
             file = Parser.fileParse("LoadProfiles/" + filename)
@@ -138,9 +199,11 @@ def main():
             z = file.getZipcode()
             lat = Zipcode.find_lat(z)
             lon = Zipcode.find_lon(z)
-            util = str(utility_city(city))
+            util = utility_city(city)
             util = utility_parse(util)
             rates = os.listdir("Rates/" + util)
+            if all_tar == False:
+                rates = tariff_select(rates)
             max_ESS_val(file, lat, lon, city, rates, util)
         except(KeyError, NameError, RuntimeError, IndexError, ValueError, OSError, pd.errors.ParserError):
             #raise
@@ -149,8 +212,11 @@ def main():
     d = pd.DataFrame({"Utility": total_utilities, "City": total_cities, "Zip": total_zips,
                       "Tariff": total_tariffs, "Bill Before Solar": bill_before_solar,
                       "Bill Solar Only": bill_solar, "Bill PV+ESS": bill_solar_storage,
-                      "ESS Savings": total_savings},
-        columns= ['Utility', "City", 'Zip', 'Tariff', "Bill Before Solar", "Bill Solar Only", "Bill PV+ESS", 'ESS Savings'])
+                        "ESS Savings": total_savings},
+        columns= ['Utility', "City", 'Zip', 'Tariff', "Bill Before Solar", "Bill Solar Only",
+                  "Bill PV+ESS", 'Solar Saving', 'ESS Savings'])
+    d["Solar Savings"] = d["Bill Before Solar"] - d["Bill Solar Only"]
     d.to_csv("Outputs/finalCalculation.csv")
-    
+
 main()
+

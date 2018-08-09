@@ -37,6 +37,25 @@ def add_highsolar(d, I=1):
         else:
             d.loc[i,  'highsolar'] = 0
 
+def add_chargesolar_grid_highsolar(d, e=0.88, I=1):
+    for i in d.index:
+        max_import_rate = max(d.loc[i:i + 12*I, 'Import Rate'])
+
+        if d.loc[i, 'Export Rate'] <= e * max_import_rate:
+            d.loc[i,'chargesolar'] = 1
+        else:
+            d.loc[i, 'chargesolar'] = 0
+
+        if d.loc[i, 'Import Rate'] <= e * max_import_rate:
+            d.loc[i, 'grid'] = 1
+        else:
+            d.loc[i, 'grid'] = 0
+
+        if d.loc[i:i + 24*I, 'Solar'].sum() / d.loc[i:i + 24 * I, 'Load'].sum() > 1:
+            d.loc[i, 'highsolar'] = 1
+        else:
+            d.loc[i,  'highsolar'] = 0
+
 
 def update_soc(storage, soc, e=0.88, I=1, capacity=9.3):
     # update the soc
@@ -111,9 +130,7 @@ def full_savings_dispatch(d, I, e=0.88, capacity = 9.3):
     """
     soc = 0
     # Add criterias in d
-    add_chargesolar(d,e,I)
-    add_grid(d,e,I)
-    add_highsolar(d,I)
+    add_chargesolar_grid_highsolar(d, e, I)
     for i in d.index:
         # Create the dispatch column for each line
         d.loc[i, 'basic storage'] = savings_dispatch(d.loc[i, 'Load'], d.loc[i, 'Solar'], d.loc[i, 'chargesolar'],  d.loc[i,'grid'], d.loc[i,'highsolar'], soc, capacity)

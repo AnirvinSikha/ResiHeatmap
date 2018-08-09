@@ -3,7 +3,6 @@ The entire Genability interface. Performs API calls in 3 steps
 1. Get the utilities for a given zip
 2. Get the rates for a given utility
 3. Get the list of import/export values for 8760 hrs for set rate
-
 '''
 
 from __future__ import print_function
@@ -27,6 +26,10 @@ class TariffEngine():
         self.zip = zip
         self.start_time = str(start_time)
         self.end_time = str(end_time)
+        self.times = []
+
+        if len(str(self.zip)) <= 4:
+            self.zip = "0" + str(self.zip)
 
     def __str__(self):
         return "Site name:", self.Shortname, "providerAccountId:", self.providerAccountId
@@ -121,6 +124,7 @@ class TariffEngine():
             curr_time = output[i]["fromDateTime"]
             if output[i]["chargeType"] == "CONSUMPTION_BASED" and curr_time != prev_time:
                 import_rates += [output[i]["rateAmount"]]
+                self.times += [curr_time]
                 prev_time = curr_time
 
         return import_rates
@@ -161,7 +165,7 @@ def find_key(dict, value):  # used to find utility/tariff given a list of utilit
 
 
 # used to send import/export vals to rates file
-def write_to_rates_folder(city, z, utility_name, utility_id, tariff_name, tariff_id, import_rates,
+def write_to_rates_folder(city, z, times, utility_name, utility_id, tariff_name, tariff_id, import_rates,
                           export_rates):
     all_rates = pd.read_csv("Rates/all_rates.csv")
     newpath = "Rates/" + utility_name
@@ -169,11 +173,11 @@ def write_to_rates_folder(city, z, utility_name, utility_id, tariff_name, tariff
     if not os.path.exists(newpath):
         os.makedirs(newpath)
     with open(directory, 'w') as output_file:
-        headers = ["Import Rates", "Export Rates", "Zip", "Utility Name", "Utility ID", "Tariff Name", "Tariff ID"]
+        headers = ["Time", "Import Rates", "Export Rates", "Zip", "Utility Name", "Utility ID", "Tariff Name", "Tariff ID"]
         writer = csv.DictWriter(output_file, headers)
         writer.writeheader()
         for i in range(len(import_rates)):
-            writer.writerow({"Import Rates": import_rates[i], "Export Rates": export_rates[i], "Zip": z,
+            writer.writerow({"Time": times[i], "Import Rates": import_rates[i], "Export Rates": export_rates[i], "Zip": z,
                              "Utility Name": utility_name, "Utility ID": utility_id,
                              "Tariff Name": tariff_name, "Tariff ID": tariff_id})
 
@@ -248,7 +252,7 @@ def update_rates():
                 export_rates = tariff.export_rates()
                 print(import_rates)
                 print(export_rates)
-                write_to_rates_folder(city, z, utility_name, utility_id, tariff_name,
+                write_to_rates_folder(city, z, tariff.times, utility_name, utility_id, tariff_name,
                                       tariff_id, import_rates, export_rates)
                 write_to_all_rates(city, z, utility_name, utility_id, tariff_name,
                                    tariff_id)
@@ -257,10 +261,6 @@ def update_rates():
 
             print(str(count) + ".finished " + utility_name + "!")
             count += 1
-        except(KeyError, NameError, RuntimeError, IndexError, ValueError):
+        except(KeyError, NameError, RuntimeError, IndexError, ValueError, IOError):
             pass
 
-
-#update_rates()
-test = TariffEngine("Chicago", 1, str(19803), "2018-01-01T00:00:00", "2019-01-01T00:00:00")
-print(test.get_utility())
