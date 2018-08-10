@@ -2,197 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b66fce76-6f98-4161-b639-2212db606335" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/USA_AZ_Phoenix-Deer.Valley.AP.722784_TMY3_HIGH.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/USA_AZ_Tucson.Intl.AP.722740_TMY3_HIGH.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/USA_CA_Long.Beach-Daugherty.Field.722970_TMY3_HIGH.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/USA_CO_Denver.Intl.AP.725650_TMY3_HIGH.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/USA_CT_Hartford-Bradley.Intl.AP.725080_TMY3_HIGH.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/USA_DE_Dover.AFB.724088_TMY3_HIGH.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/USA_HI_Honolulu.Intl.AP.911820_TMY3_HIGH.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3_HIGH.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/USA_MA_Boston-Logan.Intl.AP.725090_TMY3_HIGH.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/USA_NH_Concord.Muni.AP.726050_TMY3_HIGH.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/USA_VT_Rutland.State.AP.725165_TMY3_HIGH.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/UpdateRates.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/2011_us_ag_exports.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/iouzipcodes2011.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Dispatch.py" afterPath="$PROJECT_DIR$/Resi Heatmap/Dispatch.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Genability.py" afterPath="$PROJECT_DIR$/Resi Heatmap/Genability.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/HeatMap.py" afterPath="$PROJECT_DIR$/Resi Heatmap/HeatMap.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/NetLoad.py" afterPath="$PROJECT_DIR$/Resi Heatmap/NetLoad.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Outputs/Binghamton-Edwin A Link Field.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Outputs/Binghamton-Edwin A Link Field.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:E-12.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:E-12.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ECT-1R.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ECT-1R.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ECT-2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ECT-2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ET-1.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ET-1.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ET-2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ET-2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ET-EV.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ET-EV.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ET-SP.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:ET-SP.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-3.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-3.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-BASIC L.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-BASIC L.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-BASIC.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-BASIC.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-TECH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-TECH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-XS.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:R-XS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:TOU-E.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Arizona Public Service Co/Arizona Public Service Co:TOU-E.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Baltimore Gas &amp; Electric Co/Baltimore Gas &amp; Electric Co:EV.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Baltimore Gas &amp; Electric Co/Baltimore Gas &amp; Electric Co:EV.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Baltimore Gas &amp; Electric Co/Baltimore Gas &amp; Electric Co:R.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Baltimore Gas &amp; Electric Co/Baltimore Gas &amp; Electric Co:R.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Baltimore Gas &amp; Electric Co/Baltimore Gas &amp; Electric Co:RL.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Baltimore Gas &amp; Electric Co/Baltimore Gas &amp; Electric Co:RL.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Consolidated Edison Co-NY Inc/Consolidated Edison Co-NY Inc:EL1-PSC.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Consolidated Edison Co-NY Inc/Consolidated Edison Co-NY Inc:EL1-PSC.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Consolidated Edison Co-NY Inc/Consolidated Edison Co-NY Inc:EL1-TOD-PSC.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Consolidated Edison Co-NY Inc/Consolidated Edison Co-NY Inc:EL1-TOD-PSC.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Consolidated Edison Co-NY Inc/Consolidated Edison Co-NY Inc:EL1.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Consolidated Edison Co-NY Inc/Consolidated Edison Co-NY Inc:EL1.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Consolidated Edison Co-NY Inc/Consolidated Edison Co-NY Inc:EL8.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Consolidated Edison Co-NY Inc/Consolidated Edison Co-NY Inc:EL8.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:EV-R-CGS.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:EV-R-CGS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:EV-R-CSS.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:EV-R-CSS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:EV-R.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:EV-R.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-CGS.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-CGS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-CGSP.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-CGSP.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-CSS.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-CSS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-MED-CGSP.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-MED-CGSP.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-MED-SE.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-MED-SE.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-SE.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R-SE.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:R.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU EV.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU EV.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-EV-CGS.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-EV-CGS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-EV-CGSP.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-EV-CGSP.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-R-CGS.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-R-CGS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-R-CGSP.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-R-CGSP.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-R-CSS.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-R-CSS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-R-SE.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-R-SE.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-R.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-R.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-RI-CGSP.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-RI-CGSP.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-RI-SE.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-RI-SE.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-RI.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Maui Electric Co Ltd/Maui Electric Co Ltd:TOU-RI.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):LRS-95PCT.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):LRS-95PCT.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):LRS-NEM.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):LRS-NEM.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):LRS.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):LRS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):OLRS-REVRR-TOU.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):OLRS-REVRR-TOU.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):OLRS-TOU-95PCT.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):OLRS-TOU-95PCT.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):OLRS-TOU.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):OLRS-TOU.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORM-DDP.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORM-DDP.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORM-TOU-95PCT.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORM-TOU-95PCT.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORM-TOU-A-88PCT.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORM-TOU-A-88PCT.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORM-TOU.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORM-TOU.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORS-REVRR-TOU.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORS-REVRR-TOU.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORS-TOU-A-95PCT.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORS-TOU-A-95PCT.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORS-TOU-A.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORS-TOU-A.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORS-TOU-B.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):ORS-TOU-B.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RM-95PCT.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RM-95PCT.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RM-NEM.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RM-NEM.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RM.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RM.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RS-95PCT.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RS-95PCT.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RS-NEM.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RS-NEM.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RS.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):RS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):SSR.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/NV Energy - South (prev. Nevada Power)/NV Energy - South (prev. Nevada Power):SSR.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/National Grid - New York/National Grid - New York:SC1-PSC.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/National Grid - New York/National Grid - New York:SC1-PSC.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/National Grid - New York/National Grid - New York:SC1.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/National Grid - New York/National Grid - New York:SC1.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/National Grid - New York/National Grid - New York:SC1C.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/National Grid - New York/National Grid - New York:SC1C.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/National Grid - New York/National Grid - New York:SC1V.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/National Grid - New York/National Grid - New York:SC1V.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/New York State Elec &amp; Gas Corp/New York State Elec &amp; Gas Corp:SC1-PSC.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/New York State Elec &amp; Gas Corp/New York State Elec &amp; Gas Corp:SC1-PSC.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/New York State Elec &amp; Gas Corp/New York State Elec &amp; Gas Corp:SC1.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/New York State Elec &amp; Gas Corp/New York State Elec &amp; Gas Corp:SC1.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/New York State Elec &amp; Gas Corp/New York State Elec &amp; Gas Corp:SC11.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/New York State Elec &amp; Gas Corp/New York State Elec &amp; Gas Corp:SC11.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/New York State Elec &amp; Gas Corp/New York State Elec &amp; Gas Corp:SC12.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/New York State Elec &amp; Gas Corp/New York State Elec &amp; Gas Corp:SC12.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/New York State Elec &amp; Gas Corp/New York State Elec &amp; Gas Corp:SC8.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/New York State Elec &amp; Gas Corp/New York State Elec &amp; Gas Corp:SC8.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/PPL Electric Utilities Corp/PPL Electric Utilities Corp:RS.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/PPL Electric Utilities Corp/PPL Electric Utilities Corp:RS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/PPL Electric Utilities Corp/PPL Electric Utilities Corp:RTD (R).csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/PPL Electric Utilities Corp/PPL Electric Utilities Corp:RTD (R).csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/PPL Electric Utilities Corp/PPL Electric Utilities Corp:RTS (R).csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/PPL Electric Utilities Corp/PPL Electric Utilities Corp:RTS (R).csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-1-CARE.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-1-CARE.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-1-EH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-1-EH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-1-FERA.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-1-FERA.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-1.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-1.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU-CARE-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU-CARE-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU-EH-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU-EH-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU-EH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU-EH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU-FERA-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU-FERA-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-6-TOU.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU-CARE-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU-CARE-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU-EH-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU-EH-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU-EH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU-EH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU-FERA-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU-FERA-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-7-TOU.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-8-FERA.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-8-FERA.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-9-TOU-EH-EV-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-9-TOU-EH-EV-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-9-TOU-EV-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-9-TOU-EV-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-9-TOU-FERA-EV-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-9-TOU-FERA-EV-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-TOU-A-EH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-TOU-A-EH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-TOU-A-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-TOU-A-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-TOU-A.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-TOU-A.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-TOU-B-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-TOU-B-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-TOU-B.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Pacific Gas &amp; Electric Co/Pacific Gas &amp; Electric Co:E-TOU-B.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Rocky Mountain Power/Rocky Mountain Power:1.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Rocky Mountain Power/Rocky Mountain Power:1.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Rocky Mountain Power/Rocky Mountain Power:2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Rocky Mountain Power/Rocky Mountain Power:2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Rocky Mountain Power/Rocky Mountain Power:3.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Rocky Mountain Power/Rocky Mountain Power:3.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:EAPR_R.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:EAPR_R.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:R-TOD.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:R-TOD.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:R-TOU.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:R-TOU.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:R.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:R.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:RPEV_1.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:RPEV_1.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:RPEV_2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:RPEV_2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:RSCH, RWCH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:RSCH, RWCH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:RSEH, RWEH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:RSEH, RWEH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:RSGH, RWGH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Sacramento Municipal Util Dist/Sacramento Municipal Util Dist:RSGH, RWGH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DE-FERA.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DE-FERA.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DM.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DM.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-EH-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-EH-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-EH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-EH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-LI-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-LI-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-LI.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-LI.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-MB.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-MB.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-DER-EH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-DER-EH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-DER.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-DER.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-EH-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-EH-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-EH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-EH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-MB.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-MB.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-SES-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-SES-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-SES.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU-SES.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR-TOU.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DR.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DT-RV.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:DT-RV.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:EV-TOU-2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:EV-TOU-2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:EV-TOU.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:EV-TOU.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:TOU-DR-LI-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:TOU-DR-LI-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:TOU-DR-MB-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:TOU-DR-MB-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:TOU-DR-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:TOU-DR-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:TOU-DR2-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/San Diego Gas &amp; Electric Co/San Diego Gas &amp; Electric Co:TOU-DR2-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D-CARE-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D-CARE-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D-CARE.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D-CARE.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D-EH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D-EH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D-FERA-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D-FERA-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D-FERA.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D-FERA.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:D.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:DMS-3.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:DMS-3.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:SCE_ImpExp1.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:SCE_ImpExp1.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-1.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-1.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-5-8PM-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-5-8PM-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-A-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-A-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-A.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-A.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-B-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-B-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-T-EH-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-T-EH-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-T-EH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-T-EH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-T-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-T-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-TEV-EH.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-TEV-EH.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-TEV.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-D-TEV.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-DPP-1-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-DPP-1-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-DPP-2-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-DPP-2-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-DPP-2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-DPP-2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-DPP-3-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-DPP-3-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-EV-1-NEM2.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-EV-1-NEM2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-EV-1.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Southern California Edison Co/Southern California Edison Co:TOU-EV-1.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:R.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:R.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RCPP.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RCPP.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RD-TDR.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RD-TDR.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RD.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RD.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RE-TOU.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RE-TOU.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RPTR.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RPTR.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RTOU.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/Xcel Energy - Colorado/Xcel Energy - Colorado:RTOU.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Rates/all_rates.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Rates/all_rates.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Util:City/Util:City Database.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Util:City/Util:City Database.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Utility:City.py" afterPath="$PROJECT_DIR$/Resi Heatmap/Utility:City.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/ZipcodeDatabase.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/ZipcodeDatabase.csv" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -209,8 +24,8 @@
             <file leaf-file-name="Parser.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/Resi Heatmap/Parser.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1290">
-                    <caret line="86" column="39" lean-forward="false" selection-start-line="86" selection-start-column="39" selection-end-line="86" selection-end-column="39" />
+                  <state relative-caret-position="330">
+                    <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
                     <folding>
                       <element signature="e#48#61#0" expanded="true" />
                     </folding>
@@ -228,8 +43,8 @@
       <file leaf-file-name="Genability.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Resi Heatmap/Genability.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="254" column="61" lean-forward="false" selection-start-line="254" selection-start-column="61" selection-end-line="254" selection-end-column="61" />
+            <state relative-caret-position="-2751">
+              <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
               <folding>
                 <element signature="e#212#249#0" expanded="true" />
               </folding>
@@ -237,12 +52,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateRates.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Resi Heatmap/UpdateRates.py">
+      <file leaf-file-name="HeatMap.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/HeatMap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="431">
+              <caret line="120" column="51" lean-forward="false" selection-start-line="120" selection-start-column="51" selection-end-line="120" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zip2fips.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/zip2fips/zip2fips.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Zipcode.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/Zipcode.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+              <folding>
+                <element signature="e#94#107#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -250,8 +89,8 @@
       <file leaf-file-name="NetLoad.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Resi Heatmap/NetLoad.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="218" column="26" lean-forward="false" selection-start-line="218" selection-start-column="26" selection-end-line="218" selection-end-column="26" />
+            <state relative-caret-position="497">
+              <caret line="218" column="14" lean-forward="false" selection-start-line="218" selection-start-column="14" selection-end-line="218" selection-end-column="43" />
               <folding>
                 <element signature="e#212#226#0" expanded="true" />
               </folding>
@@ -259,55 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="generic.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/pandas/core/generic.py">
+      <file leaf-file-name="finalCalculation.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="1808" column="0" lean-forward="false" selection-start-line="1808" selection-start-column="0" selection-end-line="1808" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Utility:City.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resi Heatmap/Utility:City.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="727">
-              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-              <folding>
-                <element signature="e#199#216#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Dispatch.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resi Heatmap/Dispatch.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="50" column="11" lean-forward="false" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoadProfile.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resi Heatmap/LoadProfile.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HeatMap.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resi Heatmap/HeatMap.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+            <state relative-caret-position="0">
+              <caret line="0" column="84" lean-forward="false" selection-start-line="0" selection-start-column="84" selection-end-line="0" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -333,6 +128,9 @@
       <find>add_hi</find>
       <find>total_savings</find>
       <find>solar_savings</find>
+      <find>10610</find>
+      <find>&lt;=4</find>
+      <find>start_</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -353,7 +151,6 @@
         <option value="$PROJECT_DIR$/Resi Heatmap/PVWatts.py" />
         <option value="$PROJECT_DIR$/Resi Heatmap/table.csv" />
         <option value="$PROJECT_DIR$/Resi Heatmap/Zipcode.py" />
-        <option value="$PROJECT_DIR$/Resi Heatmap/HeatMap.py" />
         <option value="$PROJECT_DIR$/Resi Heatmap/Util:City/Util:City Database.csv" />
         <option value="$PROJECT_DIR$/Resi Heatmap/SavingsPerf.py" />
         <option value="$PROJECT_DIR$/Resi Heatmap/Capsolaranalysis.py" />
@@ -366,7 +163,11 @@
         <option value="$PROJECT_DIR$/Resi Heatmap/Rates/all_rates.csv" />
         <option value="$PROJECT_DIR$/Resi Heatmap/Dispatch.py" />
         <option value="$PROJECT_DIR$/Resi Heatmap/Genability.py" />
+        <option value="$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv" />
         <option value="$PROJECT_DIR$/Resi Heatmap/NetLoad.py" />
+        <option value="$PROJECT_DIR$/Resi Heatmap/zip2fips/fetch_source" />
+        <option value="$PROJECT_DIR$/Resi Heatmap/zip2fips/makejson.py" />
+        <option value="$PROJECT_DIR$/Resi Heatmap/HeatMap.py" />
       </list>
     </option>
   </component>
@@ -374,7 +175,7 @@
     <option name="x" value="-1920" />
     <option name="y" value="-100" />
     <option name="width" value="1297" />
-    <option name="height" value="1002" />
+    <option name="height" value="965" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -410,7 +211,7 @@
               <item name="ResiHeatmap" type="b2602c69:ProjectViewProjectNode" />
               <item name="ResiHeatmap" type="462c0819:PsiDirectoryNode" />
               <item name="Resi Heatmap" type="462c0819:PsiDirectoryNode" />
-              <item name="Util:City" type="462c0819:PsiDirectoryNode" />
+              <item name="Outputs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -427,15 +228,16 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Resi Heatmap/Util:City" />
       <recent name="$PROJECT_DIR$/Resi Heatmap/LoadProfiles" />
       <recent name="$PROJECT_DIR$/Resi Heatmap" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Resi Heatmap" />
+      <recent name="$PROJECT_DIR$/Resi Heatmap/Outputs" />
       <recent name="$PROJECT_DIR$/Resi Heatmap/LoadProfiles" />
       <recent name="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/Balt" />
-      <recent name="$PROJECT_DIR$/Resi Heatmap" />
       <recent name="$PROJECT_DIR$/Resi Heatmap/Rates" />
-      <recent name="$PROJECT_DIR$/Resi Heatmap/Outputs" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -450,7 +252,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.UpdateRates">
+  <component name="RunManager" selected="Python.HeatMap">
     <configuration name="Dispatch" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -468,7 +270,7 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="Genability" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="HeatMap" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -480,7 +282,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ResiHeatmap" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Resi Heatmap/Genability.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Resi Heatmap/HeatMap.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -553,20 +355,39 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <list size="6">
+    <configuration name="makejson" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Resi Heatmap/zip2fips" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ResiHeatmap" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Resi Heatmap/zip2fips/makejson.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Python.Parser" />
       <item index="1" class="java.lang.String" itemvalue="Python.NetLoad" />
       <item index="2" class="java.lang.String" itemvalue="Python.Dispatch" />
       <item index="3" class="java.lang.String" itemvalue="Python.UpdateRates" />
-      <item index="4" class="java.lang.String" itemvalue="Python.Genability" />
-      <item index="5" class="java.lang.String" itemvalue="Python.Utility:City" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Utility:City" />
+      <item index="5" class="java.lang.String" itemvalue="Python.HeatMap" />
+      <item index="6" class="java.lang.String" itemvalue="Python.makejson" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.UpdateRates" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Dispatch" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Utility:City" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Genability" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.HeatMap" />
+        <item index="1" class="java.lang.String" itemvalue="Python.makejson" />
+        <item index="2" class="java.lang.String" itemvalue="Python.UpdateRates" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Dispatch" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Utility:City" />
       </list>
     </recent_temporary>
   </component>
@@ -574,15 +395,15 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1920" y="-100" width="1297" height="1002" extended-state="0" />
+    <frame x="-1920" y="-100" width="1297" height="965" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28924304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42430705" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26415095" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297362" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39019188" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5195219" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38956714" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5190896" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -613,22 +434,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="129" />
+      <option name="time" value="145" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/Anchorage Intl AP" />
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Los Angeles Intl AP.csv" />
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/Oakland Intl AP.csv" />
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/matplotlib/axes/_axes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="4278" column="0" lean-forward="false" selection-start-line="4278" selection-start-column="0" selection-end-line="4278" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/San Jose Intl AP.csv" />
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/San Francisco Intl AP.csv" />
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/Solar.py" />
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/Database.py" />
@@ -739,13 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Zipcode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/TarrifEngine.py" />
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/CustomerSeg.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -784,14 +587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/PVWatts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -816,39 +611,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1290">
-          <caret line="86" column="39" lean-forward="false" selection-start-line="86" selection-start-column="39" selection-end-line="86" selection-end-column="39" />
-          <folding>
-            <element signature="e#48#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/HeatMap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/LoadProfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Genability.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="254" column="61" lean-forward="false" selection-start-line="254" selection-start-column="61" selection-end-line="254" selection-end-column="61" />
-          <folding>
-            <element signature="e#212#249#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -875,7 +642,7 @@
         <state relative-caret-position="343">
           <caret line="50" column="11" lean-forward="false" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -885,24 +652,6 @@
         <state relative-caret-position="235">
           <caret line="1808" column="0" lean-forward="false" selection-start-line="1808" selection-start-column="0" selection-end-line="1808" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/NetLoad.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="218" column="26" lean-forward="false" selection-start-line="218" selection-start-column="26" selection-end-line="218" selection-end-column="26" />
-          <folding>
-            <element signature="e#212#226#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -917,8 +666,114 @@
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/UpdateRates.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="84" lean-forward="false" selection-start-line="0" selection-start-column="84" selection-end-line="0" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/zip2fips/fetch_source">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="38" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/zip2fips/makejson.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/zip2fips/state_fips.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/PVWatts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+          <folding>
+            <element signature="e#48#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/zip2fips/zip2fips.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Zipcode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+          <folding>
+            <element signature="e#94#107#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Genability.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2751">
+          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+          <folding>
+            <element signature="e#212#249#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/NetLoad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="218" column="14" lean-forward="false" selection-start-line="218" selection-start-column="14" selection-end-line="218" selection-end-column="43" />
+          <folding>
+            <element signature="e#212#226#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/Heatmap.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/HeatMap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="120" column="51" lean-forward="false" selection-start-line="120" selection-start-column="51" selection-end-line="120" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

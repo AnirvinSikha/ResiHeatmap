@@ -214,7 +214,7 @@ def main():
                       "Bill Solar Only": bill_solar, "Bill PV+ESS": bill_solar_storage,
                         "ESS Savings": total_savings},
         columns= ['Utility', "City", 'Zip', 'Tariff', "Bill Before Solar", "Bill Solar Only",
-                  "Bill PV+ESS", 'Solar Saving', 'ESS Savings'])
+                  "Bill PV+ESS", 'ESS Savings'])
     d["Solar Savings"] = d["Bill Before Solar"] - d["Bill Solar Only"]
     d.to_csv("Outputs/finalCalculation.csv")
 
