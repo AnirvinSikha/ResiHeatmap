@@ -11,20 +11,35 @@ from IPython.display import HTML
 start_time = time.time()
 total_utilities, total_cities, total_zips, total_tariffs, total_ESS_savings, total_solar_savings = [], [], [], [], [], []
 bill_before_solar, bill_solar, bill_solar_storage = [],[],[]
+ESS = False
 
 #fileters through final calc vals and gets maximum savings to plot
 def get_dataframe():
     global total_utilities, total_cities, total_zips, total_tariffs, total_ESS_savings, total_solar_savings
     global bill_before_solar, bill_solar, bill_solar_storage
-
+    global ESS
     df = pd.read_csv("Outputs/finalCalculation.csv")
     ret = pd.DataFrame()
     utils = df['Utility'].tolist()
     utils = list(set(utils))
+    inp = raw_input("Do you want to display Solar or ESS? (solar/ess)")
+    while True:
+        if inp.lower() == "solar":
+            ESS = False
+            break
+        elif inp.lower() == "ess":
+            ESS = True
+            break
+        else:
+            inp = raw_input("Invalid input! Do you want to display Solar or ESS? (solar/ess)")
 
     for i in utils:
         filtered = df.loc[df["Utility"] == i]
-        maximum = filtered.loc[filtered['Solar Savings'].idxmax()]
+        filtered["ESS + Solar Savings"] = filtered["ESS Savings"] + filtered['Solar Savings']
+        if ESS:
+            maximum = filtered.loc[filtered['ESS + Solar Savings'].idxmax()]
+        else:
+            maximum = filtered.loc[filtered['Solar Savings'].idxmax()]
         maximum = maximum.tolist()
         total_utilities += [maximum[1]]
         total_cities += [maximum[2]]
@@ -41,6 +56,7 @@ def get_dataframe():
                       "Solar Savings": total_solar_savings, "ESS Savings": total_ESS_savings},
         columns= ['Utility', "City", 'Zip', 'Tariff', "Bill Before Solar", "Bill Solar Only",
                   "Bill PV+ESS", 'Solar Savings', 'ESS Savings'])
+    d.to_csv("Outputs/Solar ESS.csv")
     return d
 
 def zip2fips(z):
@@ -73,7 +89,7 @@ def util_to_zip(util, solar, ESS):
 
 def get_all_values():
     global total_solar_savings, total_ESS_savings
-
+    df = pd.read_csv("Outputs/Solar ESS.csv")
     final_utils = []
     final_fips = []
     final_solar = []
@@ -82,7 +98,6 @@ def get_all_values():
     utils = list(set(utils))
     print(len(utils))
     for i in range((len(utils))):
-
         output = util_to_zip(utils[i], total_solar_savings[i], total_ESS_savings[i])
         final_utils += output[0]
         final_fips += output[1]
@@ -98,6 +113,8 @@ def get_all_values():
 def plot():
     global total_utilities, total_cities, total_zips, total_tariffs, total_ESS_savings, total_solar_savings
     global bill_before_solar, bill_solar, bill_solar_storage
+    global ESS
+    ESS = True
 
     username = "ASikha"
     api_key = "t4qWFWDpSSYx2yBrgnKT"
@@ -106,25 +123,70 @@ def plot():
 
     utils = d["Utility"]
     fips = d["FIPS"]
-    solar = d["Solar"]
-    ESS = d["ESS"]
+    solar = [round(x) for x in d["Solar"]]
+    ESS_vals = d["ESS"]
 
-    #text = "Utility:" + utils.tolist() + '<br>' + "Solar Savings: " + solar.tolist() + '<br>' + "ESS Savings: " + ESS.tolist()
     ryg = cl.scales['11']['div']['RdYlGn']
     ryg.reverse()
-    scl = [[0.0, 'rgb(242,240,247)'],[0.2, 'rgb(218,218,235)'],[0.4, 'rgb(188,189,220)'],\
-            [0.6, 'rgb(158,154,200)'],[0.8, 'rgb(117,107,177)'],[1.0, 'rgb(84,39,143)']]
-    endpts = list(np.linspace(min(solar), max(solar), len(ryg) - 1))
 
 
-    fig = ff.create_choropleth(fips = fips, values = solar, binning_endpoints=endpts,
-    colorscale = ryg, legend_title='Solar Savings',)
+    if ESS == False:
+        endpts = list(np.linspace(min(solar), max(solar), len(ryg) - 1))
+        fig = ff.create_choropleth(fips = fips, values = solar, binning_endpoints=endpts,
+                           colorscale = ryg, legend_title='Solar Savings', title='Solar Savings',
+                           state_outline={'color': 'rgb(15, 15, 55)', 'width': 0.5}, round_legend_values=True)
+    else:
+        endpts = list(np.linspace(min(ESS_vals), max(ESS_vals), len(ryg) - 1))
+        fig = ff.create_choropleth(fips = fips, values = ESS_vals, binning_endpoints=endpts,
+                           colorscale = ryg, legend_title='ESS', title='ESS',
+                           state_outline={'color': 'rgb(15, 15, 55)', 'width': 0.5}, round_legend_values=True)
 
     py.plot(fig, filename='Heatmap')
 
+def hawaii_plot():
+    global ESS
+    ESS = False
 
+    username = "ASikha"
+    api_key = "t4qWFWDpSSYx2yBrgnKT"
+    plotly.tools.set_credentials_file(username=username, api_key=api_key)
+    d = pd.read_csv("Outputs/Heatmap.csv")
+
+    FIPS = d["FIPS"].tolist()
+    for i in FIPS:
+        if i == 15003 or i == 15009:
+            filtered = d.loc[d["FIPS"] == i]
+            utils = filtered["Utility"]
+            fips = filtered["FIPS"]
+            solar = [round(x) for x in filtered["Solar"]]
+            ESS_vals = filtered["ESS"]
+    fips = fips.tolist()
+    solar = solar
+    ESS_vals = ESS_vals.tolist()
+    fips += [15001]
+    solar += [1200]
+    ESS_vals += [532.3645541]
+
+    ryg = cl.scales['11']['div']['RdYlGn']
+    #ryg.reverse()
+
+    if ESS == False:
+        endpts = list(np.linspace(min(solar), max(solar), len(ryg) - 1))
+        fig = ff.create_choropleth(fips = fips, values = solar,
+                           colorscale = ryg, legend_title='Solar Savings', title='Solar Savings',
+                           state_outline={'color': 'rgb(15, 15, 55)', 'width': 0.5}, round_legend_values=True,
+                                   scope = ['Hawaii'], show_state_data=True,)
+    else:
+        #endpts = list(np.linspace(min(ESS_vals), max(ESS_vals), len(ryg) - 1))
+        fig = ff.create_choropleth(fips = fips, values = ESS_vals,
+                           colorscale = ryg, legend_title='ESS', title='ESS',
+                           state_outline={'color': 'rgb(15, 15, 55)', 'width': 0.5}, round_legend_values=True,
+                                   scope = ['Hawaii'], show_state_data=True,)
+
+    py.plot(fig, filename='Heatmap')
 #df = get_dataframe()
 #get_all_values()
-plot()
+#plot()
+hawaii_plot()
 
 

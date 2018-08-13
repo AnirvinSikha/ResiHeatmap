@@ -1,16 +1,16 @@
 ,Utility,FIPS,Solar,ESS
-0,Arizona Public Service Co,04027,1823.831034,0.890210407
-1,Arizona Public Service Co,04025,1823.831034,0.890210407
-2,Arizona Public Service Co,04021,1823.831034,0.890210407
-3,Arizona Public Service Co,04001,1823.831034,0.890210407
-4,Arizona Public Service Co,04019,1823.831034,0.890210407
-5,Arizona Public Service Co,04012,1823.831034,0.890210407
-6,Arizona Public Service Co,04013,1823.831034,0.890210407
-7,Arizona Public Service Co,04003,1823.831034,0.890210407
-8,Arizona Public Service Co,04005,1823.831034,0.890210407
-9,Arizona Public Service Co,04017,1823.831034,0.890210407
-10,Arizona Public Service Co,04007,1823.831034,0.890210407
-11,Arizona Public Service Co,04015,1823.831034,0.890210407
+0,Arizona Public Service Co,04027,1645.839903,429.4940748
+1,Arizona Public Service Co,04025,1645.839903,429.4940748
+2,Arizona Public Service Co,04021,1645.839903,429.4940748
+3,Arizona Public Service Co,04001,1645.839903,429.4940748
+4,Arizona Public Service Co,04019,1645.839903,429.4940748
+5,Arizona Public Service Co,04012,1645.839903,429.4940748
+6,Arizona Public Service Co,04013,1645.839903,429.4940748
+7,Arizona Public Service Co,04003,1645.839903,429.4940748
+8,Arizona Public Service Co,04005,1645.839903,429.4940748
+9,Arizona Public Service Co,04017,1645.839903,429.4940748
+10,Arizona Public Service Co,04007,1645.839903,429.4940748
+11,Arizona Public Service Co,04015,1645.839903,429.4940748
 12,Eversource Energy (Formerly NSTAR Electric Company),25005,1311.379197,187.2498034
 13,Eversource Energy (Formerly NSTAR Electric Company),25007,1311.379197,187.2498034
 14,Eversource Energy (Formerly NSTAR Electric Company),25001,1311.379197,187.2498034
@@ -21,53 +21,53 @@
 19,Eversource Energy (Formerly NSTAR Electric Company),25021,1311.379197,187.2498034
 20,Maui Electric Co Ltd,15003,4357.524096,963.2441409
 21,Maui Electric Co Ltd,15009,4357.524096,963.2441409
-22,Pacific Gas & Electric Co,06099,4355.015806,1.82e-15
-23,Pacific Gas & Electric Co,06031,4355.015806,1.82e-15
-24,Pacific Gas & Electric Co,06107,4355.015806,1.82e-15
-25,Pacific Gas & Electric Co,06091,4355.015806,1.82e-15
-26,Pacific Gas & Electric Co,06095,4355.015806,1.82e-15
-27,Pacific Gas & Electric Co,06097,4355.015806,1.82e-15
-28,Pacific Gas & Electric Co,06011,4355.015806,1.82e-15
-29,Pacific Gas & Electric Co,06013,4355.015806,1.82e-15
-30,Pacific Gas & Electric Co,06017,4355.015806,1.82e-15
-31,Pacific Gas & Electric Co,06115,4355.015806,1.82e-15
-32,Pacific Gas & Electric Co,06019,4355.015806,1.82e-15
-33,Pacific Gas & Electric Co,06053,4355.015806,1.82e-15
-34,Pacific Gas & Electric Co,06035,4355.015806,1.82e-15
-35,Pacific Gas & Electric Co,06113,4355.015806,1.82e-15
-36,Pacific Gas & Electric Co,06077,4355.015806,1.82e-15
-37,Pacific Gas & Electric Co,06075,4355.015806,1.82e-15
-38,Pacific Gas & Electric Co,06033,4355.015806,1.82e-15
-39,Pacific Gas & Electric Co,06057,4355.015806,1.82e-15
-40,Pacific Gas & Electric Co,06079,4355.015806,1.82e-15
-41,Pacific Gas & Electric Co,06029,4355.015806,1.82e-15
-42,Pacific Gas & Electric Co,06089,4355.015806,1.82e-15
-43,Pacific Gas & Electric Co,06087,4355.015806,1.82e-15
-44,Pacific Gas & Electric Co,06085,4355.015806,1.82e-15
-45,Pacific Gas & Electric Co,06083,4355.015806,1.82e-15
-46,Pacific Gas & Electric Co,06067,4355.015806,1.82e-15
-47,Pacific Gas & Electric Co,06081,4355.015806,1.82e-15
-48,Pacific Gas & Electric Co,06007,4355.015806,1.82e-15
-49,Pacific Gas & Electric Co,06005,4355.015806,1.82e-15
-50,Pacific Gas & Electric Co,06039,4355.015806,1.82e-15
-51,Pacific Gas & Electric Co,06003,4355.015806,1.82e-15
-52,Pacific Gas & Electric Co,06001,4355.015806,1.82e-15
-53,Pacific Gas & Electric Co,06109,4355.015806,1.82e-15
-54,Pacific Gas & Electric Co,06047,4355.015806,1.82e-15
-55,Pacific Gas & Electric Co,06103,4355.015806,1.82e-15
-56,Pacific Gas & Electric Co,06009,4355.015806,1.82e-15
-57,Pacific Gas & Electric Co,06101,4355.015806,1.82e-15
-58,Pacific Gas & Electric Co,06043,4355.015806,1.82e-15
-59,Pacific Gas & Electric Co,06041,4355.015806,1.82e-15
-60,Pacific Gas & Electric Co,06040,4355.015806,1.82e-15
-61,Pacific Gas & Electric Co,06061,4355.015806,1.82e-15
-62,Pacific Gas & Electric Co,06063,4355.015806,1.82e-15
-63,Pacific Gas & Electric Co,06045,4355.015806,1.82e-15
-64,Pacific Gas & Electric Co,06021,4355.015806,1.82e-15
-65,Pacific Gas & Electric Co,06023,4355.015806,1.82e-15
-66,Pacific Gas & Electric Co,06069,4355.015806,1.82e-15
-67,Pacific Gas & Electric Co,06055,4355.015806,1.82e-15
-68,Pacific Gas & Electric Co,06049,4355.015806,1.82e-15
+22,Pacific Gas & Electric Co,06099,4284.167721,176.7171501
+23,Pacific Gas & Electric Co,06031,4284.167721,176.7171501
+24,Pacific Gas & Electric Co,06107,4284.167721,176.7171501
+25,Pacific Gas & Electric Co,06091,4284.167721,176.7171501
+26,Pacific Gas & Electric Co,06095,4284.167721,176.7171501
+27,Pacific Gas & Electric Co,06097,4284.167721,176.7171501
+28,Pacific Gas & Electric Co,06011,4284.167721,176.7171501
+29,Pacific Gas & Electric Co,06013,4284.167721,176.7171501
+30,Pacific Gas & Electric Co,06017,4284.167721,176.7171501
+31,Pacific Gas & Electric Co,06115,4284.167721,176.7171501
+32,Pacific Gas & Electric Co,06019,4284.167721,176.7171501
+33,Pacific Gas & Electric Co,06053,4284.167721,176.7171501
+34,Pacific Gas & Electric Co,06035,4284.167721,176.7171501
+35,Pacific Gas & Electric Co,06113,4284.167721,176.7171501
+36,Pacific Gas & Electric Co,06077,4284.167721,176.7171501
+37,Pacific Gas & Electric Co,06075,4284.167721,176.7171501
+38,Pacific Gas & Electric Co,06033,4284.167721,176.7171501
+39,Pacific Gas & Electric Co,06057,4284.167721,176.7171501
+40,Pacific Gas & Electric Co,06079,4284.167721,176.7171501
+41,Pacific Gas & Electric Co,06029,4284.167721,176.7171501
+42,Pacific Gas & Electric Co,06089,4284.167721,176.7171501
+43,Pacific Gas & Electric Co,06087,4284.167721,176.7171501
+44,Pacific Gas & Electric Co,06085,4284.167721,176.7171501
+45,Pacific Gas & Electric Co,06083,4284.167721,176.7171501
+46,Pacific Gas & Electric Co,06067,4284.167721,176.7171501
+47,Pacific Gas & Electric Co,06081,4284.167721,176.7171501
+48,Pacific Gas & Electric Co,06007,4284.167721,176.7171501
+49,Pacific Gas & Electric Co,06005,4284.167721,176.7171501
+50,Pacific Gas & Electric Co,06039,4284.167721,176.7171501
+51,Pacific Gas & Electric Co,06003,4284.167721,176.7171501
+52,Pacific Gas & Electric Co,06001,4284.167721,176.7171501
+53,Pacific Gas & Electric Co,06109,4284.167721,176.7171501
+54,Pacific Gas & Electric Co,06047,4284.167721,176.7171501
+55,Pacific Gas & Electric Co,06103,4284.167721,176.7171501
+56,Pacific Gas & Electric Co,06009,4284.167721,176.7171501
+57,Pacific Gas & Electric Co,06101,4284.167721,176.7171501
+58,Pacific Gas & Electric Co,06043,4284.167721,176.7171501
+59,Pacific Gas & Electric Co,06041,4284.167721,176.7171501
+60,Pacific Gas & Electric Co,06040,4284.167721,176.7171501
+61,Pacific Gas & Electric Co,06061,4284.167721,176.7171501
+62,Pacific Gas & Electric Co,06063,4284.167721,176.7171501
+63,Pacific Gas & Electric Co,06045,4284.167721,176.7171501
+64,Pacific Gas & Electric Co,06021,4284.167721,176.7171501
+65,Pacific Gas & Electric Co,06023,4284.167721,176.7171501
+66,Pacific Gas & Electric Co,06069,4284.167721,176.7171501
+67,Pacific Gas & Electric Co,06055,4284.167721,176.7171501
+68,Pacific Gas & Electric Co,06049,4284.167721,176.7171501
 69,Delmarva Power,24025,1486.623464,73.06372172
 70,Delmarva Power,10005,1486.623464,73.06372172
 71,Delmarva Power,24001,1486.623464,73.06372172
@@ -98,15 +98,15 @@
 96,Eversource Energy (Formerly Connecticut Light & Power Co),09013,1424.955095,125.1768021
 97,Eversource Energy (Formerly Connecticut Light & Power Co),09001,1424.955095,125.1768021
 98,Eversource Energy (Formerly Connecticut Light & Power Co),09009,1424.955095,125.1768021
-99,Baltimore Gas & Electric Co,24003,1085.636479,11.11925156
-100,Baltimore Gas & Electric Co,24025,1085.636479,11.11925156
-101,Baltimore Gas & Electric Co,24027,1085.636479,11.11925156
-102,Baltimore Gas & Electric Co,24033,1085.636479,11.11925156
-103,Baltimore Gas & Electric Co,24005,1085.636479,11.11925156
-104,Baltimore Gas & Electric Co,24031,1085.636479,11.11925156
-105,Baltimore Gas & Electric Co,24009,1085.636479,11.11925156
-106,Baltimore Gas & Electric Co,24510,1085.636479,11.11925156
-107,Baltimore Gas & Electric Co,24013,1085.636479,11.11925156
+99,Baltimore Gas & Electric Co,24003,988.0719056,377.7965538
+100,Baltimore Gas & Electric Co,24025,988.0719056,377.7965538
+101,Baltimore Gas & Electric Co,24027,988.0719056,377.7965538
+102,Baltimore Gas & Electric Co,24033,988.0719056,377.7965538
+103,Baltimore Gas & Electric Co,24005,988.0719056,377.7965538
+104,Baltimore Gas & Electric Co,24031,988.0719056,377.7965538
+105,Baltimore Gas & Electric Co,24009,988.0719056,377.7965538
+106,Baltimore Gas & Electric Co,24510,988.0719056,377.7965538
+107,Baltimore Gas & Electric Co,24013,988.0719056,377.7965538
 108,PPL Electric Utilities Corp,42103,910.3727954,-4.29e-15
 109,PPL Electric Utilities Corp,42133,910.3727954,-4.29e-15
 110,PPL Electric Utilities Corp,42037,910.3727954,-4.29e-15
@@ -189,7 +189,7 @@
 187,Green Mountain Power Corp,50027,6708.637433,2.181862316
 188,Green Mountain Power Corp,50025,6708.637433,2.181862316
 189,Hawaiian Electric Co Inc,15003,4193.392584,532.3645541
-190,Tucson Electric Power Co,04019,1381.860299,-1.54e-14
+190,Tucson Electric Power Co,04019,1199.679265,291.3142679
 191,Southern California Edison Co,06065,3622.430772,81.11963239
 192,Southern California Edison Co,06029,3622.430772,81.11963239
 193,Southern California Edison Co,06031,3622.430772,81.11963239

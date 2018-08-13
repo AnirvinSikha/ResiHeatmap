@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b66fce76-6f98-4161-b639-2212db606335" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/2011_us_ag_exports.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resi Heatmap/iouzipcodes2011.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/zip2fips" afterPath="$PROJECT_DIR$/Resi Heatmap/zip2fips" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/HeatMap.py" afterPath="$PROJECT_DIR$/Resi Heatmap/HeatMap.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/NetLoad.py" afterPath="$PROJECT_DIR$/Resi Heatmap/NetLoad.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Outputs/Heatmap.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Outputs/Heatmap.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv" afterPath="$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,8 +54,8 @@
       <file leaf-file-name="HeatMap.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Resi Heatmap/HeatMap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="120" column="51" lean-forward="false" selection-start-line="120" selection-start-column="51" selection-end-line="120" selection-end-column="51" />
+            <state relative-caret-position="280">
+              <caret line="39" column="12" lean-forward="false" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -64,11 +63,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="zip2fips.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resi Heatmap/zip2fips/zip2fips.json">
+      <file leaf-file-name="Heatmap.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/Heatmap.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-539">
+              <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Solar ESS.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/Solar ESS.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="105" lean-forward="true" selection-start-line="22" selection-start-column="105" selection-end-line="22" selection-end-column="105" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PVWatts.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/PVWatts.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="finalCalculation.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+              <caret line="0" column="78" lean-forward="false" selection-start-line="0" selection-start-column="78" selection-end-line="0" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -98,16 +127,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="finalCalculation.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="84" lean-forward="false" selection-start-line="0" selection-start-column="84" selection-end-line="0" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -128,9 +147,10 @@
       <find>add_hi</find>
       <find>total_savings</find>
       <find>solar_savings</find>
-      <find>10610</find>
       <find>&lt;=4</find>
       <find>start_</find>
+      <find>10610</find>
+      <find>15009</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -233,8 +253,8 @@
       <recent name="$PROJECT_DIR$/Resi Heatmap" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Resi Heatmap" />
       <recent name="$PROJECT_DIR$/Resi Heatmap/Outputs" />
+      <recent name="$PROJECT_DIR$/Resi Heatmap" />
       <recent name="$PROJECT_DIR$/Resi Heatmap/LoadProfiles" />
       <recent name="$PROJECT_DIR$/Resi Heatmap/LoadProfiles/Balt" />
       <recent name="$PROJECT_DIR$/Resi Heatmap/Rates" />
@@ -399,11 +419,11 @@
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28924304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26415095" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297362" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38956714" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5190896" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3873474" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5187251" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -434,12 +454,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="145" />
+      <option name="time" value="152" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/San Francisco Intl AP.csv" />
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/Solar.py" />
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/Database.py" />
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/OpenEI.py">
@@ -671,14 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="84" lean-forward="false" selection-start-line="0" selection-start-column="84" selection-end-line="0" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/zip2fips/fetch_source">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -703,48 +714,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/PVWatts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
-          <folding>
-            <element signature="e#48#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/zip2fips/zip2fips.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/Zipcode.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
           <folding>
             <element signature="e#94#107#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Genability.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2751">
-          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
-          <folding>
-            <element signature="e#212#249#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -759,18 +734,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/Heatmap.csv">
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/zip2fips/zip2fips.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/PVWatts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/finalCalculation.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="78" lean-forward="false" selection-start-line="0" selection-start-column="78" selection-end-line="0" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+          <folding>
+            <element signature="e#48#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Genability.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2751">
+          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+          <folding>
+            <element signature="e#212#249#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/Solar ESS.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="105" lean-forward="true" selection-start-line="22" selection-start-column="105" selection-end-line="22" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resi Heatmap/Outputs/Heatmap.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-539">
+          <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Resi Heatmap/HeatMap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="120" column="51" lean-forward="false" selection-start-line="120" selection-start-column="51" selection-end-line="120" selection-end-column="51" />
+        <state relative-caret-position="280">
+          <caret line="39" column="12" lean-forward="false" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
