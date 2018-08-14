@@ -1,3 +1,13 @@
+'''
+All heatmap visualization code.
+First you need to run get_dataframe which will parse through the
+values to get the ess/solar values that you want to plot.
+
+Then run get_all_values which does the zip --> fips conversion needed to plot the info
+
+Then run plot and hawaii_plot which will plot the data in plotly
+'''
+
 import plotly
 import plotly.plotly as py
 import plotly.figure_factory as ff
@@ -19,7 +29,6 @@ def get_dataframe():
     global bill_before_solar, bill_solar, bill_solar_storage
     global ESS
     df = pd.read_csv("Outputs/finalCalculation.csv")
-    ret = pd.DataFrame()
     utils = df['Utility'].tolist()
     utils = list(set(utils))
     inp = raw_input("Do you want to display Solar or ESS? (solar/ess)")
@@ -59,14 +68,14 @@ def get_dataframe():
     d.to_csv("Outputs/Solar ESS.csv")
     return d
 
-def zip2fips(z):
+def zip2fips(z): #zip to fip conversion
     if len(str(z)) <= 4:
             z = "0" + str(z)
     data = open("zip2fips/zip2fips.json")
     data = json.load(data)
     return data[str(z)]
 
-def util_to_zip(util, solar, ESS):
+def util_to_zip(util, solar, ESS): #utility to zip conversion
     util2zip = pd.read_csv("iouzipcodes2011.csv")
     utils = util2zip["utility_name"].tolist()
     zips = util2zip['zip'].tolist()
@@ -87,7 +96,7 @@ def util_to_zip(util, solar, ESS):
         storage_vals += [ESS]
     return [u, fips, solar_vals, storage_vals]
 
-def get_all_values():
+def get_all_values(): #does the util to zip and zip to fip conversion.
     global total_solar_savings, total_ESS_savings
     df = pd.read_csv("Outputs/Solar ESS.csv")
     final_utils = []
@@ -110,7 +119,7 @@ def get_all_values():
                      columns= ['Utility', 'FIPS', 'Solar', 'ESS'])
     d.to_csv("Outputs/Heatmap.csv")
 
-def plot():
+def plot(): #plots all values on the heatmap
     global total_utilities, total_cities, total_zips, total_tariffs, total_ESS_savings, total_solar_savings
     global bill_before_solar, bill_solar, bill_solar_storage
     global ESS
@@ -143,9 +152,8 @@ def plot():
 
     py.plot(fig, filename='Heatmap')
 
-def hawaii_plot():
+def hawaii_plot(): #only used for hawaii plot
     global ESS
-    ESS = False
 
     username = "ASikha"
     api_key = "t4qWFWDpSSYx2yBrgnKT"
@@ -168,25 +176,22 @@ def hawaii_plot():
     ESS_vals += [532.3645541]
 
     ryg = cl.scales['11']['div']['RdYlGn']
-    #ryg.reverse()
 
     if ESS == False:
-        endpts = list(np.linspace(min(solar), max(solar), len(ryg) - 1))
         fig = ff.create_choropleth(fips = fips, values = solar,
                            colorscale = ryg, legend_title='Solar Savings', title='Solar Savings',
                            state_outline={'color': 'rgb(15, 15, 55)', 'width': 0.5}, round_legend_values=True,
                                    scope = ['Hawaii'], show_state_data=True,)
     else:
-        #endpts = list(np.linspace(min(ESS_vals), max(ESS_vals), len(ryg) - 1))
         fig = ff.create_choropleth(fips = fips, values = ESS_vals,
                            colorscale = ryg, legend_title='ESS', title='ESS',
                            state_outline={'color': 'rgb(15, 15, 55)', 'width': 0.5}, round_legend_values=True,
                                    scope = ['Hawaii'], show_state_data=True,)
 
     py.plot(fig, filename='Heatmap')
-#df = get_dataframe()
-#get_all_values()
-#plot()
+df = get_dataframe()
+get_all_values()
+plot()
 hawaii_plot()
 
 
